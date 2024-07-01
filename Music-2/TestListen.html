@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Audio Player</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+
+      select,
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: background-color 0.3s;
+      }
+
+      select:hover,
+      button:hover {
+        background-color: #45a049;
+      }
+
+      audio {
+        display: block;
+        width: 100%;
+        margin: 20px auto;
+      }
+
+      p {
+        font-size: 16px;
+        color: #333;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Gangsta P Songs</h1>
+    <a>
+      href="https://www.chordsheet.com/song/159611 " here are the chord charts
+      for these songs.</a
+    >
+    <label for="difficulty">Select Difficulty:</label>
+    <select id="difficulty">
+      <option value="" disabled selected>Select Difficulty</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Expert">Expert</option>
+    </select>
+
+    <button id="playButton">Play Random Bop</button>
+
+    <audio id="audioPlayer" controls>
+      Your browser does not support the audio tag.
+    </audio>
+
+    <br />
+    <label for="songSelect">Select the song name:</label>
+    <select id="songSelect">
+      <option value="" disabled selected>Guess which song</option>
+    </select>
+    <button id="submitGuessButton" style="display: none">Submit Guess</button>
+    <p id="feedback"></p>
+    <script>
+      let currentSong = "";
+
+      // Function to populate song dropdown
+      function populateSongDropdown(selectedSongs) {
+        const songSelect = document.getElementById("songSelect");
+        selectedSongs.forEach((song) => {
+          const option = document.createElement("option");
+          option.value = song;
+          option.text = song.replace(/_/g, " ").replace(/\.[^/.]+$/, ""); // Remove extension and underscores
+          songSelect.appendChild(option);
+        });
+        // Show the song dropdown and guess button
+        songSelect.style.display = "inline-block";
+        document.getElementById("submitGuessButton").style.display =
+          "inline-block";
+      }
+
+      document
+        .getElementById("playButton")
+        .addEventListener("click", function () {
+          // Get the selected difficulty
+          const difficulty = document.getElementById("difficulty").value;
+
+          // Ensure a difficulty is selected
+          if (difficulty === "") {
+            alert("Please select a difficulty.");
+            return;
+          }
+
+          // Define the songs for each difficulty level
+          const songs = {
+            Beginner: [
+              "Last_Christmas.m4a",
+              "Mistletoe_ftJazzy_G.m4a",
+              "Rockin_Around_The_Christmas_Tree.m4a",
+            ],
+            Intermediate: [
+              "Last_Christmas.m4a",
+              "Mistletoe_ftJazzy_G.m4a",
+              "Rockin_Around_The_Christmas_Tree.m4a",
+            ],
+            Expert: [
+              "Last_Christmas.m4a",
+              "Mistletoe_ftJazzy_G.m4a",
+              "Rockin_Around_The_Christmas_Tree.m4a",
+            ],
+          };
+
+          // Get the array of songs for the selected difficulty
+          const selectedSongs = songs[difficulty];
+
+          // Randomly select a song
+          currentSong =
+            selectedSongs[Math.floor(Math.random() * selectedSongs.length)];
+
+          // Get the audio player element
+          const audioPlayer = document.getElementById("audioPlayer");
+
+          // Set the source of the audio player
+          audioPlayer.src = "songs/" + difficulty + "/" + currentSong;
+
+          // Load and play the audio
+          audioPlayer.load();
+          audioPlayer.play();
+
+          // Populate the song dropdown
+          populateSongDropdown(selectedSongs);
+        });
+
+      document
+        .getElementById("submitGuessButton")
+        .addEventListener("click", function () {
+          const selectedGuess = document.getElementById("songSelect").value;
+          const feedback = document.getElementById("feedback");
+
+          if (selectedGuess === currentSong) {
+            feedback.textContent = "Yes, that is correct!";
+            feedback.style.color = "green";
+          } else {
+            feedback.textContent = "No, that is incorrect. Try again!";
+            feedback.style.color = "red";
+          }
+        });
+    </script>
+  </body>
+</html>
