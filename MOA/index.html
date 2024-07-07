@@ -24,18 +24,18 @@
   </head>
   <body>
     <div className="header">
-      <h1>Ballistics Calculator</h1>
+      <h1>Optic Adjustment Calculator</h1>
     </div>
-    <form id="shooterDistance">
+    <form>
       <h2>How far is the end of the muzzle from the target in yards?</h2>
-      <p class="first">Round to Yards</p>
+      <!-- <p class="first">Round to Yards</p> -->
 
       <input
+        id="shooterDistance"
         class="distance"
         type="number"
         placeholder="# of Yards From Target"
       />
-      <button type="button" class="OK1">OK!</button>
     </form>
     <form id="MOAPerClick">
       <h2>What is the MOA factor per click on your optic?</h2>
@@ -43,37 +43,51 @@
         (How many MOA does each click on your turret move the point of impact.
         It should be somthing like: 1 MOA, 1/2 MOA, 1/3 MOA, or 1/4 MOA)
       </p>
-      <input class="MOAFactor" type="number" placeholder="MOA per click."" />
-      <button type="button" class="OK2">OK!</button>
+      <input id="MOAFactor" class="MOAFactor" type="number" placeholder="MOA per
+      click."" />
     </form>
     <h2>
       How far is your point of impact from your point of aim? (Use inches as
       your unit.)
     </h2>
-    <form id="Windage">
+    <form>
       <h4 class="first">Windage</h4>
       <p>
         If the point of impact is left of point of aim input a negative number.
         If it is right of point of aim input a positive number.
       </p>
-      <input class="windage" type="number" placeholder="inches right" />
-      <button type="button" class="OK3">OK!</button>
+      <input
+        id="Windage"
+        class="windage"
+        type="number"
+        placeholder="inches right"
+      />
     </form>
-    <form id="Elevation">
+    <form>
       <h4 class="first">Elevation</h4>
       If the point of impact is lower than the point of aim input a negative
       number. If it is higher than the point of aim input a positive number.
       <br />
-      <input class="elevation" type="number" placeholder="inches up" />
-      <button type="button" class="OK4">OK!</button>
+      <input
+        class="elevation"
+        type="number"
+        placeholder="inches up"
+        id="Elevation"
+      />
     </form>
     <div>
-      <h2 class="solution">Solution</h2>
       <form id="Solution">
-        <button type="button" class="generate">Generate Solution</button>
+        <button type="button" class="generate" onclick="calculate()">
+          Generate Solution
+        </button>
+        <h2>Solution: <span id="solutionText"></span></h2>
       </form>
-      <p class="solutionText">"Move ..... inches"</p>
     </div>
+    <img
+      id="course-image"
+      src="https://qph.cf2.quoracdn.net/main-qimg-ecdabd8c0fa4fbad049662c80b8f578f-lq"
+      style="position: absolute; right: 100px; top: 100px"
+    />
   </body>
   <script src="script.js"></script>
 </html>
