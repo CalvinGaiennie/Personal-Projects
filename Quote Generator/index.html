@@ -7,7 +7,41 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Hello Parker</h1>
-    <p>Are you ready to see something stimulating?</p>
+    <h1>Fence Quoter</h1>
+    <h2>This Calculator will calculate your material quantities.</h2>
+    <!-- <form>
+      <h2>How many sides does your fence have?</h2>
+      <input id="sides" class="sides" type="number" placeholder="# of Sides" />
+    </form> -->
+    <form>
+      <h2>
+        What is the total length of your fence? (add up the lengths of all the
+        sides)
+      </h2>
+      <input
+        id="distance"
+        class="distance"
+        type="number"
+        placeholder="# of Feet"
+      />
+    </form>
+    <form>
+      <h2>How many boards can you fit in each 8 foot section</h2>
+      <input
+        id="boardNum"
+        class="boardNum"
+        type="number"
+        placeholder="# of Feet"
+      />
+    </form>
+    <div>
+      <form id="Solution">
+        <button type="button" class="generate" onclick="calculate()">
+          Generate Solution
+        </button>
+        <h2>Solution: <span id="solutionText"></span></h2>
+      </form>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
