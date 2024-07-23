@@ -25,7 +25,10 @@ function calculate() {
   console.log(numOfSt);
   numOfP = numOfUnits + 1;
   numOfC = numOfP;
-  numOfB = numOfUnits * boardNum;
+  numOfUnitsB = numOfUnits - 1 + (distance - (numOfUnits - 1) * 8) / 8;
+  console.log(numOfUnitsB);
+  numOfB = Math.ceil(numOfUnitsB * boardNum);
+  console.log(numOfB);
   numOfSSc = numOfB * 6;
   numOfLSc = numOfSt * 6;
   //display the result
