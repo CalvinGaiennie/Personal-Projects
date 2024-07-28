@@ -1,3 +1,4 @@
+"use strict";
 function calculate() {
   // Get input values
   const wasteArray = new Array(16).fill(0);
@@ -31,10 +32,12 @@ function calculate() {
   console.log(numOfB);
   numOfSSc = numOfB * 6;
   numOfLSc = numOfSt * 6;
+
   //display the result
   document.getElementById(
     "solutionText"
   ).textContent = `You need ${numOfP} posts, ${numOfC} bags of concrete, ${numOfSt} 2x4s, ${numOfB} boards, ${numOfSSc} short screws and, ${numOfLSc} long screws.`;
+
   console.log(waste);
   console.log(wasteArray);
 }
