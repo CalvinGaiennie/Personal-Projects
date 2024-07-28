@@ -11,7 +11,7 @@ function calculate() {
     return;
   }
   if (distance / 8 - Math.trunc(distance / 8) > 0) {
-    numOfUnits = Math.trunc(distance / 8) + 1;
+    const numOfUnits = Math.trunc(distance / 8) + 1;
   } else {
     numOfUnits = distance / 8;
   }
