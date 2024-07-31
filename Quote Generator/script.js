@@ -36,7 +36,7 @@ function calculate() {
   //display the result
   document.getElementById(
     "solutionText"
-  ).textContent = `You need ${numOfP} posts, ${numOfC} bags of concrete, ${numOfSt} 2x4s, ${numOfB} boards, ${numOfSSc} short screws and, ${numOfLSc} long screws.`;
+  ).textContent = `You need ${numOfP} posts, ${numOfC} bags of concrete, ${numOfSt} 16 foot 2x4s, ${numOfB} boards, ${numOfSSc} short screws and, ${numOfLSc} long screws.`;
 
   console.log(waste);
   console.log(wasteArray);

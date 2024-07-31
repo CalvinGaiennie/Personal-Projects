@@ -1,0 +1,13 @@
+#distance {
+  /* width: 100%;
+  padding: 20px;
+  font-size: 5rem;
+  text-align: left;
+  border: none; */
+  background-color: hsl(40, 50%, 70%);
+  /* color: white; */
+}
+
+#boardNum {
+  background-color: hsl(40, 50%, 70%);
+}

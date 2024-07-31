@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <style>
+      body {
+        background-image: url("bamboo.webp");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
     <h1>Fence Quoter</h1>
     <h2>This Calculator will calculate your material quantities.</h2>
     <!-- <form>
@@ -39,9 +47,12 @@
         <button type="button" class="generate" onclick="calculate()">
           Generate Solution
         </button>
-        <h2>Solution: <span id="solutionText"></span></h2>
+        <h2>Solution:</h2>
+        <h3><span id="solutionText"></span></h3>
       </form>
     </div>
     <script src="script.js"></script>
   </body>
 </html>
+
+<!-- style="background-image: url('bamboo.webp')" -->
