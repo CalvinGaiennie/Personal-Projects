@@ -1,46 +1,37 @@
 'use strict';
+/*
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 
+2
+-digit numbers is 
+9009
+=
+91
+×
+99
+.
 
-// var result = '\n';
-// for (var i = 1; i < 11; i++) {
-//   for (var j = 1; j < 11; j++) {
-//     result += i * j + ' ';
-//   }
-//   result += '\n';
-// }
-
-// console.log(result);
-
-//////////////////////////////////////////////////
-// var result2 = 'x ';
-// for (var i = 0; i < 11; i++) {
-//   for (var j = 0; j < 11; j++) {
-//     if (i == 0 && j > 0) {
-//       result2 += '[' + j + ']';
-//     } else if (j == 0 && i > 0) {
-//       result2 += '[' + i + '] ';
-//     } else if (i > 0 && j > 0) {
-//       result2 += i * j + ' ';
-//     }
-//   }
-//   result2 += '\n';
-// }
-
-// console.log(result2);
-
-const SDN = [];
+Find the largest palindrome made from the product of two 
+3
+-digit numbers.
+*/
 var result = '\n';
-for (var i = 1; i < 10; i++) {
-  for (var j = 1; i < 10; j++) {
-    // const a = SDN.push(i * j);
-    // console.log(a);
-    result += i * j + '';
+for (var i = 1; i < 1111; i++) {
+  for (var j = 1; j < 1111; j++) {
+    result += i * j + ' ';
   }
   result += '\n';
 }
-
 console.log(result);
-console.log(SDN);
 
-// for (let i = 1; i < 9; i++) {
-//   SDN.push(i + 1);
-// }
+var result1 = [];
+for (var i = 1; i < 11; i++) {
+  for (var j = 1; j < 11; j++) {
+    const a = i * j;
+    // if (a > 99 && a < 1200) {
+    //   result.push(a);
+    // }
+    result1.push(a);
+  }
+}
+
+console.log(result1);
