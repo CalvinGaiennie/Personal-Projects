@@ -21,43 +21,6 @@ Tasks
 3. when it finds one have it add it to an array 
 4. have the number creating loop stop when something gets added to that array 
 */
-
-// with list
-// const answer = [1];
-// var currNum = [1];
-// for (var j = 0; answer.length < 2; j++) {
-//   const a = currNum[j] + 1;
-//   if (!currNum.includes(a)) {
-//     currNum.push(a);
-//   }
-//   //   console.log(currNum[j]);
-//   if (
-//     a % 2 === 0 &&
-//     a % 3 === 0 &&
-//     a % 4 === 0 &&
-//     a % 5 === 0 &&
-//     a % 6 === 0 &&
-//     a % 7 === 0 &&
-//     a % 8 === 0 &&
-//     a % 9 === 0 &&
-//     a % 10 === 0 &&
-//     a % 11 === 0 &&
-//     a % 12 === 0 &&
-//     a % 13 === 0 &&
-//     a % 14 === 0 &&
-//     a % 15 === 0 &&
-//     a % 16 === 0 &&
-//     a % 17 === 0 &&
-//     a % 18 === 0 &&
-//     a % 19 === 0 &&
-//     a % 20 === 0
-//   ) {
-//     answer.push(a);
-//   }
-// }
-// console.log(currNum);
-// console.log(answer);
-////////////////////////////////////////////////
 const answer = [1];
 var currNum = [1];
 for (var j = 0; answer.length < 2; j++) {
@@ -90,32 +53,3 @@ for (var j = 0; answer.length < 2; j++) {
 }
 console.log(currNum);
 console.log(answer);
-
-////////////////////////////////////////////////////////////////////////////////////////
-// for (var j = 1; j < 500000; j++) {
-//   const a = currNum[j];
-//   if (
-//     a % 2 === 0 &&
-//     a % 3 === 0 &&
-//     a % 4 === 0 &&
-//     a % 5 === 0 &&
-//     a % 6 === 0 &&
-//     a % 7 === 0 &&
-//     a % 8 === 0 &&
-//     a % 9 === 0 &&
-//     a % 10 === 0 &&
-//     a % 11 === 0 &&
-//     a % 12 === 0 &&
-//     a % 13 === 0 &&
-//     a % 14 === 0 &&
-//     a % 15 === 0 &&
-//     a % 16 === 0 &&
-//     a % 17 === 0 &&
-//     a % 18 === 0 &&
-//     a % 19 === 0 &&
-//     a % 20 === 0
-//   ) {
-//     answer.push(a);
-//   }
-// }
-// console.log(answer);
