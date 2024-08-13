@@ -13,3 +13,12 @@ img {
   font-weight: bold;
   font-size: 20;
 }
+
+.hidden {
+  opacity: 0;
+}
+
+.unhideBtn {
+  width: 120px;
+  height: 40px;
+}
