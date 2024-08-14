@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <div class="bannerContent">
+        <div class="'banner-text">
+          <h1>Easy Tracks to Learn By Ear</h1>
+          <p>
+            Here is a database of simple songs that you can sort by progression
+            complexity and density of mix.
+          </p>
+        </div>
+        <div class="text-box">
+          <a href="index.html">Go to Page 1 (Music Theory)</a>
+          <br />
+          <a href="./Scale Diagrams/index.html"
+            >Go to Page 3 (Fretboard Simulator/ Scale and Chord Charts)</a
+          >
+        </div>
+      </div>
+    </header>
+    <aside class="left-banner">
+      <div class="left-banner-label">
+        <h4 for="Mix">Select Mix Density:</h4>
+        <select id="Mix">
+          <option value="Acoustic">Acoustic</option>
+          <option value="3 Track">3 Peice</option>
+          <option value="5 Track">5 Peice</option>
+        </select>
+        <br />
+        <br />
+        <br />
+        <!-- difficulty button -->
+        <h4 for="difficulty">Select Progression Difficulty:</h4>
+        <select id="difficulty">
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Expert">Expert</option>
+        </select>
+      </div>
+    </aside>
+    <div class="bodyText">
+      <h1>Ear Trainer</h1>
+      <h3>What is the point of this?</h3>
+      <p>
+        While developing my ears I have tried out many different ear training
+        methods, apps, and classes. What I ended up doing is saying fuck all of
+        that and spending most of my time trying to learn songs by ear just by
+        sitting with a guitar and listening to them over and over.
+      </p>
+      <p>
+        My biggest problem was that I struggled to find songs of the appropriate
+        difficulty. Especially in the beggining. Because of this I decided to
+        put together a database of demos sorted by density of mix and complexity
+        of chord progression.
+      </p>
+      <br />
+      <h2>Play Randoms Song</h2>
+      <p>
+        This thing will play a random song from the bank that matches your
+        selections from the side bar.
+      </p>
+      <audio id="audioPlayer" controls>
+        Your browser does not support the audio tag.
+      </audio>
+      <button id="playButton">Play Random Bop</button>
+      <!-- mix button -->
+      <br />
+      <!-- guess song name
+     <label for="songSelect">Guess the Song Name:</label>
+     <select id="songSelect">
+       <option disabled selected>Select Song</option>
+     </select>
+     <button id="submitGuessButton">Submit Guess</button> -->
+    </div>
+    <p id="feedback"></p>
+  </body>
+</html>

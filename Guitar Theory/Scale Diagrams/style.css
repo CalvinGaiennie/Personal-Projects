@@ -3,9 +3,25 @@
   padding: 0;
 }
 body {
-  background: #353535;
+  background: #949494;
+  /* background: #b1b0b0; */
 }
 
+.banner {
+  position: sticky;
+  background-color: #3498db;
+  /* background-color: #353535; */
+  color: white; /* Text color */
+  text-align: center; /* Center align text */
+  padding: 20px; /* Padding around the content */
+  position: sticky; /* Allows for positioning children elements if needed */
+  top: 0;
+  margin: 0;
+  width: 100vw; /* Make the banner full width */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Optional: adds shadow for better visual */
+  box-sizing: border-box;
+  z-index: 1000;
+}
 .fretboard {
   display: flex;
   flex-direction: column;
