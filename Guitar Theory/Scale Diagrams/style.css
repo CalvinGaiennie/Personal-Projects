@@ -1,3 +1,16 @@
+:root {
+  --fretboard-height: 300;
+  --number-of-strings: 6;
+  --string-height: 10;
+  --half-string-height: calc(var(--string-height) / 2);
+  --string-top-position: calc(
+    var(--fretboard-height) / var(--number-of-strings) / 2 -
+      var(--half-string-height)
+  );
+  --double-fretmark-position-1: calc(var(--fretboard-height) * 0.25);
+  --double-fretmark-position-2: calc(var(--fretboard-height) * 0.75);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +40,8 @@ body {
   flex-direction: column;
   background: #be975b;
   width: 100%;
-  height: 300px;
+  min-width: 1500px;
+  height: calc(var(--fretboard-height) * 1px);
   margin-top: 50px;
 }
 .string {
@@ -40,12 +54,13 @@ body {
 .string:before {
   content: "";
   width: 100%;
-  height: 10px;
+  height: calc(var(--string-height) * 1px);
   background: linear-gradient(#eee, #999);
   box-shadow: 76px, 3px, 10px #806233;
   z-index: 1;
   position: absolute;
   top: 22px;
+  top: calc(var(--string-top-position) * 1px);
 }
 
 .note-fret {
@@ -80,28 +95,8 @@ body {
   opacity: 0;
 }
 
-.single-fretmark:after {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #806233;
-  top: 150px;
-  transform: translate(o, -50%);
-}
-
-.double-fretmark:before {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #806233;
-  top: 58px;
-  transform: translate(-140%, 50%);
-}
-
+.single-fretmark:after,
+.double-fretmark:before,
 .double-fretmark:after {
   content: "";
   position: absolute;
@@ -109,6 +104,29 @@ body {
   width: 20px;
   border-radius: 50%;
   background: #806233;
-  top: 208px;
-  transform: translate(-140%, 50%);
+}
+.single-fretmark:after {
+  top: calc(var(--fretboard-height) / 2 * 1px);
+  transform: translate(o, -50%);
+}
+
+.double-fretmark:before {
+  top: calc(var(--double-fretmark-position-1) * 1px);
+  transform: translate(-140%, -50%);
+}
+
+.double-fretmark:after {
+  top: calc(var(--double-fretmark-position-2) * 1px);
+  transform: translate(-140%, -50%);
+}
+.pages {
+  position: fixed; /* Fixes the banner to the viewport */
+  bottom: 0; /* Aligns it to the top of the viewport */
+  right: 0; /* Aligns it to the left of the viewport */
+  width: 300px; /* Width of the banner */
+  height: 10%; /* Full height of the viewport */
+  background: #949494; /* Background color of the banner */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the banner */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }

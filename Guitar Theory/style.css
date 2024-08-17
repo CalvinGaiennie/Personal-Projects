@@ -10,6 +10,7 @@
   padding-right: 300px;
   margin-right: 400px;
   zoom: 97%;
+  font-family: sans-serif;
 }
 body {
   overflow-x: hidden;
@@ -46,6 +47,7 @@ img {
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Optional: adds shadow for better visual */
   box-sizing: border-box;
   z-index: 1000;
+  height: 160px;
 }
 
 .banner h1 {
@@ -75,6 +77,8 @@ img {
   padding: 20px; /* Padding inside the banner */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Optional shadow for visual effect */
   box-sizing: border-box; /* Ensure padding and border are included in the width */
+  font-family: sans-serif;
+  /* text-align: center; */
 }
 
 .left-banner h2 {
@@ -91,8 +95,18 @@ img {
 .left-banner p {
   margin: 10px 0 0;
   font-size: 1em; /* Size of the paragraph text */
+  line-height: 1.5;
 }
-
+.left-banner a {
+  line-height: 1.5;
+}
+.TOCLink {
+  color: black;
+}
+.TOCSublink {
+  color: black;
+  margin-left: 20px;
+}
 .bodyText {
   margin-left: 270px; /* Add margin to the left of the main content to prevent overlap */
   padding: 20px;
@@ -101,14 +115,37 @@ img {
 
 h1 {
   padding-bottom: 10px;
+  padding-top: 30px;
 }
 h2 {
   padding-bottom: 10px;
+  padding-top: 30px;
 }
 h3 {
   padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 p {
   line-height: 2;
+}
+
+#introductionH {
+  padding-top: 0;
+}
+
+.no-margin {
+  padding-top: 0;
+}
+
+.pages {
+  position: fixed; /* Fixes the banner to the viewport */
+  bottom: 0; /* Aligns it to the top of the viewport */
+  right: 0; /* Aligns it to the left of the viewport */
+  width: 300px; /* Width of the banner */
+  height: 10%; /* Full height of the viewport */
+  background-color: White; /* Background color of the banner */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the banner */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
