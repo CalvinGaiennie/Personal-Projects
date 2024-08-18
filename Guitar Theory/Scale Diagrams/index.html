@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="../style.css" /> -->
   </head>
   <body>
     <header class="banner">
@@ -21,106 +22,28 @@
       <div class="pages">
         <a style="text-decoration: none"; href="../index.html">Go to Page 1 Guitar Theory</a>
         <br />
-        <a style="text-decoration: none"; href="../indexETC.html">Go to Page 2 (Ear Training Site)</a>
+        <a href="index2.html" style="text-decoration: none" ;>Go to Page 2 (Fretboard IQ)</a>
+        <br>
+        <a style="text-decoration: none"; href="../indexETC.html">Go to Page 3 (Ear Training Site)</a>
       </div>
     </aside>
+    <div class="settings">
+      <label for="instrument-selector"> Selected instrument:<label>
+      <select name="instuement-selector" id="instrument-selector">
+      </select>
+      <div class="accidental-selector">
+        <input type="radio" class="acc-select" id="flats" name="accidentals" value="flats" checked>
+        <label for="flats">♭</label>
+        <input type="radio" class="acc-select" id="sharps" name="accidentals" value="sharps">
+        <label for="flats">♯</label>
+    </div>
+    <label for="number-of-frets">Number of frets:</label>
+    <input type="number" id="number-of-frets" min="5" max="30" value="20">
+
+    <label for="show-all-notes"> Show all notes:</label>
+    <input type="checkbox" id="show-all-notes">
     <div class="fretboard">
-      <!-- <div class="string">
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret single-fretmark"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret single-fretmark"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret single-fretmark"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret single-fretmark"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"><div class="double-fretmark"></div></div>
-        <div class="note-fret"></div>
-      </div>
-      <div class="string">
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-      </div>
-      <div class="string">
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-      </div>
-      <div class="string">
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-      </div>
-      <div class="string">
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-      </div>
-      <div class="string">
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-        <div class="note-fret"></div>
-      </div> -->
+    
     </div>
     <script src="script.js"></script>
   </body>

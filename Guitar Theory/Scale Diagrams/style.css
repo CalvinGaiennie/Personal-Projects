@@ -9,6 +9,7 @@
   );
   --double-fretmark-position-1: calc(var(--fretboard-height) * 0.25);
   --double-fretmark-position-2: calc(var(--fretboard-height) * 0.75);
+  --noteDotOpacity: 0;
 }
 
 * {
@@ -20,6 +21,12 @@ body {
   /* background: #b1b0b0; */
 }
 
+.settings {
+  display: flex;
+  padding: 20px;
+  /* border-bottom: 1px solid #444; */
+  background: 282828;
+}
 .banner {
   position: sticky;
   background-color: #3498db;
@@ -34,6 +41,17 @@ body {
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Optional: adds shadow for better visual */
   box-sizing: border-box;
   z-index: 1000;
+}
+
+.accidentals-selector {
+  margin-left: 20px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+label {
+  margin-right: 0 10px;
 }
 .fretboard {
   display: flex;
@@ -83,7 +101,7 @@ body {
 }
 
 .note-fret:before {
-  content: "C";
+  content: attr(data-note);
   width: 33px;
   height: 33px;
   border-radius: 50%;
@@ -92,7 +110,7 @@ body {
   background: teal;
   z-index: 2;
   color: #eee;
-  opacity: 0;
+  opacity: var(--noteDotOpacity);
 }
 
 .single-fretmark:after,
