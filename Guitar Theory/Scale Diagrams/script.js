@@ -4,11 +4,19 @@ const selectedInstrumentSelector = document.querySelector(
   "#instrument-selector"
 );
 const accidentalSelector = document.querySelector(".accidental-selector");
-let numberOfFrets = 20;
 
 const numberOfFretsSelector = document.querySelector("#number-of-frets");
 
 const showAllNotesSelector = document.querySelector("#show-all-notes");
+const showMultipleNotesSelector = document.querySelector(
+  "#show-multiple-notes"
+);
+
+let allNotes;
+let showMultipleNotes = false;
+
+let numberOfFrets = 20;
+
 const singleFretMarkPositions = [3, 5, 7, 9, 15, 17, 19, 21];
 const doubleFretMarkPositions = [12, 24];
 
@@ -106,6 +114,7 @@ const app = {
         }
       }
     }
+    allNotes = document.querySelectorAll(".note-fret");
   },
   generateNoteNames(noteIndex, accidentals) {
     noteIndex = noteIndex % 12;
@@ -127,10 +136,17 @@ const app = {
   },
   showNoteDot(event) {
     if (event.target.classList.contains("note-fret")) {
-      event.target.style.setProperty("--noteDotOpacity", 1);
+      if (showMultipleNotes) {
+        app.toggleMultipleNotes(event.target.dataset.note, 1);
+      } else {
+        event.target.style.setProperty("--noteDotOpacity", 1);
+      }
     }
   },
   hideNoteDot(event) {
+    if (showMultipleNotes) {
+      app.toggleMultipleNotes(event.target.dataset.note, 0);
+    }
     event.target.style.setProperty("--noteDotOpacity", 0);
   },
   setupEventListeners() {
@@ -166,6 +182,16 @@ const app = {
         this.setupFretboard();
       }
     });
+    showMultipleNotesSelector.addEventListener("change", () => {
+      showMultipleNotes = !showMultipleNotes;
+    });
+  },
+  toggleMultipleNotes(noteName, opacity) {
+    for (let i = 0; i < allNotes.length; i++) {
+      if (allNotes[i].dataset.note === noteName) {
+        allNotes[i].style.setProperty("--noteDotOpacity", opacity);
+      }
+    }
   },
 };
 
@@ -179,3 +205,60 @@ const tools = {
   },
 };
 app.init();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const scaleGeneratorInput = document.querySelector("#scale-generator-input");
+
+console.log(scaleGeneratorInput);
+const notesSharp2 = [
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+];
+
+const majorScaleFormula = [0, 2, 4, 5, 7, 9, 11, 12];
+let majorScale = [];
+console.log(majorScale);
+
+function makeScale(startNote) {
+  for (i = 0; i < 8; i++) {
+    a = notesSharp2.indexOf(startNote);
+    b = a + majorScaleFormula[i];
+    note = notesSharp2[b];
+    majorScale.push(note);
+  }
+}
+
+makeScale("d");
+console.log(majorScale);
+
+scaleGeneratorInput.addEventListener("input", (event) => {
+  const startNote = event.target.value.toLowerCase(); // Get input value and convert to lowercase
+  const scale = makeScale(startNote);
+
+  if (scale) {
+    console.log(scale); // Log the generated scale
+  }
+});

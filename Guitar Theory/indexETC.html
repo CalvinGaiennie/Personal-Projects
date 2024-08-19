@@ -9,7 +9,7 @@
   <body>
     <header class="banner">
       <div class="bannerContent">
-        <div class="'banner-text">
+        <div class="banner-text">
           <h1>Easy Tracks to Learn By Ear</h1>
           <h2 class="no-margin">
             Here is a database of simple songs that you can sort by progression
@@ -20,7 +20,7 @@
     </header>
     <aside id="pagesbox">
       <div class="pages">
-        <a style="text-decoration: none" ; href="index.html"
+        <a style="text-decoration: none" href="index.html"
           >Go to Page 1 (Music Theory)</a
         >
         <br />
@@ -82,13 +82,32 @@
       <button id="playButton">Play Random Bop</button>
       <!-- mix button -->
       <br />
-      <!-- guess song name
-     <label for="songSelect">Guess the Song Name:</label>
-     <select id="songSelect">
-       <option disabled selected>Select Song</option>
-     </select>
-     <button id="submitGuessButton">Submit Guess</button> -->
     </div>
     <p id="feedback"></p>
+    <script>
+      document
+        .getElementById("playButton")
+        .addEventListener("click", function () {
+          // Array of video file names
+          const videos = [
+            "Last_Christmas.m4a",
+            "Mistletoe_ftJazzy_G.m4a",
+            "Rockin_Around_The_Christmas_Tree.m4a",
+          ];
+
+          // Randomly select a video
+          const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+
+          // Get the video player element
+          const audioPlayer = document.getElementById("audioPlayer");
+
+          // Set the source of the video player
+          audioPlayer.src = "songs/" + randomVideo;
+
+          // Load and play the video
+          audioPlayer.load();
+          audioPlayer.play();
+        });
+    </script>
   </body>
 </html>

@@ -4,46 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- <link rel="stylesheet" href="../style.css" /> -->
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <header class="banner">
       <div class="bannerContent">
-        <div class="'banner-text">
-          <h1>Easy Tracks to Learn By Ear</h1>
-          <p>
-            Here is a database of simple songs that you can sort by progression
-            complexity and density of mix.
-          </p>
+        <div class="banner-text">
+          <h1>Fretboard Simulator</h1>
+          <h2 class="no-margin">
+            This fretboard simulator that can help you visualize notes, shapes, and, patterns.
+          </h2>
       </div>
     </header>
+
     <aside id="pagesbox">
       <div class="pages">
         <a style="text-decoration: none"; href="../index.html">Go to Page 1 Guitar Theory</a>
         <br />
-        <a href="index2.html" style="text-decoration: none" ;>Go to Page 2 (Fretboard IQ)</a>
+        <a href="../index2.html" style="text-decoration: none">Go to Page 2 (Fretboard IQ)</a>
         <br>
         <a style="text-decoration: none"; href="../indexETC.html">Go to Page 3 (Ear Training Site)</a>
       </div>
     </aside>
-    <div class="settings">
-      <label for="instrument-selector"> Selected instrument:<label>
-      <select name="instuement-selector" id="instrument-selector">
-      </select>
-      <div class="accidental-selector">
-        <input type="radio" class="acc-select" id="flats" name="accidentals" value="flats" checked>
-        <label for="flats">♭</label>
-        <input type="radio" class="acc-select" id="sharps" name="accidentals" value="sharps">
-        <label for="flats">♯</label>
-    </div>
-    <label for="number-of-frets">Number of frets:</label>
-    <input type="number" id="number-of-frets" min="5" max="30" value="20">
-
-    <label for="show-all-notes"> Show all notes:</label>
-    <input type="checkbox" id="show-all-notes">
+    <aside class="left-banner">
+      <div class="settings">
+        <h1>Settings</h1>
+        <div class="settings-content">
+          <label for="instrument-selector"> Selected instrument:<p>
+          <select name="instrument-selector" id="instrument-selector">
+          </select>
+          <br>
+          <br>
+          <p>Accidental Selector</p>
+          <div class="accidental-selector">
+            <input type="radio" class="acc-select" id="flats" name="accidentals" value="flats" checked>
+            <label for="flats">♭</label>
+            <input type="radio" class="acc-select" id="sharps" name="accidentals" value="sharps">
+            <label for="flats">♯</label>
+            <br>
+            <br>
+            <label for="number-of-frets">Number of frets:</label>
+          <input type="number" id="number-of-frets" min="5" max="30" value="20">
+          <br>
+          <br>
+          <label for="show-all-notes"> Show all notes:</label>
+          <input type="checkbox" id="show-all-notes">
+          <br>
+          <br>
+          <label for="show-all-notes"> Show multiple notes:</label>
+          <input type="checkbox" id="show-multiple-notes">
+          <br>
+          <br>
+          <form>
+            Scale Generator Input a note name:
+            <input id="scale-generator-input" type="text">
+          </form>
+        </div>
+      </div>
+  </aside>
+  <div class="bodyText">
+    <h1 >Ear Trainer</h1>
+    <h3>What is the point of this?</h3>
+    <p>
+      While developing my ears I have tried out many different ear training
+      methods, apps, and classes. 
+    </p>
+  </div>
     <div class="fretboard">
-    
     </div>
     <script src="script.js"></script>
   </body>

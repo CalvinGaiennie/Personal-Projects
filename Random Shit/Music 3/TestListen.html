@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Video Player</title>
+</head>
+<body>
+    <h1>Random Gangsta P Songs</h1>
+    <button id="playButton">Play Random Bop</button>
+    <video id="videoPlayer" width="640" height="480" controls>
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            // Array of video file names
+            const videos = ['Last_Christmas.m4a', 'Mistletoe_ftJazzy_G.m4a', 'Rockin_Around_The_Christmas_Tree.m4a'];
+            
+            // Randomly select a video
+            const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+            
+            // Get the video player element
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            // Set the source of the video player
+            videoPlayer.src = 'songs/' + randomVideo;
+            
+            // Load and play the video
+            videoPlayer.load();
+            videoPlayer.play();
+        });
+    </script>
+</body>
+</html>

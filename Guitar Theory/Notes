@@ -1,224 +1,234 @@
-What will be contained on this page
-
-Introduction
-what are the base attributes and skills needed to be a good musician
-I beleive there are a few base skills you need to be a good musician
-• good ears
-• a good sense of timing
-• knolwedge and technique on your insturment
-• music theory
-guitar player
-What are the base skills and attributes needed to be a good guitar player?
-•all of the above music skills
-•good tone
-•ability to play appropriate rythym parts (big chords vs little chords) (busy struming vs sparse strumming) ect
-•ability to play lead in different styles
-•knoledge of how the guitar works and knowing the basic chord shapes and scales
-what am i going to focus on
-Basic music theory all musicians should know
-basic guitar knowledge that is useful across almost all genres and style
+What will be contained on this page Introduction what are the base attributes
+and skills needed to be a good musician I beleive there are a few base skills
+you need to be a good musician • good ears • a good sense of timing • knolwedge
+and technique on your insturment • music theory guitar player What are the base
+skills and attributes needed to be a good guitar player? •all of the above music
+skills •good tone •ability to play appropriate rythym parts (big chords vs
+little chords) (busy struming vs sparse strumming) ect •ability to play lead in
+different styles •knoledge of how the guitar works and knowing the basic chord
+shapes and scales what am i going to focus on Basic music theory all musicians
+should know basic guitar knowledge that is useful across almost all genres and
+style
 
 <div>
-      <h2 id="notes" class="bold">The Notes in Music.</h2>
-      <p>
-        There are 12 notes in western music. (There can be more in eastern music such as Indian music but dont worry about that right now)
-        <br />
-        A, <span class="colorChange" style="color: red">A#</span>, B, C,
-        <span class="colorChange" style="color: red">C#</span>, D,
-        <span class="colorChange" style="color: red">D#</span>, E, F,
-        <span class="colorChange" style="color: red">F#</span>, G,
-        <span class="colorChange" style="color: red">G#</span> (# stands for
-        sharp)
-      </p>
-      <p>
-        Notice there is no sharp between B and C and no sharp between E and F.
-      </p>
-      <p></p>
-      <p>
-        The notes that have #'s (sharps) in them can also be referred to as b's
-        (flats) but we will get into that later, for now just think of them as
-        #s.
-      </p>
-      <p>
-        Every fret on the fretboard makes the sound of one of these 12 notes. We
-        name each location on the fretboard (each fret on each string) by the
-        sound that it makes. For example every green circle in the photo below
-        makes a G sound. Many are in different octives but they all make a G.
-        Take a look at this diagram and notice how all 12 notes are there. After
-        that grab your guitar and a tuner, play some notes and see if they
-        coorespond to this diagram. (If your guitar is tuned than they will)
-      </p>
-      <img src="FN.jpg" />
-      <img src="LEN.jpg" />
-      <p>
-        Each string makes the sound of its name when you play it without a
-        finger on the fretboard. If you put a finger on a fret it makes that
-        sound. For example if you play the low E string open it makes an E sound, if you put your finger on the third fret of the low E
-        string and pick that string it makes a G sound.
-      </p>
-    </div>
+  <h2 id="notes" class="bold">The Notes in Music.</h2>
+  <p>
+    There are 12 notes in western music. (There can be more in eastern music
+    such as Indian music but dont worry about that right now)
+    <br />
+    A, <span class="colorChange" style="color: red">A#</span>, B, C,
+    <span class="colorChange" style="color: red">C#</span>, D,
+    <span class="colorChange" style="color: red">D#</span>, E, F,
+    <span class="colorChange" style="color: red">F#</span>, G,
+    <span class="colorChange" style="color: red">G#</span> (# stands for sharp)
+  </p>
+  <p>Notice there is no sharp between B and C and no sharp between E and F.</p>
+  <p></p>
+  <p>
+    The notes that have #'s (sharps) in them can also be referred to as b's
+    (flats) but we will get into that later, for now just think of them as #s.
+  </p>
+  <p>
+    Every fret on the fretboard makes the sound of one of these 12 notes. We
+    name each location on the fretboard (each fret on each string) by the sound
+    that it makes. For example every green circle in the photo below makes a G
+    sound. Many are in different octives but they all make a G. Take a look at
+    this diagram and notice how all 12 notes are there. After that grab your
+    guitar and a tuner, play some notes and see if they coorespond to this
+    diagram. (If your guitar is tuned than they will)
+  </p>
+  <img src="FN.jpg" />
+  <img src="LEN.jpg" />
+  <p>
+    Each string makes the sound of its name when you play it without a finger on
+    the fretboard. If you put a finger on a fret it makes that sound. For
+    example if you play the low E string open it makes an E sound, if you put
+    your finger on the third fret of the low E string and pick that string it
+    makes a G sound.
+  </p>
+</div>
 major scale
 <div>
-      <h2 id="majorScale" class="bold">The Major Scale</h2>
-      <p>
-        A scale is a formula that helps us group notes together. The Major scale
-        is the scale (group of notes) that all of western music is based on.
-        Pretty much all music theory traces it's roots back to the major scale.
-      </p>
-      <p>
-        Learning the major scale will make it possible for you to easily figure
-        out what key a song is in, know what chords are in a key, what notes are
-        in a chord, what notes are in a scale as well as many other things.
-      </p>
-      <p>Understanding the major scale is essential for understanding basic music theory and therefor is essential for communicating with other musicians.</p>
-      <p>If you're on stage at a blues jam and you're lost and the bass player holds up four fingers to you be better hope you know that he is telling you that the song is currently on the four chord and that because you are in the key of Bb the four chord is is Eb. BTW because guitar is shape based if you know what youre doing you dont even really need to know what the four chord is, only what key youre in and that you should be playing the four chord.</p>
-      <p>
-        The major scale is a seven note scale based on two different intervals (distances in music)
-        half steps and whole steps, a half step is equal to one note. This means
-        when you move over a half step you move over one fret (one note) and
-        when you move over a whole step you move over two frets(two notes).
-      </p>
-      <p>Photo showing this</p>
-      <p>
-        So I said a scale is a formula right? Well what is the formula for the
-        Major scale?
-      </p>
-      <p>The major scale Forumla is: W, W, H, W, W, W, H</p>
-      <p>
-        Here is an example. Photo and examples written out showing all the notes
-        and how major scales are derrived from them.
-      </p>
-      <p>Here is a diagram of one octive of the major scale on a guitar.</p>
-    </div>
+  <h2 id="majorScale" class="bold">The Major Scale</h2>
+  <p>
+    A scale is a formula that helps us group notes together. The Major scale is
+    the scale (group of notes) that all of western music is based on. Pretty
+    much all music theory traces it's roots back to the major scale.
+  </p>
+  <p>
+    Learning the major scale will make it possible for you to easily figure out
+    what key a song is in, know what chords are in a key, what notes are in a
+    chord, what notes are in a scale as well as many other things.
+  </p>
+  <p>
+    Understanding the major scale is essential for understanding basic music
+    theory and therefor is essential for communicating with other musicians.
+  </p>
+  <p>
+    If you're on stage at a blues jam and you're lost and the bass player holds
+    up four fingers to you be better hope you know that he is telling you that
+    the song is currently on the four chord and that because you are in the key
+    of Bb the four chord is is Eb. BTW because guitar is shape based if you know
+    what youre doing you dont even really need to know what the four chord is,
+    only what key youre in and that you should be playing the four chord.
+  </p>
+  <p>
+    The major scale is a seven note scale based on two different intervals
+    (distances in music) half steps and whole steps, a half step is equal to one
+    note. This means when you move over a half step you move over one fret (one
+    note) and when you move over a whole step you move over two frets(two
+    notes).
+  </p>
+  <p>Photo showing this</p>
+  <p>
+    So I said a scale is a formula right? Well what is the formula for the Major
+    scale?
+  </p>
+  <p>The major scale Forumla is: W, W, H, W, W, W, H</p>
+  <p>
+    Here is an example. Photo and examples written out showing all the notes and
+    how major scales are derrived from them.
+  </p>
+  <p>Here is a diagram of one octive of the major scale on a guitar.</p>
+</div>
 how to make major minor and diminshed chords
 <div>
-      <h2 id="chords">How to make major and minor chords.</h2>
-      <h3>
-        How to make a major chord?
-      </h3>
-      <p>To make a major chord you need three notes, the 1st, 3rd, and 5th notes of the corresponding Major Scale.
-        For example the key of C is C, D, E, F, G, A, and B. <br>
-        So a C major Chord contains C E and G.</p>
-      <img src="a" /> <!-- put a photo showing all of the notes in a C Chord-->
-      <p>An A major scale is A, B, C#, D, E, F#, and G# <br>
-      So an A Major Chord contains A, C#, and E</p>
-      <img src="a" /> <!-- put a photo showing all of the notes in a A Chord-->
-      <h3>How to make a minor chord.</h3>
-      <p>To make a minor chord you do the same thing and flatten the third</p>
-      <p>So if an A major scale is A, B, C#, D, E, F#, and G# <br>
-      An A Minor Chord contains A, C and E and a C minor Chord contains C Eb and G</p>
-      <img src="a" /> <!-- put a photo showing all of the notes in a C minor Chord-->
-      <img src="a" /> <!-- put a photo showing all of the notes in a C Major Chord-->
-      <p>Then show triads or the caged system to show how many different ways you can make a C chord and an A chord and an A minor chord</p>
-      <p>The caged system is just barre chords and its awesome</p>
-      <br />
-      <br />
-      <h2 id="key">What are the chords in a key and how to find them.</h2>
-      <p>If you want the simple answer here is it.</p>
-      <p>Take a major scale. Turn the 1st, 4th, and 5th, note into major chords, the 2nd, 3rd, and 6th notes minor chords, and the 7th note a diminished chord. <button class="'diminished">WTF is a diminshed chord?</button></p>
-      <p>Example: the C major scale is C, D, E, F, G, A, and B.</p>
-      <p>The key of C major is C, Dminor, Eminor, F, G, Aminor and B diminished (when talking about chords if the quality is not specificed it is assumed that the chord is major, so if someone says D chord they mean a D major chord. Also diminished chords are signified with the degree symbol ° but diminished chords are rarely used so you dont really need to worry much about them.)</p>
-      <h3>Why?</h3>
-      <p>
-        If you want to know why this is then here we go. 
-        Insert charts explaining all the notes in all the chords in a few keys ideally with an interactive diagram that walks you through it.
-      </p>
-    </div>
-chords in a key
-proof on how to find the chords in a key
-nashville number system
-extended chords
-modes
+  <h2 id="chords">How to make major and minor chords.</h2>
+  <h3>How to make a major chord?</h3>
+  <p>
+    To make a major chord you need three notes, the 1st, 3rd, and 5th notes of
+    the corresponding Major Scale. For example the key of C is C, D, E, F, G, A,
+    and B. <br />
+    So a C major Chord contains C E and G.
+  </p>
+  <img src="a" />
+  <!-- put a photo showing all of the notes in a C Chord-->
+  <p>
+    An A major scale is A, B, C#, D, E, F#, and G# <br />
+    So an A Major Chord contains A, C#, and E
+  </p>
+  <img src="a" />
+  <!-- put a photo showing all of the notes in a A Chord-->
+  <h3>How to make a minor chord.</h3>
+  <p>To make a minor chord you do the same thing and flatten the third</p>
+  <p>
+    So if an A major scale is A, B, C#, D, E, F#, and G# <br />
+    An A Minor Chord contains A, C and E and a C minor Chord contains C Eb and G
+  </p>
+  <img src="a" />
+  <!-- put a photo showing all of the notes in a C minor Chord-->
+  <img src="a" />
+  <!-- put a photo showing all of the notes in a C Major Chord-->
+  <p>
+    Then show triads or the caged system to show how many different ways you can
+    make a C chord and an A chord and an A minor chord
+  </p>
+  <p>The caged system is just barre chords and its awesome</p>
+  <br />
+  <br />
+  <h2 id="key">What are the chords in a key and how to find them.</h2>
+  <p>If you want the simple answer here is it.</p>
+  <p>
+    Take a major scale. Turn the 1st, 4th, and 5th, note into major chords, the
+    2nd, 3rd, and 6th notes minor chords, and the 7th note a diminished chord.
+    <button class="'diminished">WTF is a diminshed chord?</button>
+  </p>
+  <p>Example: the C major scale is C, D, E, F, G, A, and B.</p>
+  <p>
+    The key of C major is C, Dminor, Eminor, F, G, Aminor and B diminished (when
+    talking about chords if the quality is not specificed it is assumed that the
+    chord is major, so if someone says D chord they mean a D major chord. Also
+    diminished chords are signified with the degree symbol ° but diminished
+    chords are rarely used so you dont really need to worry much about them.)
+  </p>
+  <h3>Why?</h3>
+  <p>
+    If you want to know why this is then here we go. Insert charts explaining
+    all the notes in all the chords in a few keys ideally with an interactive
+    diagram that walks you through it.
+  </p>
+</div>
+chords in a key proof on how to find the chords in a key nashville number system
+extended chords modes section 2 fretboard theory/IQ and what to learn open
+chords string names how to number strings notes on e string and a string what do
+up and down mean power chords barre chords what is the pentatonic scale soling
+by key how to connect the penatonic shapes pentatonic scale shapes major and
+minor are the same and how to use both optional how the pentatonic scale works.
+maybe just link desi sernas podcast octive trick to learn whole fretboard
 
-section 2
-fretboard theory/IQ and what to learn
-open chords
-string names
-how to number strings
-notes on e string and a string
-what do up and down mean
-power chords
-barre chords
-what is the pentatonic scale
-soling by key
-how to connect the penatonic shapes
-pentatonic scale shapes major and minor are the same and how to use both
-optional how the pentatonic scale works. maybe just link desi sernas podcast
-octive trick to learn whole fretboard
+<div>
+  <h2>
+    Standard tuning octive hack to not have to learn the whole fretboard. I
+    should hide this section and make them press a button if they want the
+    technique tips.
+  </h2>
+  <p>
+    The most beautiful thing about the guitar is that it is shape based. You can
+    often learn one shape for something and use it in every key and multiple
+    octives. An example of this would be barre chords(I'll explain that later.)
+  </p>
+  <p>
+    These two shapes actually create the same interval, an octive, we will get
+    into what that is and how it works later but for now all you need to know is
+    that if you play the shape from the top two photos from the 6-4th strings or
+    from the 5-3rd strings both notes you are playing will be the same note, one
+    will be an octive higher but they will be the same note.
+  </p>
+  <p>
+    The only difference between this shape and the next shape is that the second
+    shape requires you to move your second finger one fret further.
+  </p>
+  <img src="OG.png" />
+  <p>
+    Knowing these two shapes allows you to quickly find the name of any note on
+    the fretboard simply by knowing the notes on the Low E string and the A
+    string.
+  </p>
+  <p>
+    If you want know the notes on the Low E string you also know all of the
+    notes on the high E string becasue they are both tuned to E. So whatever the
+    note on the fifth fret of the low E string is (A) it will be the same on the
+    fifth fret of the high E string.
+  </p>
+  <p>
+    So great I memorized two string worth of notes and now I know three strings
+    worth of notes. Fun trick. What about the other three strings?
+  </p>
+  <p>These octive shapes give us another easy trick.</p>
+  <p>
+    If you want to know the name of a note on a string other than the E or A
+    string you can use the octive shape to trace it back to the E or A string
+    which you do know.
+  </p>
+  <p>
+    For examample: if you wanted know all the notes on the Low E string and you
+    wanted to know what note is on the third fret of the D string you could
+    simply put make the first octive shape with your second finger on the third
+    fret of the D string and whatver note your first finger is on is the same
+    note. So in this case your first finger is on the first fret of the Low E
+    string which is an F so the third fret of the D string must be an F.
+  </p>
+  <img src="LEN.jpg" />
+  <br />
+  <button class="unhideBtn">Show Image</button>
+  <br />
 
- <div>
-      <h2>
-        Standard tuning octive hack to not have to learn the whole fretboard. I
-        should hide this section and make them press a button if they want the
-        technique tips.
-      </h2>
-      <p>
-        The most beautiful thing about the guitar is that it is shape
-        based. You can often learn one shape for something and use it in every key and multiple octives. An example of this would be barre chords(I'll explain that later.)
-      </p>
-      <p>
-        These two shapes actually create the same interval, an octive, we will
-        get into what that is and how it works later but for now all you need to
-        know is that if you play the shape from the top two photos from the
-        6-4th strings or from the 5-3rd strings both notes you are playing will
-        be the same note, one will be an octive higher but they will be the same
-        note.
-      </p>
-      <p>
-        The only difference between this shape and the next shape is that the
-        second shape requires you to move your second finger one fret further.
-      </p>
-      <img src="OG.png" />
-      <p>
-        Knowing these two shapes allows you to quickly find the name of any note
-        on the fretboard simply by knowing the notes on the Low E string and the
-        A string.
-      </p>
-      <p>
-        If you want know the notes on the Low E string you also know all of the
-        notes on the high E string becasue they are both tuned to E. So whatever
-        the note on the fifth fret of the low E string is (A) it will be the
-        same on the fifth fret of the high E string.
-      </p>
-      <p>
-        So great I memorized two string worth of notes and now I know three
-        strings worth of notes. Fun trick. What about the other three strings?
-      </p>
-      <p>These octive shapes give us another easy trick.</p>
-      <p>
-        If you want to know the name of a note on a string other than the E or A
-        string you can use the octive shape to trace it back to the E or A
-        string which you do know.
-      </p>
-      <p>
-        For examample: if you wanted know all the notes on the Low E string and
-        you wanted to know what note is on the third fret of the D string you
-        could simply put make the first octive shape with your second finger on
-        the third fret of the D string and whatver note your first finger is on
-        is the same note. So in this case your first finger is on the first fret
-        of the Low E string which is an F so the third fret of the D string must
-        be an F.
-      </p>
-      <img src="LEN.jpg" />
-      <br />
-      <button class="unhideBtn">Show Image</button>
-      <br />
-
-      <img class="hidden" src="FOS.png" />
-      <br />
-      <br />
-      <br />
-    </div>
+  <img class="hidden" src="FOS.png" />
+  <br />
+  <br />
+  <br />
+</div>
 
 mention mixing the major and minor pentatonic and when to use major or minor
-triads
-what is playing the changes
-arrpeggios
-MP exersice
-mixing playing the changes and playing by key
-extended chords
-
-section 3 how to apply these things to your playing
-nashville number system
-using theory to help inform your ears
-using smaller or different chord shapes to stay out of other peoples way
+triads what is playing the changes arrpeggios MP exersice mixing playing the
+changes and playing by key extended chords section 3 how to apply these things
+to your playing nashville number system using theory to help inform your ears
+using smaller or different chord shapes to stay out of other peoples way How can
+i get the fretboard to show scales and chords? const notesFlat = [ "C","Db","D",
+"Eb","E", "F", "Gb","G","Ab","A", "Bb", "B", ]; const notesSharp = [
+"C","C#","D","D#","E","F","F#","G","G#","A","A#","B", ]; const notesIntervals =
+["1","b2","2","b3","3","4","#4/b5","5","b6","6","7b","7", ]; WWHWWWH
++2+2+1+2+2+2+1 const
+notesSharp['c','c#','d','d#','e','f','f#','g','g#','a','a#','b','c','c#','d','d#','e','f','f#','g','g#','a','a#','b']
+let majorScale = [] for (i=1; i<8; i++) { note = notesSharp[i]
+majorscale.push(note) } console.log(majorScale)

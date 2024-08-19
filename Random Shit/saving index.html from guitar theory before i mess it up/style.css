@@ -1,0 +1,167 @@
+:root {
+  --fretboard-height: 300;
+  --number-of-strings: 6;
+  --string-height: 10;
+  --half-string-height: calc(var(--string-height) / 2);
+  --string-top-position: calc(
+    var(--fretboard-height) / var(--number-of-strings) / 2 -
+      var(--half-string-height)
+  );
+  --double-fretmark-position-1: calc(var(--fretboard-height) * 0.25);
+  --double-fretmark-position-2: calc(var(--fretboard-height) * 0.75);
+  --noteDotOpacity: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #949494;
+  /* background: #b1b0b0; */
+}
+
+.settings {
+  display: flex;
+  padding: 20px;
+  /* border-bottom: 1px solid #444; */
+  background: 282828;
+}
+
+.banner {
+  position: sticky;
+  background-color: #3498db; /* Background color of the banner */
+  color: white; /* Text color */
+  text-align: center; /* Center align text */
+  padding: 20px; /* Padding around the content */
+  position: sticky; /* Allows for positioning children elements if needed */
+  top: 0;
+  margin: 0;
+  width: 100vw; /* Make the banner full width */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Optional: adds shadow for better visual */
+  box-sizing: border-box;
+  z-index: 1000;
+  height: 160px;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 2.5em; /* Size of the header text */
+}
+
+.banner p {
+  margin: 10px 0 0;
+  font-size: 1.2em; /* Size of the paragraph text */
+}
+
+.text-box {
+  margin-left: 70%; /* Pushes the text box to the far right */
+  background-color: #3498db; /* Background color of the banner */
+  color: white; /* Text color */
+}
+
+.accidentals-selector {
+  margin-left: 20px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+label {
+  margin-right: 0 10px;
+}
+.fretboard {
+  display: flex;
+  flex-direction: column;
+  background: #be975b;
+  width: 100%;
+  min-width: 1500px;
+  height: calc(var(--fretboard-height) * 1px);
+  margin-top: 50px;
+}
+.string {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.string:before {
+  content: "";
+  width: 100%;
+  height: calc(var(--string-height) * 1px);
+  background: linear-gradient(#eee, #999);
+  box-shadow: 76px, 3px, 10px #806233;
+  z-index: 1;
+  position: absolute;
+  top: 22px;
+  top: calc(var(--string-top-position) * 1px);
+}
+
+.note-fret {
+  display: flex;
+  flex: 1;
+  border-right: 10px solid;
+  border-image: linear-gradient(to left, #777, #bbb, #777) 1 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.note-fret:first-child {
+  background: #161717;
+  min-width: 76px;
+  border-right: 12px solid;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-image: linear-gradient(to left, #bbb, #fff, #bbb) 1 100%;
+}
+
+.note-fret:before {
+  content: attr(data-note);
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  line-height: 33px;
+  text-align: center;
+  background: teal;
+  z-index: 2;
+  color: #eee;
+  opacity: var(--noteDotOpacity);
+}
+
+.single-fretmark:after,
+.double-fretmark:before,
+.double-fretmark:after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #806233;
+}
+.single-fretmark:after {
+  top: calc(var(--fretboard-height) / 2 * 1px);
+  transform: translate(o, -50%);
+}
+
+.double-fretmark:before {
+  top: calc(var(--double-fretmark-position-1) * 1px);
+  transform: translate(-140%, -50%);
+}
+
+.double-fretmark:after {
+  top: calc(var(--double-fretmark-position-2) * 1px);
+  transform: translate(-140%, -50%);
+}
+.pages {
+  position: fixed; /* Fixes the banner to the viewport */
+  bottom: 0; /* Aligns it to the top of the viewport */
+  right: 0; /* Aligns it to the left of the viewport */
+  width: 300px; /* Width of the banner */
+  height: 10%; /* Full height of the viewport */
+  background: #949494; /* Background color of the banner */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the banner */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
