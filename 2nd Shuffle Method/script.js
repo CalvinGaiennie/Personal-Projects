@@ -1,6 +1,7 @@
-const array = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const arrayy = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
-const arrayNames = [
+let array = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let arrayAlt = [];
+let arrayy = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
+let arrayNames = [
   "adam",
   "ben",
   "cam",
@@ -24,7 +25,7 @@ const arrayNames = [
   "utivitch",
   "veronica",
 ];
-const deck = [
+let deck = [
   "2 of Hearts",
   "3 of Hearts",
   "4 of Hearts",
@@ -78,35 +79,37 @@ const deck = [
   "King of Spades",
   "Ace of Spades",
 ];
+// let arrayy = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 
 const arrayy1 = [...arrayy];
 const array1 = [...array];
 const arrayNames1 = [...arrayNames];
 const deck1 = [...deck];
-// console.log(deck1);
 
 function shuffle(array) {
-  for (i = 0; i < array.length * 2; i++) {
-    randomIndex = randomNumberGenerator(array.length); // random index //4
-    randomIndex2 = getRandomIntCrypto(0, array.length - 1); // random index //2
-    string1 = String(array[randomIndex]); // '9'
-    string2 = String(array[randomIndex2]); // '3'
-    // console.log(randomIndex, string1, randomIndex2, string2);
-    array.splice(randomIndex, 1, string2);
-    array.splice(randomIndex2, 1, string1);
+  arrayAlt = [];
+  for (i = 0; i < array.length * 10; i++) {
+    randomIndex = randomNumberGenerator(array.length);
+    a = randomIndex;
+    value = String(array[a]);
+    if (!arrayAlt.includes(value)) {
+      arrayAlt.push(value);
+    }
   }
+  return arrayAlt;
 }
 
 function randomNumberGenerator(arrayLength) {
   return Math.floor(Math.random() * arrayLength);
 }
+// console.log(array1);
+// array = shuffle(array);
+// console.log(array);
 
-function getRandomIntCrypto(min, max) {
-  let range = max - min;
-  let array = new Uint32Array(1);
-  window.crypto.getRandomValues(array);
-  return (array[0] % range) + min;
-}
-console.log(array);
-shuffle(array);
-console.log(array);
+// console.log(arrayy);
+// arrayy = shuffle(arrayy);
+// console.log(arrayy);
+
+console.log(deck);
+deck = shuffle(deck);
+console.log(deck);

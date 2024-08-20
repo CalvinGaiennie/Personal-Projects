@@ -225,7 +225,7 @@ label {
 .fretboard {
   display: flex;
   flex-direction: column;
-  background: #be975b;
+  background: #be975b url(wood-pattern.png);
   width: 100%;
   min-width: 1500px;
   height: calc(var(--fretboard-height) * 1px);
@@ -307,4 +307,21 @@ label {
 .double-fretmark:after {
   top: calc(var(--double-fretmark-position-2) * 1px);
   transform: translate(-140%, -50%);
+}
+
+.note-name-section {
+  color: black;
+  width: 100;
+  font-weight: 100;
+  font-size: 2.5em;
+  position: relative;
+  left: 300px;
+  bottom: 100px;
+}
+.note-name-section span {
+  padding: 10px;
+  cursor: pointer;
+}
+.note-name-section span:hover {
+  color: #3498db;
 }

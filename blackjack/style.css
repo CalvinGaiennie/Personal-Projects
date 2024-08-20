@@ -1,0 +1,11 @@
+#Player1 .card2 {
+  visibility: hidden;
+}
+
+#Player2 .card1 {
+  /* visibility: hidden; */
+}
+
+#Player2 .card2 {
+  /* visibility: hidden; */
+}

@@ -19,3 +19,19 @@
   gap: 10px;
   justify-content: center;
 }
+
+#card1 p {
+  opacity: 0;
+}
+#card2 p {
+  opacity: 0;
+}
+#card3 p {
+  opacity: 0;
+}
+#card4 p {
+  opacity: 0;
+}
+#card5 p {
+  opacity: 0;
+}
