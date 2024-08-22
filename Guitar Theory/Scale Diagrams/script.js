@@ -91,6 +91,7 @@ const app = {
     for (let i = 0; i < numberOfStrings; i++) {
       let string = tools.createElement("div");
       string.classList.add("string");
+      string.classList.add(`string${i + 1}`);
       fretboard.appendChild(string);
       // Create frets
       for (let fret = 0; fret <= numberOfFrets; fret++) {
