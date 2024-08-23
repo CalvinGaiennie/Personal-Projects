@@ -268,20 +268,36 @@ const notesSharp2 = [
 ];
 
 const majorScaleFormula = [0, 2, 4, 5, 7, 9, 11, 12];
+const majorPentatonicFormula = [0, 2, 4, 7, 9, 12];
+const minorPentatonicFormula = [0, 3, 5, 7, 10, 12];
+const majorArpeggioFormula = [1, 4, 7];
+const minorArpeggioFormula = [1, 3, 7];
 let majorScale = [];
+let majorPentatonicScale = [];
+let minorPentatonicScale = [];
+let majorArpeggio = [];
+let minorArpeggio = [];
 console.log(majorScale);
 
-function makeScale(startNote) {
+function makeScale(startNote, scaleFormula, scale) {
   for (i = 0; i < 8; i++) {
     a = notesSharp2.indexOf(startNote);
-    b = a + majorScaleFormula[i];
+    b = a + scaleFormula[i];
     note = notesSharp2[b];
-    majorScale.push(note);
+    scale.push(note);
   }
 }
 
-makeScale("d");
+makeScale("d", majorScaleFormula, majorScale);
+makeScale("d", majorPentatonicFormula, majorPentatonicScale);
+makeScale("d", minorPentatonicFormula, minorPentatonicScale);
+makeScale("d", majorArpeggioFormula, majorArpeggio);
+makeScale("d", minorArpeggioFormula, minorArpeggio);
 console.log(majorScale);
+console.log(majorPentatonicScale);
+console.log(minorPentatonicScale);
+console.log(majorArpeggio);
+console.log(minorArpeggio);
 
 scaleGeneratorInput.addEventListener("input", (event) => {
   const startNote = event.target.value.toLowerCase(); // Get input value and convert to lowercase
