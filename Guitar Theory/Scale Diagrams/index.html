@@ -56,20 +56,45 @@
           <br>
           <br>
           <form>
-            Scale Generator Input a note name:
-            <input id="scale-generator-input" type="text">
+            Scale Generator 
+            <br> Input a note name:
+            <select id="scaleStartInput" name="options">
+              <option value="a">A</option>
+              <option value="a#">A#</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+              <option value="c#">C#</option>
+              <option value="d">D</option>
+              <option value="d#">D#</option>
+              <option value="e">E</option>
+              <option value="f">F</option>
+              <option value="f#">F#</option>
+              <option value="g">G</option>
+              <option value="g#">G#</option>
+            </select>
+            <br>
+            choose a scale.
+            <select id="scaleTypeInput" name="options">
+              <option value="majorScaleFormula">Major Scale</option>
+              <option value="majorPentatonicFormula">Major Pentatonic Scale</option>
+              <option value="minorPentatonicFormula">Minor Pentatonic Scale</option>
+              <option value="majorArpeggioFormula">Major Arpeggio</option>
+              <option value="minorArpeggioFormula">Minor Arpeggio</option>
+            </select>
+           <button type='button' id="scale-display">Display Scale</button>
+           <span id="scale-display2"></span>
           </form>
         </div>
       </div>
   </aside>
-  <div class="bodyText">
+  <!-- <div class="bodyText">
     <h1 >Ear Trainer</h1>
     <h3>What is the point of this?</h3>
     <p>
       While developing my ears I have tried out many different ear training
       methods, apps, and classes. 
     </p>
-  </div>
+  </div> -->
     <div class="fretboard">
     </div>
     <div class="note-name-section"></div>

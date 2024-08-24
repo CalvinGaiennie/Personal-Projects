@@ -1,5 +1,6 @@
 root = document.documentElement;
 const fretboard = document.querySelector(".fretboard");
+const noteNameSection = document.querySelector(".note-name-section");
 const selectedInstrumentSelector = document.querySelector(
   "#instrument-selector"
 );
@@ -11,8 +12,12 @@ const showAllNotesSelector = document.querySelector("#show-all-notes");
 const showMultipleNotesSelector = document.querySelector(
   "#show-multiple-notes"
 );
-const noteNameSection = document.querySelector(".note-name-section");
+const scaleStartInput = document.querySelector("#scaleStartInput");
 
+const scaleTypeInput = document.querySelector("#scaleTypeInput");
+const scaleInput = document.getElementById("scaleInput");
+const scaleDisplayButton = document.querySelector("#scale-display");
+const scaleDisplayField = document.querySelector("#scale-display2");
 let allNotes;
 let showMultipleNotes = false;
 
@@ -239,7 +244,6 @@ app.init();
 
 const scaleGeneratorInput = document.querySelector("#scale-generator-input");
 
-console.log(scaleGeneratorInput);
 const notesSharp2 = [
   "c",
   "c#",
@@ -270,40 +274,51 @@ const notesSharp2 = [
 const majorScaleFormula = [0, 2, 4, 5, 7, 9, 11, 12];
 const majorPentatonicFormula = [0, 2, 4, 7, 9, 12];
 const minorPentatonicFormula = [0, 3, 5, 7, 10, 12];
-const majorArpeggioFormula = [1, 4, 7];
-const minorArpeggioFormula = [1, 3, 7];
-let majorScale = [];
-let majorPentatonicScale = [];
-let minorPentatonicScale = [];
-let majorArpeggio = [];
-let minorArpeggio = [];
-console.log(majorScale);
+const majorArpeggioFormula = [0, 4, 7];
+const minorArpeggioFormula = [0, 3, 7];
 
-function makeScale(startNote, scaleFormula, scale) {
-  for (i = 0; i < 8; i++) {
-    a = notesSharp2.indexOf(startNote);
-    b = a + scaleFormula[i];
-    note = notesSharp2[b];
-    scale.push(note);
+function makeScale(startNote, scaleFormula) {
+  const scale = [];
+  const startIndex = notesSharp2.indexOf(startNote);
+  // const startIndex = accidentals.indexOf(startNote);
+
+  for (i = 0; i < scaleFormula.length; i++) {
+    const noteIndex = (startIndex + scaleFormula[i]) % notesSharp2.length;
+
+    let note = notesSharp2[noteIndex];
+    scale.push(note.toUpperCase());
   }
+  return scale;
 }
 
-makeScale("d", majorScaleFormula, majorScale);
-makeScale("d", majorPentatonicFormula, majorPentatonicScale);
-makeScale("d", minorPentatonicFormula, minorPentatonicScale);
-makeScale("d", majorArpeggioFormula, majorArpeggio);
-makeScale("d", minorArpeggioFormula, minorArpeggio);
-console.log(majorScale);
-console.log(majorPentatonicScale);
-console.log(minorPentatonicScale);
-console.log(majorArpeggio);
-console.log(minorArpeggio);
+function displayScale(scale) {
+  const scaleDisplay = document.querySelector("#scale-display2");
+  scaleDisplay.innerHTML = "";
+  scale.forEach((note) => {
+    const noteElement = tools.createElement("span", `${note},`);
+    scaleDisplay.appendChild(noteElement);
+  });
+}
+const scaleFormulas = {
+  majorScaleFormula: majorScaleFormula,
+  majorPentatonicFormula: majorPentatonicFormula,
+  minorPentatonicFormula: minorPentatonicFormula,
+  majorArpeggioFormula: majorArpeggioFormula,
+  minorArpeggioFormula: minorArpeggioFormula,
+};
 
-scaleGeneratorInput.addEventListener("input", (event) => {
-  const startNote = event.target.value.toLowerCase(); // Get input value and convert to lowercase
-  const scale = makeScale(startNote);
+scaleDisplayButton.addEventListener("click", (event) => {
+  console.log("Button Clicked");
+  const startNote = scaleStartInput.value;
+  const scaleType = scaleTypeInput.value;
 
-  if (scale) {
-    console.log(scale); // Log the generated scale
+  const scaleFormula = scaleFormulas[scaleType];
+  if (scaleFormula) {
+    const scale = makeScale(startNote, scaleFormula);
+    if (scale.length) {
+      displayScale(scale); // Log the generated scale
+    }
   }
 });
+
+console.log("YES");
