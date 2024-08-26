@@ -18,6 +18,11 @@
   --noteDotOpacity: 0;
   --background-color: rgb(240, 240, 240);
 }
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px; /* optional, for spacing between items */
+}
 
 .bodyText {
   /* text-align: center; */
@@ -62,17 +67,12 @@ img {
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Optional: adds shadow for better visual */
   box-sizing: border-box;
   z-index: 1000;
-  height: 160px;
+  height: 60px;
+  border-bottom: 1px solid black;
 }
 
-.banner h1 {
-  margin: 0;
-  font-size: 2.5em; /* Size of the header text */
-}
-
-.banner p {
-  margin: 10px 0 0;
-  font-size: 1.2em; /* Size of the paragraph text */
+.bannerContent {
+  font-size: 40;
 }
 
 .text-box {
@@ -102,12 +102,12 @@ img {
 
 .left-banner h2 {
   margin: 0;
-  padding-top: 160px;
+  padding-top: 60px;
   font-size: 1.5em; /* Size of the header text */
 }
 .left-banner-label {
   margin: 0;
-  padding-top: 160px;
+  padding-top: 60px;
   font-size: 1.5em; /* Size of the header text */
 }
 
@@ -189,7 +189,7 @@ body {
   padding: 20px;
   /* border-bottom: 1px solid #444; */
   background: 282828;
-  padding-top: 140px;
+  padding-top: 60px;
 }
 
 .settings-content {

@@ -276,6 +276,13 @@ const majorPentatonicFormula = [0, 2, 4, 7, 9, 12];
 const minorPentatonicFormula = [0, 3, 5, 7, 10, 12];
 const majorArpeggioFormula = [0, 4, 7];
 const minorArpeggioFormula = [0, 3, 7];
+const scaleFormulas = {
+  majorScaleFormula: majorScaleFormula,
+  majorPentatonicFormula: majorPentatonicFormula,
+  minorPentatonicFormula: minorPentatonicFormula,
+  majorArpeggioFormula: majorArpeggioFormula,
+  minorArpeggioFormula: minorArpeggioFormula,
+};
 
 function makeScale(startNote, scaleFormula) {
   const scale = [];
@@ -299,13 +306,6 @@ function displayScale(scale) {
     scaleDisplay.appendChild(noteElement);
   });
 }
-const scaleFormulas = {
-  majorScaleFormula: majorScaleFormula,
-  majorPentatonicFormula: majorPentatonicFormula,
-  minorPentatonicFormula: minorPentatonicFormula,
-  majorArpeggioFormula: majorArpeggioFormula,
-  minorArpeggioFormula: minorArpeggioFormula,
-};
 
 scaleDisplayButton.addEventListener("click", (event) => {
   console.log("Button Clicked");
@@ -320,5 +320,3 @@ scaleDisplayButton.addEventListener("click", (event) => {
     }
   }
 });
-
-console.log("YES");
