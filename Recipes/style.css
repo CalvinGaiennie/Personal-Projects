@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 10px;
+}
+
+p {
+  padding: 8px;
+  line-height: 1.5;
+}
+
+.left-banner p {
+  padding: 1px;
+}
+
+.banner {
+  position: sticky;
+  background-color: #3494d3; /* Background color of the banner */
+  color: black; /* Text color */
+  text-align: center; /* Center align text */
+  padding: 20px; /* Padding around the content */
+  position: sticky; /* Allows for positioning children elements if needed */
+  top: 0;
+  margin: 0;
+  width: 100vw; /* Make the banner full width */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Optional: adds shadow for better visual */
+  box-sizing: border-box;
+  z-index: 1000;
+  height: 60px;
+  border-bottom: 1px solid black;
+}
+
+.left-banner {
+  position: fixed; /* Fixes the banner to the viewport */
+  top: 50px; /* Aligns it to the top of the viewport */
+  left: 0; /* Aligns it to the left of the viewport */
+  width: 250px; /* Width of the banner */
+  height: 100%; /* Full height of the viewport */
+  background-color: var(
+    --background-color
+  ); /* Background color of the banner */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the banner */
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); Optional shadow for visual effect */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  font-family: sans-serif;
+  /* text-align: center; */
+  border-right: 1px solid black;
+  height: 100%;
+  overflow-y: auto; /* Scrollable if content overflows vertically */
+}
+
+.steps {
+  /* text-align: center; */
+  padding-left: 300px;
+  padding-right: 300px;
+  /* margin-right: 400px; */
+  zoom: 97%;
+  font-family: sans-serif;
+}
+
+.pages {
+  position: fixed; /* Fixes the banner to the viewport */
+  bottom: 0; /* Aligns it to the top of the viewport */
+  right: 0; /* Aligns it to the left of the viewport */
+  width: 300px; /* Width of the banner */
+  height: 10%; /* Full height of the viewport */
+  background-color: var(
+    --background-color
+  ); /* Background color of the banner */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the banner */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+button {
+  margin: 10px;
+}
+select {
+  margin: 8px;
+}

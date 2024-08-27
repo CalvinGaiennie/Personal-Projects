@@ -237,18 +237,6 @@ label {
   /* top: 22px; */
   top: calc(var(--string-top-position) * 1px);
 }
-/* 
---fretboard-height: 300;
---number-of-strings: 6;
---string-height: 10;
---half-string-height: calc(var(--string-height) / 2);
---string-top-position: calc(
-  var(--fretboard-height) / var(--number-of-strings) / 2 -
-    var(--half-string-height)
-);
-
-.string1 {
-} */
 
 .note-fret {
   display: flex;

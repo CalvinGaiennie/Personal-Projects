@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beef Lo Mein</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <p>Hello</p>
+    </header>
+    <aside class="left-banner">
+      <h2>Ingredients</h2>
+      <h2>Sauce</h2>
+      <div id="recipe"></div>
+    </aside>
+    <div class="steps">
+      <h1>Beef Lo Mein</h1>
+      <form>
+        <p>How many servings of beef lo mein do you want to make?</p>
+        <select id="input" value="8">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </form>
+      <div>
+        <p>Step 1: Start a pot of water boiling for the noodles.</p>
+        <p>Step 2: Whisk together the ingredients for the sauce.</p>
+        <p>
+          Step 3: Cut the beef, season it, then mix the flour and oil with it in
+          a bowl.
+        </p>
+        <p>
+          Step 4: When the water is boiling, add ({1} tablespoon) of salt, and
+          the noodles. Cook until tender, about three minutes. Reserve 1/2 a cup
+          of pasta water, drain the noodles, rince them under cold water, then
+          set them aside.
+        </p>
+        <p>
+          Step 5: In a large deep skillet, heat the avacoado oil over
+          medium-high heat. Add the steak in a single layer and cook until
+          golden brown on all sides and cooked through, 2 to 3 minutes per side.
+          Transfer to a clean plate and set aside.
+        </p>
+        <p>
+          Step 6: Make sure the skillet is still well oiled then add in the
+          brocoli and cook it. Toss it until it's slightly tender, 2-3 minutes.
+          Add 1/4 cup of the reserved pasta water and partially steam the
+          brocoli, uncovered until it turns bright green and the liquid has
+          evaporated, about two more minutes.
+        </p>
+        <p>
+          Step 7: Add the beef back to the skillet and pour in the sauce and
+          remaining {.25} cups of pasta water, and toss constantly until the
+          noodles are coated and the sauce has started to thicken, about 2 more
+          minutes.
+        </p>
+        <p>Step 8: Serve</p>
+      </div>
+      <form id="Solution">
+        <button type="button" class="generate" onclick="calculate()">
+          Calculate Recipe
+        </button>
+      </form>
+      <div id="recipe"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
