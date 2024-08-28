@@ -19,21 +19,6 @@
         >
       </div>
     </header>
-    <aside id="pagesbox">
-      <div class="pages">
-        <a style="text-decoration: none" href="index.html"
-          >Go to Page 1 (Music Theory)</a
-        >
-        <br />
-        <a href="index2.html" style="text-decoration: none" ;
-          >Go to Page 2 (Fretboard IQ)</a
-        >
-        <br />
-        <a style="text-decoration: none" ; href="./Scale Diagrams/index.html"
-          >Go to Page 4 (Chords and Scales)</a
-        >
-      </div>
-    </aside>
     <aside class="left-banner">
       <div class="left-banner-label">
         <h4 for="Mix">Select Mix Density:</h4>
@@ -48,9 +33,9 @@
         <!-- difficulty button -->
         <h4 for="difficulty">Select Progression Difficulty:</h4>
         <select id="difficulty">
-          <option value="Beginner">Beginner</option>
-          <option value="Intermediate">Intermediate</option>
-          <option value="Expert">Expert</option>
+          <option value="videosBeginner">Beginner</option>
+          <option value="videosIntermediate">Intermediate</option>
+          <option value="videosExpert">Expert</option>
         </select>
       </div>
     </aside>
@@ -94,21 +79,46 @@
       document
         .getElementById("playButton")
         .addEventListener("click", function () {
+          const difficulty = document.getElementById("difficulty");
+          const selectedDifficulty = difficulty.value;
+          console.log(selectedDifficulty);
           // Array of video file names
-          const videos = [
-            "Last_Christmas.m4a",
-            "Mistletoe_ftJazzy_G.m4a",
-            "Rockin_Around_The_Christmas_Tree.m4a",
+          const videosBeginner = [
+            "Beginner/ET_1415G.mp3",
+            "Beginner/ET_1465G.mp3",
+            "Beginner/ET_1524G.mp3",
+            "Beginner/ET_1645G.mp3",
+            "Beginner/ET_5411G.mp3",
+          ];
+          const videosIntermediate = [
+            "Intermediate/ET_Blue_Chorus.mp3",
+            "Intermediate/ET_Summertime_Blues_Verse.mp3",
+            "Intermediate/ET_Good_Lord_Lorrie_Verse.mp3",
+            "Intermediate/ET_Jersey_Giant.mp3",
+          ];
+          const videosExpert = [
+            "Expert/Last_Christmas.m4a",
+            "Expert/Mistletoe_ftJazzy_G.m4a",
+            "Expert/Rockin_Around_The_Christmas_Tree.m4a",
           ];
 
+          const difficultyMap = {
+            videosBeginner: videosBeginner,
+            videosIntermediate: videosIntermediate,
+            videosExpert: videosExpert,
+          };
           // Randomly select a video
-          const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+          const selectedArray = difficultyMap[selectedDifficulty] || [];
 
-          // Get the video player element
+          // Randomly select an audio file from the chosen array
+          const randomAudio =
+            selectedArray[Math.floor(Math.random() * selectedArray.length)];
+
+          // Get the audio player element
           const audioPlayer = document.getElementById("audioPlayer");
 
           // Set the source of the video player
-          audioPlayer.src = "songs/" + randomVideo;
+          audioPlayer.src = "songs/" + randomAudio;
 
           // Load and play the video
           audioPlayer.load();
