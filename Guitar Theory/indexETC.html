@@ -46,8 +46,27 @@
         complexity and density of mix.
       </p>
       <h1>Ear Trainer</h1>
-      <h3>What is the point of this?</h3>
+      <h3>How does this work and why is it here?</h3>
       <p>
+        Being able to hear something, understand whats going on, and play it
+        back, is one of the most important skills for a guitar player.
+      </p>
+      <p>
+        It is also a pretty difficult skill to develop. Especially in the
+        beggining.
+      </p>
+      <p>
+        When I first started learning songs by ear I found it difficult to find
+        songs of an appropriate difficulty(most were too difficult)
+      </p>
+      <p>
+        Because of this I recorded a ton of tracks ranging in complexity and
+        difficulty so that you could sort through them and easily find something
+        challenging but possible for you instead of constantly meeting failure
+        trying to learn songs that are way past your abilities.
+      </p>
+      <!-- <h3>What is the point of this?</h3> -->
+      <!-- <p>
         While developing my ears I have tried out many different ear training
         methods, apps, and classes. What I ended up doing is saying fuck all of
         that and spending most of my time trying to learn songs by ear just by
@@ -60,7 +79,7 @@
         difficulty. Especially in the beggining. Because of this I decided to
         put together a database of demos sorted by density of mix and complexity
         of chord progression.
-      </p>
+      </p> -->
       <br />
       <h2>Play Randoms Song</h2>
       <p>
@@ -70,49 +89,95 @@
       <audio id="audioPlayer" controls>
         Your browser does not support the audio tag.
       </audio>
-      <button id="playButton">Play Random Bop</button>
+      <button id="playButton">Play Random Song</button>
       <!-- mix button -->
       <br />
+      <h2>Chords and Key of The Song</h2>
+      <p id="feedback"></p>
+      <button id="feedbackButton">Get Chords</button>
     </div>
-    <p id="feedback"></p>
     <script>
+      //Random Song Generator
       document
         .getElementById("playButton")
         .addEventListener("click", function () {
+          //Set feedback to ''
+          document.getElementById("feedback").textContent = ``;
+
+          //Find selected difficulty and assign it to a variable
           const difficulty = document.getElementById("difficulty");
           const selectedDifficulty = difficulty.value;
-          console.log(selectedDifficulty);
-          // Array of video file names
+
+          //Objects containing the file names and subfolders, they key of the track, and the chord progression
           const videosBeginner = [
-            "Beginner/ET_1415G.mp3",
-            "Beginner/ET_1465G.mp3",
-            "Beginner/ET_1524G.mp3",
-            "Beginner/ET_1645G.mp3",
-            "Beginner/ET_5411G.mp3",
+            { FileName: "Beginner/ET_1415G.mp3", Key: "G", Chords: "G,C,G,D" },
+            { FileName: "Beginner/ET_1465G.mp3", Key: "G", Chords: "G,C,Em,D" },
+            { FileName: "Beginner/ET_1524G.mp3", Key: "G", Chords: "G,C,Em,D" },
+            { FileName: "Beginner/ET_1645G.mp3", Key: "G", Chords: "G,Em,C,D" },
+            { FileName: "Beginner/ET_5411G.mp3", Key: "G", Chords: "D,C,G,G" },
           ];
           const videosIntermediate = [
-            "Intermediate/ET_Blue_Chorus.mp3",
-            "Intermediate/ET_Summertime_Blues_Verse.mp3",
-            "Intermediate/ET_Good_Lord_Lorrie_Verse.mp3",
-            "Intermediate/ET_Jersey_Giant.mp3",
+            {
+              FileName: "Intermediate/ET_Blue_Chorus.mp3",
+              Key: "D",
+              Chords: "D,G,D,D,Bm,A,G,G",
+            },
+            {
+              FileName: "Intermediate/ET_Summertime_Blues_Verse.mp3",
+              Key: "C#",
+              Chords: "C#,C#,F#,C#,F#,C#,G#,G#",
+            },
+            {
+              FileName: "Intermediate/ET_Good_Lord_Lorrie_Verse.mp3",
+              Key: "G",
+              Chords: "G,Em,C,G",
+            },
+            {
+              FileName: "Intermediate/ET_Jersey_Giant.mp3",
+              Key: "G#",
+              Chords: "G#,D#,A#m,C#",
+            },
           ];
           const videosExpert = [
-            "Expert/Last_Christmas.m4a",
-            "Expert/Mistletoe_ftJazzy_G.m4a",
-            "Expert/Rockin_Around_The_Christmas_Tree.m4a",
+            {
+              FileName: "Expert/ET3_Feelin_Good_Again.mp3",
+              Name: "Feelin Good Again",
+              Key: "G",
+              Chords: "G Bm Em D G Bm Em D C D G C G D C D",
+            },
+            {
+              FileName: "Expert/ET3_My_Heros_Have_Always_Been_Cowboys.mp3",
+              Name: "My Heros Have Always Been Cowboys",
+              Key: "D",
+              Chords:
+                "Verse: D G D E7 A7 D G D G D A7 D D7, Chorus: G D E A G D G D A7 D",
+            },
+            {
+              FileName:
+                "Expert/ET3_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
+              Name: "Nobody Knows You When Youre Down and Out",
+              Key: "C 'sorta'",
+              Chords: "C E7 A A7 Dm7 A7 Dm7 F F#dim7 C A7 D7 G7",
+            },
           ];
-
           const difficultyMap = {
             videosBeginner: videosBeginner,
             videosIntermediate: videosIntermediate,
             videosExpert: videosExpert,
           };
-          // Randomly select a video
-          const selectedArray = difficultyMap[selectedDifficulty] || [];
+          // Randomly select a track
+          const selectedDifficultyObject =
+            difficultyMap[selectedDifficulty] || [];
+
+          //Extract track names
+          const trackNames = selectedDifficultyObject.map(
+            (track) => track.FileName
+          );
 
           // Randomly select an audio file from the chosen array
           const randomAudio =
-            selectedArray[Math.floor(Math.random() * selectedArray.length)];
+            trackNames[Math.floor(Math.random() * trackNames.length)];
+          randomAudioIndex = trackNames.indexOf(randomAudio);
 
           // Get the audio player element
           const audioPlayer = document.getElementById("audioPlayer");
@@ -123,6 +188,16 @@
           // Load and play the video
           audioPlayer.load();
           audioPlayer.play();
+
+          //Setup a button to show the user the key and chords for the track
+          document
+            .getElementById("feedbackButton")
+            .addEventListener("click", function () {
+              const selectedTrack = selectedDifficultyObject[randomAudioIndex];
+              document.getElementById(
+                "feedback"
+              ).textContent = `Name: ${selectedTrack.Name},  Key: ${selectedTrack.Key},  Chords: ${selectedTrack.Chords}`;
+            });
         });
     </script>
   </body>
