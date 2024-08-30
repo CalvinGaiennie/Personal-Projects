@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="Player1">
+    <div id="Player1" class="Dealer">
       <h2>Dealers Cards</h2>
     </div>
-    <div id="Player2">
+    <div id="Player2" class="grid">
       <h2>Your Cards</h2>
     </div>
-    <div id="buttons">
+    <div id="buttons" class="grid">
+      <h2>Deal</h2>
+      <button onclick="blackjack()">Deal</button>
       <h2>Hit</h2>
       <button onclick="hit(2,1)">Hit</button>
       <h2>Stay</h2>
-      <button>Stay</button>
+      <button id="stay">Stay</button>
+      <h2>Bust</h2>
+      <button onclick="bust()">Bust</button>
     </div>
-    <div id="strategy">
+    <div id="strategy" class="grid">
       <h3>Perfect Play</h3>
       <p>Hit or Stay</p>
       <button>Answer</button>

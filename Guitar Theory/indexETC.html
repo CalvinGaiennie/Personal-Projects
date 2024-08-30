@@ -21,65 +21,63 @@
     </header>
     <aside class="left-banner">
       <div class="left-banner-label">
-        <h4 for="Mix">Select Mix Density:</h4>
+        <h2 class="margin" for="Mix">Select Mix Density:</h2>
         <select id="Mix">
           <option value="Acoustic">Acoustic</option>
           <option value="3 Track">3 Peice</option>
           <option value="5 Track">5 Peice</option>
         </select>
         <br />
-        <br />
-        <br />
-        <!-- difficulty button -->
-        <h4 for="difficulty">Select Progression Difficulty:</h4>
-        <select id="difficulty">
-          <option value="videosBeginner">Beginner</option>
-          <option value="videosIntermediate">Intermediate</option>
-          <option value="videosExpert">Expert</option>
-        </select>
+        <div>
+          <!-- difficulty button -->
+          <h2 for="difficulty">Select Progression Difficulty:</h2>
+          <select id="difficulty">
+            <option value="videosBeginnerG">BeginnerG</option>
+            <option value="videosBeginner">Beginner</option>
+            <option value="videosBeginnerCapo">Beginner+Capo</option>
+            <option value="videosIntermediate">Intermediate</option>
+            <option value="videosExpert">Expert</option>
+          </select>
+          <div class="sideAlign">
+            <h4>Toggle Rules</h4>
+            <button class="action-button" id="toggleAll">⬇️</button>
+          </div>
+          <h4 class="difficulty0">
+            BeginnerG (6) (Number of tracks in category)
+          </h4>
+          <p class="content">Same as beginner but only in the key of G</p>
+          <h4 class="difficulty1">Beginner (3)</h4>
+          <p class="content">
+            The chords in the beginner progressions are all diatonic. All
+            progressions are in one of the following keys: G C D E and A. No
+            capo required.
+          </p>
+          <h4 class="difficulty">Beginner+Capo (2)</h4>
+          <p class="content">
+            Same as beginner but with a capo. Can be in any key.
+          </p>
+          <h4 class="difficulty2">Intermediate (2)</h4>
+          <p class="content">
+            All keys, more complex progressions, multipart songs, extended
+            chords, more complex strumming, some fingerpicking and, faster
+            changes. Mostly diatonic chords.
+          </p>
+          <h4 class="difficulty3">Expert (3)</h4>
+          <p class="content">
+            Lots of extended and diatonic chords, walkups and walkdowns, complex
+            fingerpicking.
+          </p>
+        </div>
       </div>
     </aside>
     <div class="bodyText">
       <h1>Easy Tracks to Learn By Ear</h1>
-      <p class="no-margin">
-        Here is a database of simple songs that you can sort by progression
-        complexity and density of mix.
-      </p>
-      <h1>Ear Trainer</h1>
-      <h3>How does this work and why is it here?</h3>
       <p>
-        Being able to hear something, understand whats going on, and play it
-        back, is one of the most important skills for a guitar player.
+        When first learning songs by ear it can be difficult to find songs of
+        the appropriate difficulty. To solve that issue I've recorded some
+        covers with stripped down mixes and sorted them by complexity.
       </p>
-      <p>
-        It is also a pretty difficult skill to develop. Especially in the
-        beggining.
-      </p>
-      <p>
-        When I first started learning songs by ear I found it difficult to find
-        songs of an appropriate difficulty(most were too difficult)
-      </p>
-      <p>
-        Because of this I recorded a ton of tracks ranging in complexity and
-        difficulty so that you could sort through them and easily find something
-        challenging but possible for you instead of constantly meeting failure
-        trying to learn songs that are way past your abilities.
-      </p>
-      <!-- <h3>What is the point of this?</h3> -->
-      <!-- <p>
-        While developing my ears I have tried out many different ear training
-        methods, apps, and classes. What I ended up doing is saying fuck all of
-        that and spending most of my time trying to learn songs by ear just by
-        sitting with a guitar and listening to them over and over like most
-        successful players have. Insert link of clapton talking about doing
-        this.
-      </p>
-      <p>
-        My biggest problem was that I struggled to find songs of the appropriate
-        difficulty. Especially in the beggining. Because of this I decided to
-        put together a database of demos sorted by density of mix and complexity
-        of chord progression.
-      </p> -->
+
       <br />
       <h2>Play Randoms Song</h2>
       <p>
@@ -95,9 +93,129 @@
       <h2>Chords and Key of The Song</h2>
       <p id="feedback"></p>
       <button id="feedbackButton">Get Chords</button>
+      <div>
+        <h2>Tips and Tricks</h2>
+        <h3>Write Down What You're Hearing</h3>
+        <p></p>
+        <h3>Use the Pentatonic Scale to Find the Key</h3>
+        <p></p>
+      </div>
     </div>
     <script>
       //Random Song Generator
+      //Objects containing the file names and subfolders, they key of the track, and the chord progression
+      // {FileName:'',Name:'',Key:'',Chords:''},
+      const videosBeginnerG = [
+        {
+          FileName: "ET_1415G.mp3",
+          Name: "Generic Progression 1",
+          Key: "G",
+          Chords: "G,C,G,D",
+        },
+        {
+          FileName: "ET_1465G.mp3",
+          Name: "Generic Progression 2",
+          Key: "G",
+          Chords: "G,C,Em,D",
+        },
+        {
+          FileName: "ET_1524G.mp3",
+          Name: "Generic Progression 3",
+          Key: "G",
+          Chords: "G,C,Em,D",
+        },
+        {
+          FileName: "ET_1645G.mp3",
+          Name: "Generic Progression 4",
+          Key: "G",
+          Chords: "G,Em,C,D",
+        },
+        {
+          FileName: "ET_5411G.mp3",
+          Name: "Generic Progression 5",
+          Key: "G",
+          Chords: "D,C,G,G",
+        },
+        {
+          FileName: "ET_Good_Lord_Lorrie_Verse.mp3",
+          Name: "Good Lord Lorrie Verse",
+          Key: "G",
+          Chords: "G,Em,C,G",
+        },
+      ];
+      const videosBeginner = [
+        {
+          FileName: "ET_Blue_Chorus.mp3",
+          Name: "Blue Chorus",
+          Key: "D",
+          Chords: "D,G,D,D,Bm,A,G,G",
+        },
+        { FileName: "ET1_Hurt.mp3", Name: "Hurt", Key: "C", Chords: "Am C D" },
+        {
+          FileName: "ET_1_Simple_Man.mp3",
+          Name: "Simple Man",
+          Key: "C",
+          Chords: "C G Am",
+        },
+      ];
+      const videosBeginnerCapo = [
+        {
+          FileName: "ET_Summertime_Blues_Verse.mp3",
+          Name: "Summertime Blues Verse",
+          Key: "C# Capo: 1",
+          Chords: "C#,C#,F#,C#,F#,C#,G#,G#",
+        },
+        {
+          FileName: "ET_Jersey_Giant.mp3",
+          Name: "Jersey Giant",
+          Key: "G# Capo: 1",
+          Chords: "G#,D#,A#m,C#",
+        },
+      ];
+      const videosIntermediate = [
+        {
+          FileName: "ET3_My_Heros_Have_Always_Been_Cowboys.mp3",
+          Name: "My Heros Have Always Been Cowboys",
+          Key: "D",
+          Chords:
+            "Verse: D G D E7 A7 D G D G D A7 D D7, Chorus: G D E A G D G D A7 D",
+        },
+        {
+          FileName: "ET3_Feelin_Good_Again.mp3",
+          Name: "Feelin Good Again",
+          Key: "G",
+          Chords: "G Bm Em D G Bm Em D C D G C G D C D",
+        },
+      ];
+      const videosExpert = [
+        {
+          FileName: "ET3_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
+          Name: "Nobody Knows You When Youre Down and Out",
+          Key: "C 'sorta'",
+          Chords: "C E7 A A7 Dm7 A7 Dm7 F F#dim7 C A7 D7 G7",
+        },
+        {
+          FileName: "ET3_Something.mp3",
+          Name: "Something",
+          Key: "C",
+          Chords:
+            "Transition: F Eb G, Verse: C Cmaj7 C7 F D D7 G, Chorus: Am AmMaj7 Am7, D7, Bridge: A C#m F#m D G",
+        },
+        {
+          FileName: "ET3_Cavalry.mp3",
+          Name: "Cavalry",
+          Key: "D",
+          Chords: "D",
+        },
+      ];
+      const difficultyMap = {
+        videosBeginner: videosBeginner,
+        videosBeginnerG: videosBeginnerG,
+        videosBeginnerCapo: videosBeginnerCapo,
+        videosIntermediate: videosIntermediate,
+        videosExpert: videosExpert,
+      };
+      ////
       document
         .getElementById("playButton")
         .addEventListener("click", function () {
@@ -108,63 +226,6 @@
           const difficulty = document.getElementById("difficulty");
           const selectedDifficulty = difficulty.value;
 
-          //Objects containing the file names and subfolders, they key of the track, and the chord progression
-          const videosBeginner = [
-            { FileName: "Beginner/ET_1415G.mp3", Key: "G", Chords: "G,C,G,D" },
-            { FileName: "Beginner/ET_1465G.mp3", Key: "G", Chords: "G,C,Em,D" },
-            { FileName: "Beginner/ET_1524G.mp3", Key: "G", Chords: "G,C,Em,D" },
-            { FileName: "Beginner/ET_1645G.mp3", Key: "G", Chords: "G,Em,C,D" },
-            { FileName: "Beginner/ET_5411G.mp3", Key: "G", Chords: "D,C,G,G" },
-          ];
-          const videosIntermediate = [
-            {
-              FileName: "Intermediate/ET_Blue_Chorus.mp3",
-              Key: "D",
-              Chords: "D,G,D,D,Bm,A,G,G",
-            },
-            {
-              FileName: "Intermediate/ET_Summertime_Blues_Verse.mp3",
-              Key: "C#",
-              Chords: "C#,C#,F#,C#,F#,C#,G#,G#",
-            },
-            {
-              FileName: "Intermediate/ET_Good_Lord_Lorrie_Verse.mp3",
-              Key: "G",
-              Chords: "G,Em,C,G",
-            },
-            {
-              FileName: "Intermediate/ET_Jersey_Giant.mp3",
-              Key: "G#",
-              Chords: "G#,D#,A#m,C#",
-            },
-          ];
-          const videosExpert = [
-            {
-              FileName: "Expert/ET3_Feelin_Good_Again.mp3",
-              Name: "Feelin Good Again",
-              Key: "G",
-              Chords: "G Bm Em D G Bm Em D C D G C G D C D",
-            },
-            {
-              FileName: "Expert/ET3_My_Heros_Have_Always_Been_Cowboys.mp3",
-              Name: "My Heros Have Always Been Cowboys",
-              Key: "D",
-              Chords:
-                "Verse: D G D E7 A7 D G D G D A7 D D7, Chorus: G D E A G D G D A7 D",
-            },
-            {
-              FileName:
-                "Expert/ET3_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
-              Name: "Nobody Knows You When Youre Down and Out",
-              Key: "C 'sorta'",
-              Chords: "C E7 A A7 Dm7 A7 Dm7 F F#dim7 C A7 D7 G7",
-            },
-          ];
-          const difficultyMap = {
-            videosBeginner: videosBeginner,
-            videosIntermediate: videosIntermediate,
-            videosExpert: videosExpert,
-          };
           // Randomly select a track
           const selectedDifficultyObject =
             difficultyMap[selectedDifficulty] || [];
@@ -199,6 +260,25 @@
               ).textContent = `Name: ${selectedTrack.Name},  Key: ${selectedTrack.Key},  Chords: ${selectedTrack.Chords}`;
             });
         });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("toggleAll")
+          .addEventListener("click", function () {
+            // Get all elements with the class 'content'
+            var contents = document.querySelectorAll(".content");
+
+            // Check if the contents are currently visible
+            var isVisible = contents[0].style.display === "block";
+
+            // Toggle visibility for all content elements
+            contents.forEach(function (content) {
+              content.style.display = isVisible ? "none" : "block";
+            });
+            // Change button text based on visibility
+            this.textContent = isVisible ? "⬇️" : "⬆️"; // Change to an upward arrow when content is hidden
+          });
+      });
     </script>
   </body>
 </html>

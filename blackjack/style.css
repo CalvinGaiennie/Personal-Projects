@@ -1,4 +1,4 @@
-#Player1 .card2 {
+.player1-card2 {
   visibility: hidden;
 }
 
@@ -8,4 +8,13 @@
 
 #Player2 .card2 {
   /* visibility: hidden; */
+}
+
+body {
+  background-color: rgb(28, 105, 28);
+}
+
+button {
+  background-color: rgb(31, 65, 31);
+  color: rgb(183, 183, 183);
 }
