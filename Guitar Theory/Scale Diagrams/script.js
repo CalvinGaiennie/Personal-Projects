@@ -9,6 +9,7 @@ const accidentalSelector = document.querySelector(".accidental-selector");
 const numberOfFretsSelector = document.querySelector("#number-of-frets");
 
 const showAllNotesSelector = document.querySelector("#show-all-notes");
+const showOnFretboard = document.querySelector("#show-on-fretboard");
 const showMultipleNotesSelector = document.querySelector(
   "#show-multiple-notes"
 );
@@ -28,16 +29,16 @@ const doubleFretMarkPositions = [12, 24];
 
 const notesFlat = [
   "C",
-  "Db",
+  "D♭",
   "D",
-  "Eb",
+  "E♭",
   "E",
   "F",
-  "Gb",
+  "G♭",
   "G",
-  "Ab",
+  "A♭",
   "A",
-  "Bb",
+  "B♭",
   "B",
 ];
 
@@ -86,7 +87,7 @@ const app = {
   init() {
     this.setupFretboard();
     this.setupSelectedInstrumentSelector();
-    this.setupNoteNameSection();
+    // this.setupNoteNameSection();
     this.setupEventListeners();
   },
   setupFretboard() {
@@ -182,7 +183,7 @@ const app = {
       if (event.target.classList.contains("acc-select")) {
         accidentals = event.target.value;
         this.setupFretboard();
-        this.setupNoteNameSection();
+        // this.setupNoteNameSection();
       } else {
         return;
       }
@@ -284,15 +285,25 @@ const scaleFormulas = {
   minorArpeggioFormula: minorArpeggioFormula,
 };
 
+function selectBank() {
+  let bank;
+  if (accidentals === "flats") {
+    bank = notesFlat;
+  } else if (accidentals === "sharps") {
+    bank = notesSharp;
+  } else if (accidentals === "intervals") {
+    bank = notesIntervals;
+  }
+  return bank;
+}
+
 function makeScale(startNote, scaleFormula) {
+  const noteBank = selectBank();
   const scale = [];
   const startIndex = notesSharp2.indexOf(startNote);
-  // const startIndex = accidentals.indexOf(startNote);
-
   for (i = 0; i < scaleFormula.length; i++) {
-    const noteIndex = (startIndex + scaleFormula[i]) % notesSharp2.length;
-
-    let note = notesSharp2[noteIndex];
+    const noteIndex = (startIndex + scaleFormula[i]) % noteBank.length;
+    let note = noteBank[noteIndex];
     scale.push(note.toUpperCase());
   }
   return scale;
@@ -308,7 +319,6 @@ function displayScale(scale) {
 }
 
 scaleDisplayButton.addEventListener("click", (event) => {
-  console.log("Button Clicked");
   const startNote = scaleStartInput.value;
   const scaleType = scaleTypeInput.value;
 
@@ -317,6 +327,45 @@ scaleDisplayButton.addEventListener("click", (event) => {
     const scale = makeScale(startNote, scaleFormula);
     if (scale.length) {
       displayScale(scale); // Log the generated scale
+    }
+  }
+});
+
+app.displayScaleOnFretboard = function (scale) {
+  // Clear all previous highlights
+  allNotes.forEach((noteFret) => {
+    noteFret.style.setProperty("--noteDotOpacity", 0);
+  });
+  ////// Get rid of hover over thing
+  fretboard.removeEventListener("mouseover", this.showNoteDot);
+  fretboard.removeEventListener("mouseout", this.hideNoteDot);
+
+  // Highlight the notes that are part of the scale
+  scale.forEach((note) => {
+    allNotes.forEach((noteFret) => {
+      if (noteFret.dataset.note === note) {
+        noteFret.style.setProperty("--noteDotOpacity", 1);
+
+        // If this note matches the start note, turn it red
+        // if (note === startNote.toUpperCase()) {
+        //   noteFret.style.setProperty("background-color", "red");
+        // } else {
+        // }
+      }
+    });
+  });
+};
+
+scaleDisplayButton.addEventListener("click", (event) => {
+  const startNote = scaleStartInput.value.toLowerCase();
+  const scaleType = scaleTypeInput.value;
+
+  const scaleFormula = scaleFormulas[scaleType];
+  if (scaleFormula) {
+    const scale = makeScale(startNote, scaleFormula);
+    if (scale.length) {
+      displayScale(scale); // Display scale in the UI
+      app.displayScaleOnFretboard(scale); // Highlight scale on the fretboard
     }
   }
 });

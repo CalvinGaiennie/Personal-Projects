@@ -335,3 +335,7 @@ label {
   position: relative;
   right: 90px;
 }
+
+.root-note {
+  background: red;
+}

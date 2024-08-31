@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fishing Trip Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fishing Trip Tracker</h1>
+      <form id="trip-form">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required />
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="catch">What You Caught:</label>
+        <input type="text" id="catch" name="catch" required />
+
+        <label for="gear">Gear Used:</label>
+        <input type="text" id="gear" name="gear" required />
+
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"></textarea>
+
+        <button type="submit">Add Trip</button>
+      </form>
+
+      <h2>Your Fishing Trips</h2>
+      <ul id="trip-list"></ul>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
