@@ -1,6 +1,9 @@
 //set nessesary constants for later
 const namesList = document.getElementById("namesList");
 const items = [];
+const button = document.getElementById("button");
+const deleteButton = document.getElementById("deleteButton");
+const noteToRemove = document.getElementById("noteToRemove");
 var names;
 
 // Function to get all localStorage items and display them
@@ -11,24 +14,14 @@ function getAllLocalStorageItems() {
     items.push({ key, value });
   }
   names = items.map((item) => item.key);
-  console.log(names);
-  createNameList();
 }
 
-function createNameList() {
-  names = items.map((item) => item.key);
-  console.log(names);
-  // const reverse = names.reverse();
-  namesList.textContent = "Note Names: " + names.join(", ");
-}
 //when browser updates
 document.addEventListener("DOMContentLoaded", function () {
-  getAllLocalStorageItems();
+  createNote();
 });
 
 //Allow User to create and store notes
-const button = document.getElementById("button");
-
 button.addEventListener("click", function (event) {
   // add the note name and data to local storage
   const noteName = document.getElementById("noteName");
@@ -37,35 +30,37 @@ button.addEventListener("click", function (event) {
   const key = noteName.value;
   const value = data.value;
   items.push({ key, value });
-  createNameList();
   //clear input feilds
   noteName.value = "";
   data.value = "";
 });
 
-//allow user to retreive notes
-const noteToRetreive = document.getElementById("noteToRetreive");
-
-const retreiveButton = document.getElementById("retreiveButton");
-const retreivedNote = document.getElementById("retreivedNote");
-
-retreiveButton.addEventListener("click", function (event) {
-  const noteData = localStorage.getItem(noteToRetreive.value);
-  console.log(noteData);
-  retreivedNote.textContent = noteData;
-});
-
 //Delete A Note
-const deleteButton = document.getElementById("deleteButton");
-const noteToRemove = document.getElementById("noteToRemove");
-
 deleteButton.addEventListener("click", function (event) {
   key = noteToRemove.value;
   keyString = key + "";
-  console.log(keyString);
   localStorage.removeItem(keyString);
   getAllLocalStorageItems();
   items.length = 0;
   names = [];
   noteToRemove.value = "";
 });
+
+//Create Note
+function createNote() {
+  getAllLocalStorageItems();
+  const leftBanner = document.getElementById("left-banner");
+  leftBanner.innerHTML = `<h1>Notes</h1>`;
+  for (i = 0; i < names.length; i++) {
+    // Create a new div element
+    const newP = document.createElement("p");
+
+    // Add some text content to the div
+    newP.innerHTML = `<h3>${items[i].key}</h3> ${items[i].value}`;
+    // Add a class to the div (optional)
+    newP.id = `${items[i].key}`;
+
+    // Append the new div to the body of the document
+    document.getElementById("left-banner").appendChild(newP);
+  }
+}

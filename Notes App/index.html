@@ -4,29 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="input-feild">
-      <h3>Input Your Reminder</h3>
-      <input id="noteName" placeholder="Note Name" />
-      <br />
-      <input id="data" placeholder="Data" />
-      <br />
-      <button id="button">Submit</button>
-      <p id="namesList">Note Names:</p>
-    </div>
-    <div id="displayNotes">
-      <h3>Retrive Data</h3>
-      <p>Input Note Name Here</p>
-      <input id="noteToRetreive" placeholder="Note to Retreive" />
-      <br />
-      <button id="retreiveButton">Retreive Data</button>
-      <p id="retreivedNote"></p>
-    </div>
-    <div id="delete">
-      <h3>Delete a Note</h3>
-      <input id="noteToRemove" placeholder="Note To Remove" />
-      <button id="deleteButton">Delete</button>
+    <aside id="left-banner">
+      <h1>Notes</h1>
+    </aside>
+    <div id="body">
+      <div id="input-feild">
+        <h3>Create a note.</h3>
+        <input id="noteName" placeholder="Note Name" />
+        <br />
+        <textarea
+          id="data"
+          rows="4"
+          cols="50"
+          placeholder="Enter your text here..."
+        >
+        </textarea>
+        <br />
+        <button id="button">Submit</button>
+      </div>
+      <div id="delete">
+        <h3>Delete a Note</h3>
+        <input id="noteToRemove" placeholder="Note To Remove" />
+        <button id="deleteButton">Delete</button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

@@ -1,0 +1,27 @@
+#left-banner {
+  position: fixed; /* Fixes the banner to the viewport */
+  top: 0; /* Aligns it to the top of the viewport */
+  left: 0; /* Aligns it to the left of the viewport */
+  width: 250px; /* Width of the banner */
+  height: 100%; /* Full height of the viewport */
+  background-color: var(
+    --background-color
+  ); /* Background color of the banner */
+  color: black; /* Text color */
+  padding: 20px; /* Padding inside the banner */
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); Optional shadow for visual effect */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  font-family: sans-serif;
+  /* text-align: center; */
+  border-right: 1px solid black;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#body {
+  margin-left: 250px;
+}
+
+#data {
+  height: 100px;
+}
