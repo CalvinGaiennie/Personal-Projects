@@ -18,8 +18,8 @@ function getAllLocalStorageItems() {
 function createNameList() {
   names = items.map((item) => item.key);
   console.log(names);
-  const reverse = names.reverse();
-  namesList.textContent = "Note Names: " + reverse.join(", ");
+  // const reverse = names.reverse();
+  namesList.textContent = "Note Names: " + names.join(", ");
 }
 //when browser updates
 document.addEventListener("DOMContentLoaded", function () {
@@ -55,12 +55,17 @@ retreiveButton.addEventListener("click", function (event) {
   retreivedNote.textContent = noteData;
 });
 
-//Delete All Notes
+//Delete A Note
 const deleteButton = document.getElementById("deleteButton");
+const noteToRemove = document.getElementById("noteToRemove");
 
 deleteButton.addEventListener("click", function (event) {
-  localStorage.clear();
-  items = [];
+  key = noteToRemove.value;
+  keyString = key + "";
+  console.log(keyString);
+  localStorage.removeItem(keyString);
+  getAllLocalStorageItems();
+  items.length = 0;
   names = [];
-  namesList.textContent = "Note Names";
+  noteToRemove.value = "";
 });
