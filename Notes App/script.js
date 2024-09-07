@@ -6,7 +6,9 @@ const deleteButton = document.getElementById("deleteButton");
 const noteToRemove = document.getElementById("noteToRemove");
 var names;
 
-// Function to get all localStorage items and display them
+//Functions
+/////////////////////////////////////////////////////////////////////////////////////////////
+//get all localStorage items and display them
 function getAllLocalStorageItems() {
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
@@ -16,14 +18,8 @@ function getAllLocalStorageItems() {
   names = items.map((item) => item.key);
 }
 
-//when browser updates
-document.addEventListener("DOMContentLoaded", function () {
-  createNote();
-});
-
-//Allow User to create and store notes
-button.addEventListener("click", function (event) {
-  // add the note name and data to local storage
+// add the note name and data to local storage
+function addToLocalStorage() {
   const noteName = document.getElementById("noteName");
   const data = document.getElementById("data");
   localStorage.setItem(noteName.value, data.value);
@@ -33,21 +29,11 @@ button.addEventListener("click", function (event) {
   //clear input feilds
   noteName.value = "";
   data.value = "";
-});
-
-//Delete A Note
-deleteButton.addEventListener("click", function (event) {
-  key = noteToRemove.value;
-  keyString = key + "";
-  localStorage.removeItem(keyString);
-  getAllLocalStorageItems();
-  items.length = 0;
-  names = [];
-  noteToRemove.value = "";
-});
+}
 
 //Create Note
 function createNote() {
+  // addToLocalStorage();
   getAllLocalStorageItems();
   const leftBanner = document.getElementById("left-banner");
   leftBanner.innerHTML = `<h1>Notes</h1>`;
@@ -60,16 +46,39 @@ function createNote() {
     // Add a class to the div (optional)
     newP.id = `${items[i].key}`;
 
-    // // Create a global event listener for each button
-    // window[`buttonClickListener${i}`] = function () {
-    //   alert(`You clicked Button ${i}`);
-    // };
-    // const button = document.getElementById(`button${i}`);
-
     // Append the new div to the body of the document
     document.getElementById("left-banner").appendChild(newP);
-
-    // // Add the event listener to the button
-    // button.addEventListener("click", window[`buttonClickListener${i}`]);
   }
 }
+function clearNoteDisplay() {
+  items.length = 0;
+  names = [];
+  noteToRemove.value = "";
+}
+//Delete A Note
+function deleteNote() {
+  key = noteToRemove.value;
+  keyString = key + "";
+  localStorage.removeItem(keyString);
+  getAllLocalStorageItems();
+  clearNoteDisplay();
+}
+
+//Dom Events
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+deleteButton.addEventListener("click", function (event) {
+  deleteNote();
+  createNote();
+});
+
+button.addEventListener("click", function (event) {
+  addToLocalStorage();
+  getAllLocalStorageItems();
+  clearNoteDisplay();
+  createNote();
+});
+
+//when browser updates
+document.addEventListener("DOMContentLoaded", function () {
+  createNote();
+});
