@@ -23,5 +23,22 @@
 }
 
 #data {
-  height: 100px;
+  height: 500px;
+  width: 800px;
+}
+
+h3 {
+  margin: 0;
+}
+.button {
+  width: 20px;
+  border: none;
+  background-color: white;
+  font-size: 20px;
+}
+.noteWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

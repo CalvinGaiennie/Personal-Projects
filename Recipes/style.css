@@ -82,3 +82,14 @@ button {
 select {
   margin: 8px;
 }
+
+#body-text-title-page a {
+  margin-left: 13px;
+}
+/* #body-text-title-page {
+  margin-left: 50px;
+} */
+
+.banner {
+  text-align: left;
+}

@@ -56,11 +56,20 @@ function createNote() {
     const newP = document.createElement("p");
 
     // Add some text content to the div
-    newP.innerHTML = `<h3>${items[i].key}</h3> ${items[i].value}`;
+    newP.innerHTML = `<div class='noteWrap'><h3>${items[i].key}</h3> <button class='button' id="button${i}">...</button> </div><br>${items[i].value}`;
     // Add a class to the div (optional)
     newP.id = `${items[i].key}`;
 
+    // // Create a global event listener for each button
+    // window[`buttonClickListener${i}`] = function () {
+    //   alert(`You clicked Button ${i}`);
+    // };
+    // const button = document.getElementById(`button${i}`);
+
     // Append the new div to the body of the document
     document.getElementById("left-banner").appendChild(newP);
+
+    // // Add the event listener to the button
+    // button.addEventListener("click", window[`buttonClickListener${i}`]);
   }
 }
