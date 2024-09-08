@@ -18,6 +18,8 @@ const ingredientRatios = [2, 2, 0.5, 0.25, 1];
 
 const ingredientNames = ["rice", "water", "vinegar", "sugar", "salt"];
 
+
+//////////////////////////////////////////////////////////////
 function createElement(element, content) {
   const el = document.createElement(element);
   if (content) {
@@ -92,6 +94,8 @@ function writeRecipe(updatedSteps, place) {
     recipe.appendChild(recipeElement);
   });
 }
+
+//////////////////////////////////////////////////////
 
 document.getElementById("input").addEventListener("change", calculateSteps);
 document.addEventListener("DOMContentLoaded", function () {
