@@ -17,6 +17,10 @@
         <a href="./Scale Diagrams/index.html" style="text-decoration: none" ;
           >Chords and Scales</a
         >
+        <br />
+        <a href="indexCC.html" style="text-decoration: none" ;
+          >Chord Chart Creator</a
+        >
       </div>
     </header>
     <aside class="left-banner">
@@ -29,13 +33,7 @@
             <option value="videosBeginner">Beginner</option>
             <option value="videosBeginnerCapo">Beginner+Capo</option>
             <option value="videosIntermediate">Intermediate</option>
-            <option value="videosJazz">Jazz</option>
-            <option value="videosCountryFolkBluegrass">
-              Country/Folk/Bluegrass
-            </option>
-            <option value="videosPopRockIndieBlues">
-              Pop/Rock/Indie/Blues
-            </option>
+            <option value="fullSongs">Full Songs</option>
             <option value="patrick">Patrick</option>
           </select>
           <div class="sideAlign">
@@ -62,15 +60,11 @@
             chords, more complex strumming, some fingerpicking and, faster
             changes. Mostly diatonic chords.
           </p>
-          <h4 class="difficulty3">Jazz</h4>
+          <h4 class="difficulty3">Full Songs (3)</h4>
           <p class="content">
             Lots of extended and diatonic chords, walkups and walkdowns, complex
             fingerpicking.
           </p>
-          <h4 class="difficulty3">Country/Folk/Bluegrass(1)</h4>
-          <p class="content">L</p>
-          <h4 class="difficulty3">Pop/Rock/Indie(2)</h4>
-          <p class="content">L</p>
         </div>
       </div>
     </aside>
@@ -203,8 +197,7 @@
           Tip: "",
         },
       ];
-      const videosJazz = [];
-      const videosCountryFolkBluegrass = [
+      const fullSongs = [
         {
           FileName: "ET3_Cavalry.mp3",
           Name: "Cavalry",
@@ -212,8 +205,6 @@
           Chords: "D",
           Tip: "Try to learn the bass notes first.",
         },
-      ];
-      const videosPopRockIndieBlues = [
         {
           FileName: "ET3_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
           Name: "Nobody Knows You When Youre Down and Out",
@@ -240,9 +231,7 @@
         videosBeginnerG: videosBeginnerG,
         videosBeginnerCapo: videosBeginnerCapo,
         videosIntermediate: videosIntermediate,
-        videosJazz: videosJazz,
-        videosCountryFolkBluegrass: videosCountryFolkBluegrass,
-        videosPopRockIndieBlues: videosPopRockIndieBlues,
+        fullSongs: fullSongs,
         patrick: patrick,
       };
       ////

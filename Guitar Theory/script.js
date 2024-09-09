@@ -12,3 +12,14 @@ btnUnhide.addEventListener("click", function (event) {
 //   // Change the button's background color
 //   button.style.backgroundColor = "blue";
 // });
+
+////////////////////////////////////////////////////////////////////
+
+document.getElementById("generatePDF").addEventListener("click", () => {
+  html2canvas(document.body).then((canvas) => {
+    const imgData = canvas.toDataURL("image/png");
+    const doc = new jsPDF();
+    doc.addImage(imgData, "PNG", 10, 10);
+    doc.save("example.pdf");
+  });
+});

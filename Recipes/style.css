@@ -93,3 +93,7 @@ select {
 .banner {
   text-align: left;
 }
+
+h2 {
+  margin-top: 10px;
+}

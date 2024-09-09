@@ -339,3 +339,10 @@ label {
 .root-note {
   background: red;
 }
+
+#chart {
+  width: 1000px;
+  height: 650px;
+  font-size: 24px;
+  padding: 50px;
+}
