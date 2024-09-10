@@ -18,6 +18,7 @@ const scaleStartInput = document.querySelector("#scaleStartInput");
 const scaleTypeInput = document.querySelector("#scaleTypeInput");
 const scaleInput = document.getElementById("scaleInput");
 const scaleDisplayButton = document.querySelector("#scale-display");
+const exactScaleDisplayButton = document.querySelector("#scale-display-exact");
 const scaleDisplayField = document.querySelector("#scale-display2");
 let allNotes;
 let showMultipleNotes = false;
@@ -110,6 +111,7 @@ const app = {
           accidentals
         );
         noteFret.setAttribute("data-note", noteName);
+        noteFret.setAttribute("data-exactNote", `${noteName}${fret}`);
 
         //add the single fretmarker class to approprate frets on the first string
         if (i === 0 && singleFretMarkPositions.indexOf(fret) !== -1) {
@@ -241,8 +243,50 @@ const tools = {
 };
 app.init();
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+const AOne = ["F#2", "F#4", "A2", "A5", "B2", "B4", "C#2", "C#4", "E2", "E5"];
+const ATwo = ["A5", "A7", "B4", "B7", "C#4", "C#6", "E5", "E7", "F#4", "F#7"];
+const AThree = [
+  "B7",
+  "C#9",
+  "E7",
+  "F#9",
+  "A7",
+  "B9",
+  "C#6",
+  "E9",
+  "F#7",
+  "A10",
+  "B7",
+  "C#9",
+];
+const AFour = [
+  "C#9",
+  "E12",
+  "F#9",
+  "A12",
+  "B9",
+  "C#11",
+  "E9",
+  "F#11",
+  "A10",
+  "B12",
+  "C#9",
+  "E12",
+];
+const AFive = [
+  "E12",
+  "F#14",
+  "A12",
+  "B14",
+  "C#11",
+  "E14",
+  "F#11",
+  "A14",
+  "B12",
+  "C#14",
+  "E12",
+  "F#14",
+];
 const scaleGeneratorInput = document.querySelector("#scale-generator-input");
 
 const notesSharp2 = [
@@ -345,12 +389,6 @@ app.displayScaleOnFretboard = function (scale) {
     allNotes.forEach((noteFret) => {
       if (noteFret.dataset.note === note) {
         noteFret.style.setProperty("--noteDotOpacity", 1);
-
-        // If this note matches the start note, turn it red
-        // if (note === startNote.toUpperCase()) {
-        //   noteFret.style.setProperty("background-color", "red");
-        // } else {
-        // }
       }
     });
   });
@@ -368,4 +406,27 @@ scaleDisplayButton.addEventListener("click", (event) => {
       app.displayScaleOnFretboard(scale); // Highlight scale on the fretboard
     }
   }
+});
+
+app.displayExactScaleOnFretboard = function (scale) {
+  // Clear all previous highlights
+  allNotes.forEach((noteFret) => {
+    noteFret.style.setProperty("--noteDotOpacity", 0);
+  });
+  ////// Get rid of hover over thing
+  fretboard.removeEventListener("mouseover", this.showNoteDot);
+  fretboard.removeEventListener("mouseout", this.hideNoteDot);
+
+  // Highlight the notes that are part of the scale
+  scale.forEach((note) => {
+    allNotes.forEach((noteFret) => {
+      if (noteFret.dataset.exactnote === note) {
+        noteFret.style.setProperty("--noteDotOpacity", 1);
+      }
+    });
+  });
+};
+
+exactScaleDisplayButton.addEventListener("click", (event) => {
+  app.displayExactScaleOnFretboard(AFive);
 });
