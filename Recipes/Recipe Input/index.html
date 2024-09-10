@@ -3,23 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pita Bread</title>
+    <title>Recipe Input</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <header class="banner">
       <a href="../Title Page/index.html"> Recipe List<a/>
+        <a id='loginLink' href="../Login Screen/index.html"> Login<a/>
     </header>
     <aside class="left-banner">
       <h2>Ingredients</h2>
       <div id="ingredientsDiv"></div>
-      <input id="ingredientsInput">
+      <button id='addIngButt'>Add Ingredient Input</button>
     </aside>
     <div class="steps">
-        <h1>Title</h1>
+        <h2>Title</h2>
         <input id="titleInput">
-        <h4>Steps</h4>
-        <input id="stepsInput">
+        <h2>Steps</h2>
+        <div id="stepsDiv"></div>
+      <button id='addStepButt'>Add Step Input</button>
         <button id="saveButton">Save Recipe</button>
     </div>
     <script src="script.js"></script>

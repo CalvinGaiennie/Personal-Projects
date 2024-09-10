@@ -16,22 +16,25 @@ function getAllLocalStorageItems() {
     items.push({ key, value });
   }
   names = items.map((item) => item.key);
+  console.log(items);
 }
 
 // add the note name and data to local storage
 function addToLocalStorage() {
   const noteName = document.getElementById("noteName");
   const data = document.getElementById("data");
+
   localStorage.setItem(noteName.value, data.value);
   const key = noteName.value;
   const value = data.value;
   items.push({ key, value });
+
   //clear input feilds
   noteName.value = "";
   data.value = "";
 }
 
-//Create Note
+//Create Notes
 function createNote() {
   getAllLocalStorageItems();
   const leftBanner = document.getElementById("left-banner");
@@ -40,12 +43,14 @@ function createNote() {
   //Loop through the list of items and create notes dynamically
   for (let i = 0; i < names.length; i++) {
     // Create a new p element for each note
-    const newP = document.createElement("p");
+    const newDiv = document.createElement("p");
+
+    //create a date
     const now = new Date();
     const date = now.toLocaleDateString();
 
-    // Add some text content to the div
-    newP.innerHTML = `
+    // Add some text content to the div including the note title and content
+    newDiv.innerHTML = `
     <div class='noteWrap'>
     <h3>${items[i].key}</h3>
     <button class='button' id="button${i}">...</button>
@@ -53,44 +58,40 @@ function createNote() {
     ${date}<br>${items[i].value}`;
 
     // Add an id to the div
-    newP.id = `${items[i].key}`;
+    newDiv.id = `${items[i].key}`;
 
     // Append the new div to the body of the document
-    document.getElementById("left-banner").appendChild(newP);
+    document.getElementById("left-banner").appendChild(newDiv);
 
     //Add an event listener to the newly created button
     const createdButton = document.getElementById(`button${i}`);
 
     createdButton.addEventListener("click", function () {
-      alert("Are you sure you want to delete this note?");
+      const confirmationB = document.createElement("p");
+      alert("Hello");
+      // create a div containing the confirmation buttons
+      confirmationB.innerHTML = `<div id="div${i}">
 
-      const newS = document.createElement("p");
+      <button id="confirmB">Confirm Deletion</button>
 
-      // create a select element with yes and no
-      newS.innerHTML = `<select id="select${i}>
-      <option value="yes">yes</option>
-      <option value="no">no</option>
-      </select>`;
+      <br>
+      <button id="denyB">Reverse</button>
+      </div>`;
 
       // give it an id and append it to the above note
-      document.getElementById(`${newP.id}`).appendChild(newS);
+      document.getElementById(`${newDiv.id}`).appendChild(confirmationB);
 
-      // create a button give it an id and append it to the select
-      const newB = document.createElement("button");
-      newB.innerText = "Choose";
-      newB.id = `delete-button${i}`;
-      newS.appendChild(newB);
-
-      //add an event listener to that button so that when the button is clicked it deletes the button and the select. and if it the select is on yes when the button is clicked then it also deletes the note.
-      newB.addEventListener("click", function () {
-        const selectValue = document.getElementById(`select${i}`).value;
-        if (selectValue === "yes") {
-          deleteNote(items[i].key);
-        } else {
-          alert("Note will not be deleted.");
-        }
+      //Add event listeners
+      const confirmB = document.getElementById(`confirmB`);
+      const denyB = document.getElementById(`denyB`);
+      confirmB.addEventListener("click", function () {
+        deleteNote(items[i].key);
       });
-      // deleteNote(items[i].key);
+      denyB.addEventListener("click", function () {
+        confirmB.remove();
+        denyB.remove();
+        window.location.reload();
+      });
     });
   }
 }

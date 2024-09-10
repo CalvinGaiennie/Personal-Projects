@@ -97,3 +97,15 @@ select {
 h2 {
   margin-top: 10px;
 }
+
+.ten {
+  margin-left: 10px;
+}
+
+#loginLink {
+  margin-left: 20px;
+}
+
+#creationLink {
+  margin-left: 10px;
+}
