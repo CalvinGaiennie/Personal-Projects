@@ -13,7 +13,7 @@ const showOnFretboard = document.querySelector("#show-on-fretboard");
 const showMultipleNotesSelector = document.querySelector(
   "#show-multiple-notes"
 );
-const scaleStartInput = document.querySelector("#scaleStartInput");
+const scaleRootInput = document.querySelector("#scaleStartInput");
 
 const scaleTypeInput = document.querySelector("#scaleTypeInput");
 const scaleInput = document.getElementById("scaleInput");
@@ -79,6 +79,170 @@ const instrumentTuningPresets = {
   "Bass (4 String)": [7, 2, 9, 4],
   "Bass (5 Strings": [7, 2, 9, 4, 11],
   "Ukelele (standard)": [9, 4, 0, 7],
+};
+
+const notesSharp2 = [
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+];
+const allShapes = {
+  majorScaleFormula: {
+    one: [
+      "5",
+      "2",
+      "4",
+      "5",
+      "2",
+      "4",
+      "1",
+      "2",
+      "4",
+      "2",
+      "3",
+      "5",
+      "2",
+      "4",
+      "5",
+      "2",
+      "4",
+    ],
+    two: [
+      "5",
+      "7",
+      "4",
+      "5",
+      "7",
+      "4",
+      "6",
+      "7",
+      "4",
+      "6",
+      "7",
+      "5",
+      "7",
+      "4",
+      "5",
+      "7",
+      "4",
+    ],
+    three: [
+      "7",
+      "9",
+      "6",
+      "7",
+      "9",
+      "7",
+      "9",
+      "10",
+      "7",
+      "9",
+      "10",
+      "7",
+      "9",
+      "6",
+      "7",
+      "9",
+      "6",
+    ],
+    four: [
+      "12",
+      "9",
+      "11",
+      "12",
+      "9",
+      "11",
+      "9",
+      "10",
+      "12",
+      "9",
+      "10",
+      "12",
+      "9",
+      "11",
+      "12",
+      "9",
+      "11",
+    ],
+    five: [
+      "12",
+      "14",
+      "11",
+      "12",
+      "14",
+      "11",
+      "13",
+      "14",
+      "12",
+      "14",
+      "15",
+      "12",
+      "14",
+      "11",
+      "14",
+      "11",
+    ],
+  },
+  majorPentatonicFormula: {
+    one: ["5", "2", "4", "2", "4", "2", "4", "2", "5", "2", "5", "2"],
+    two: ["5", "7", "4", "7", "4", "7", "4", "6", "5", "7", "5", "7"],
+    three: ["7", "9", "6", "9", "7", "10", "7", "9", "7", "9", "7", "9"],
+    four: ["12", "9", "11", "9", "11", "10", "12", "9", "12", "9", "12", "9"],
+    five: [
+      "12",
+      "14",
+      "11",
+      "14",
+      "11",
+      "14",
+      "12",
+      "14",
+      "12",
+      "14",
+      "12",
+      "14",
+    ],
+  },
+  majorArpeggioFormula: {
+    one: ["5", "4", "2", "2", "2", "5", "5"],
+    two: ["5", "4", "7", "7", "6", "5", "5"],
+    three: ["7", "6", "9", "10", "9", "7", "7"],
+    four: ["12", "11", "9", "10", "9", "12", "9"],
+    five: ["12", "11", "14", "14", "14", "12", "12"],
+  },
+};
+const majorScaleFormula = [0, 2, 4, 5, 7, 9, 11, 12];
+const majorPentatonicFormula = [0, 2, 4, 7, 9, 12];
+const minorPentatonicFormula = [0, 3, 5, 7, 10, 12];
+const majorArpeggioFormula = [0, 4, 7, 12];
+const minorArpeggioFormula = [0, 3, 7, 12];
+const scaleFormulas = {
+  majorScaleFormula: majorScaleFormula,
+  majorPentatonicFormula: majorPentatonicFormula,
+  minorPentatonicFormula: minorPentatonicFormula,
+  majorArpeggioFormula: majorArpeggioFormula,
+  minorArpeggioFormula: minorArpeggioFormula,
 };
 
 let selectedInstrument = "Guitar (6 Strings)";
@@ -243,91 +407,7 @@ const tools = {
 };
 app.init();
 
-const AOne = ["F#2", "F#4", "A2", "A5", "B2", "B4", "C#2", "C#4", "E2", "E5"];
-const ATwo = ["A5", "A7", "B4", "B7", "C#4", "C#6", "E5", "E7", "F#4", "F#7"];
-const AThree = [
-  "B7",
-  "C#9",
-  "E7",
-  "F#9",
-  "A7",
-  "B9",
-  "C#6",
-  "E9",
-  "F#7",
-  "A10",
-  "B7",
-  "C#9",
-];
-const AFour = [
-  "C#9",
-  "E12",
-  "F#9",
-  "A12",
-  "B9",
-  "C#11",
-  "E9",
-  "F#11",
-  "A10",
-  "B12",
-  "C#9",
-  "E12",
-];
-const AFive = [
-  "E12",
-  "F#14",
-  "A12",
-  "B14",
-  "C#11",
-  "E14",
-  "F#11",
-  "A14",
-  "B12",
-  "C#14",
-  "E12",
-  "F#14",
-];
 const scaleGeneratorInput = document.querySelector("#scale-generator-input");
-
-const notesSharp2 = [
-  "c",
-  "c#",
-  "d",
-  "d#",
-  "e",
-  "f",
-  "f#",
-  "g",
-  "g#",
-  "a",
-  "a#",
-  "b",
-  "c",
-  "c#",
-  "d",
-  "d#",
-  "e",
-  "f",
-  "f#",
-  "g",
-  "g#",
-  "a",
-  "a#",
-  "b",
-];
-
-const majorScaleFormula = [0, 2, 4, 5, 7, 9, 11, 12];
-const majorPentatonicFormula = [0, 2, 4, 7, 9, 12];
-const minorPentatonicFormula = [0, 3, 5, 7, 10, 12];
-const majorArpeggioFormula = [0, 4, 7];
-const minorArpeggioFormula = [0, 3, 7];
-const scaleFormulas = {
-  majorScaleFormula: majorScaleFormula,
-  majorPentatonicFormula: majorPentatonicFormula,
-  minorPentatonicFormula: minorPentatonicFormula,
-  majorArpeggioFormula: majorArpeggioFormula,
-  minorArpeggioFormula: minorArpeggioFormula,
-};
 
 function selectBank() {
   let bank;
@@ -363,7 +443,7 @@ function displayScale(scale) {
 }
 
 scaleDisplayButton.addEventListener("click", (event) => {
-  const startNote = scaleStartInput.value;
+  const startNote = scaleRootInput.value;
   const scaleType = scaleTypeInput.value;
 
   const scaleFormula = scaleFormulas[scaleType];
@@ -395,7 +475,7 @@ app.displayScaleOnFretboard = function (scale) {
 };
 
 scaleDisplayButton.addEventListener("click", (event) => {
-  const startNote = scaleStartInput.value.toLowerCase();
+  const startNote = scaleRootInput.value.toLowerCase();
   const scaleType = scaleTypeInput.value;
 
   const scaleFormula = scaleFormulas[scaleType];
@@ -427,6 +507,78 @@ app.displayExactScaleOnFretboard = function (scale) {
   });
 };
 
+//Displays 1 scale shape at a time
 exactScaleDisplayButton.addEventListener("click", (event) => {
-  app.displayExactScaleOnFretboard(AFive);
+  const scaleShapeNumber = document.getElementById("scaleShapeInput");
+  // const scaleShapeValue = "" + scaleShapeNumber.value;
+
+  // takes the selected scale type and shape number and finds the corresponding numbers that need to be added to the scale
+  const requestedScaleType = scaleTypeInput.value;
+  const shape2 =
+    allShapes[`${requestedScaleType}`][`${scaleShapeNumber.value}`];
+  // make scale
+  const startNote = scaleRootInput.value;
+  const scaleType = scaleTypeInput.value;
+
+  const scaleFormula = scaleFormulas[scaleType];
+
+  if (scaleFormula) {
+    const scale = makeScale(startNote, scaleFormula);
+    const newShape = convert(scale, shape2);
+    if (scale.length) {
+      displayScale(scale); // Log the generated scale
+    }
+    const shape3 = scalePlusNums(scale, newShape);
+    if (shape3) {
+      app.displayExactScaleOnFretboard(shape3);
+    } else {
+      console.error(`Shape ${shape3} is undefined`);
+    }
+  }
 });
+
+function scalePlusNums(scale, numbers) {
+  // console.log("Numbers for scale type and number:", numbers);
+  // console.log("Input Scale", scale);
+  let scale2 = [...scale];
+  // console.log("Renamed:", scale2);
+  scale2.pop();
+  scale2.push(...scale);
+  // console.log(scale2);
+  scale2.push(scale2[1]);
+  // console.log("edited scale", scale2);
+  const newScale = [];
+  for (i = 0; i < scale2.length; i++) {
+    const newNote = scale2[i] + `${numbers[i]}`;
+    newScale.push(newNote);
+  }
+  // console.log("New Scale:", newScale);
+  return newScale;
+}
+
+function convert(scale, shape) {
+  const newShape = [];
+  const root = scale[0];
+  console.log(shape);
+  const notes = [
+    "A",
+    "A3",
+    "B",
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+  ];
+  shape.forEach(function (number, index) {
+    let newNum = Number(number) + Math.abs(notes.indexOf(root));
+    newNum = newNum + "";
+    newShape.push(newNum);
+  });
+  console.log(newShape);
+  return newShape;
+}
