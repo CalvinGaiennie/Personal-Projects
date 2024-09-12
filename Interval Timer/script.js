@@ -1,6 +1,10 @@
 const button = document.getElementById("button");
 const place = document.getElementById("place");
 
+const audioPlayerWork = document.getElementById("audioPlayer");
+audioPlayerWork.src = "5a.mp3";
+const audioPlayerRest = document.getElementById("audioPlayer2");
+audioPlayerRest.src = "1a.mp3";
 function calcTotalTime(minuteValue, secondValue) {
   const totalTime = minuteValue * 60000 + secondValue * 1000;
   return totalTime;
@@ -8,14 +12,18 @@ function calcTotalTime(minuteValue, secondValue) {
 
 function runRound(totalWorkTime, totalRestTime, roundIndex) {
   console.log(`Starting round ${roundIndex + 1}`);
+  audioPlayerWork.load();
+  audioPlayerWork.play();
 
   setTimeout(() => {
     console.log(`Round ${roundIndex + 1}: Work Done`);
-    audioPlayer.play();
+    audioPlayerRest.load();
+    audioPlayerRest.play();
 
     setTimeout(() => {
       console.log(`Round ${roundIndex + 1}: Rest Done`);
-      audioPlayer.play();
+      // audioPlayerWork.load();
+      // audioPlayerWork.play();
     }, totalRestTime);
   }, totalWorkTime);
 }
@@ -37,15 +45,8 @@ button.addEventListener("click", function () {
   const totalRestTime = calcTotalTime(minutesRest, secondsRest);
   ////
   // Get the audio player element
-  const audioPlayer = document.getElementById("audioPlayer");
-
   // Set the source of the video player
-  audioPlayer.src = "songs/" + randomAudio;
-
-  // Load and play the video
-  audioPlayer.load();
-  // audioPlayer.play();
-  ////
+  ///
   let cumulativeTime = 0;
   for (let i = 0; i < roundNum; i++) {
     setTimeout(() => {
