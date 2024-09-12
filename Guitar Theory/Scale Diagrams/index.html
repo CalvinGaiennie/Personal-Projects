@@ -52,8 +52,8 @@
           <br>
           <br>
           <form>
-            Scale Generator 
-            <br> Choose A Key:
+            <h4>Scale Generator</h4> 
+            <p>Key</p>
             <select id="scaleStartInput" name="options">
               <option value="a">A</option>
               <option value="a#">A#/Bb</option>
@@ -69,7 +69,7 @@
               <option value="g#">G#/Ab</option>
             </select>
             <br>
-            choose a scale.
+            <p>Scale Type</p>
             <select id="scaleTypeInput" name="options">
               <option value="majorScaleFormula">Major Scale</option>
               <option value="majorPentatonicFormula">Major Pentatonic Scale</option>
@@ -77,21 +77,25 @@
               <option value="majorArpeggioFormula">Major Arpeggio</option>
               <option value="minorArpeggioFormula">Minor Arpeggio</option>
             </select>
-           <button type='button' id="scale-display">Display Scale</button>
-           <span id="scale-display2"></span>
-           <p>Display 1 Shape</p>
-           <p>Which Shapes</p>
+            <p>Scale Shape</p>
            <select id="scaleShapeInput">
-            <!-- <option value="Entire Scale">Entire Scale</option> -->
+            <option value="Entire Scale">Entire Scale</option>
             <option value="one">1</option>
             <option value="two">2</option>
             <option value="three">3</option>
             <option value="four">4</option>
             <option value="five">5</option>
+            <!-- <option value="stringOne">String 1</option>
+            <option value="stringTwo">String 2</option>
+            <option value="stringThree">String 3</option>
+            <option value="stringFour">String 4</option>
+            <option value="stringFive">String 5</option>
+            <option value="stringSix">String 6</option> -->
           </select>
           <br>
-           <button type='button' id="scale-display-exact">Display Scale</button>
-           <span id="scale-display-exact2"></span>
+          <br>
+           <button type='button' id="scale-display-button">Display Scale</button>
+           <span id="scale-display"></span>
           </form>
         </div>
       </div>
