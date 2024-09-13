@@ -1,0 +1,42 @@
+#week {
+  display: flex;
+}
+.day {
+  width: 200px;
+  height: 870px;
+  border: 0.1px solid black;
+}
+
+.date {
+  border: 0.1px solid black;
+}
+.time {
+  border: 0.1px solid black;
+  height: 40px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#settings {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+#settings select {
+  height: 20px;
+}
+
+#settings p {
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+.training {
+  color: rgb(0, 108, 0); /* Change to your desired color */
+}
+.maybe {
+  color: rgb(94, 93, 93); /* Change to your desired color */
+}
+.gay {
+  color: #fc92a4; /* Change to your desired color */
+}

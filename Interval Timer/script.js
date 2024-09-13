@@ -1,3 +1,4 @@
+const body = document.body;
 const button = document.getElementById("button");
 const place = document.getElementById("place");
 
@@ -14,12 +15,13 @@ function runRound(totalWorkTime, totalRestTime, roundIndex) {
   console.log(`Starting round ${roundIndex + 1}`);
   audioPlayerWork.load();
   audioPlayerWork.play();
+  document.body.style.backgroundColor = "green";
 
   setTimeout(() => {
     console.log(`Round ${roundIndex + 1}: Work Done`);
     audioPlayerRest.load();
     audioPlayerRest.play();
-
+    document.body.style.backgroundColor = "grey";
     setTimeout(() => {
       console.log(`Round ${roundIndex + 1}: Rest Done`);
       // audioPlayerWork.load();
@@ -54,4 +56,8 @@ button.addEventListener("click", function () {
     }, cumulativeTime);
     cumulativeTime += totalWorkTime + totalRestTime;
   }
+  setTimeout(() => {
+    console.log("All Work Done");
+    document.body.style.backgroundColor = "purple";
+  }, cumulativeTime);
 });
