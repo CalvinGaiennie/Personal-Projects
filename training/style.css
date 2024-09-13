@@ -1,3 +1,9 @@
+#noBottom {
+  margin-bottom: 0px;
+}
+#small {
+  height: 10px;
+}
 #week {
   display: flex;
 }
@@ -18,9 +24,10 @@
 }
 
 #settings {
-  height: 80px;
+  height: 30px;
   display: flex;
   align-items: center;
+  padding-top: 5px;
 }
 #settings select {
   height: 20px;
