@@ -1,0 +1,4 @@
+add a modal window to login and a login page make it so that there is a current
+user and that the current user variable is decides the initials put on the
+screen each time initilas are added add that addition to local storage print all
+initilas from local storage to the screen each time the page reloads

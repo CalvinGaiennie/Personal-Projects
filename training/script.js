@@ -16,9 +16,17 @@ const choose = document.getElementById("choose");
 const plansSelected = document.getElementById("plansSelect");
 const daySelected = document.getElementById("daySelect");
 const timeSelected = document.getElementById("timeSelect");
+////
+const modal = document.getElementById("myModal");
+const openModalBtn = document.getElementById("openModalBtn");
+const closeModalBtn = document.getElementsByClassName("close")[0];
+
 const timeInDay = 86400000;
 const now = new Date();
 const nowS = now.getTime();
+const login = document.getElementById("login");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
 let currentUser = "CRG";
 let divId = 1;
 const times = [
@@ -106,7 +114,9 @@ function setUpCalendar() {
     divId = divId + 1;
   }
 }
+
 choose.addEventListener("click", function () {
+  console.log(currentUser);
   const plansSelectedV = plansSelected.value;
   const daySelectedV = daySelected.value;
   const timeSelectedV = timeSelected.value;
@@ -117,5 +127,105 @@ choose.addEventListener("click", function () {
   selectedSlot.innerHTML = `${currentText} <strong><span class=${plansSelectedV}>${currentUser}</span></strong>`;
 });
 
+//////////////////////////////////////////////////////////////
+
+//Login
+
+////////////////////////////////////////////////////////////
+
+// Open the modal when the button is clicked
+openModalBtn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// Close the modal when the close button (x) is clicked
+closeModalBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+// Close the modal if the user clicks outside the modal content
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+login.addEventListener("click", function () {
+  const usernameToRetrieve = username.value;
+  const storedPassword = localStorage.getItem(usernameToRetrieve);
+  const passwordValue = password.value;
+  if (storedPassword === passwordValue) {
+    currentUser = localStorage.getItem(`${username.value}Reference`);
+  }
+  username.value = "";
+  password.value = "";
+});
+
 ok();
 setUpCalendar();
+
+////////////////////////////////////////////////////////////////////////
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// const User = function (firstName, lastName, middleInitial) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.middleInitial = middleInitial;
+//   this.initials = this.createInitials();
+// };
+
+// function getInitial(string) {
+//   let initial = string[0];
+//   initial = initial.toUpperCase();
+//   return initial;
+// }
+
+// User.prototype.createInitials = function () {
+//   const firstInitial = getInitial(this.firstName);
+//   const middleInitial = getInitial(this.middleInitial);
+//   const lastInitial = getInitial(this.lastName);
+//   const initials = firstInitial + middleInitial + lastInitial;
+//   return initials;
+// };
+
+// const Calvin = new User("Calvin", "R", "Gaiennie", "R");
+// const Mr = new User("Mr.", "Herbert", "Garrison", "Herbert");
