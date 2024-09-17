@@ -8,6 +8,9 @@ var names;
 
 //Functions
 /////////////////////////////////////////////////////////////////////////////////////////////
+function clearAll() {
+  localStorage.clear();
+}
 //get all localStorage items and display them
 function getAllLocalStorageItems() {
   for (let i = 0; i < localStorage.length; i++) {
@@ -68,7 +71,6 @@ function createNote() {
 
     createdButton.addEventListener("click", function () {
       const confirmationB = document.createElement("p");
-      alert("Hello");
       // create a div containing the confirmation buttons
       confirmationB.innerHTML = `<div id="div${i}">
 

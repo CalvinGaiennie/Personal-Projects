@@ -7,7 +7,17 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <a href="index.html">Current Goal</a>
+    <a
+      href="../Landing Page/index.html"
+      style="color: black; text-decoration: none"
+      id="noBottom"
+    >
+      <p id="small">All</p></a
+    >
+    <a href="index.html">Creation Screen</a>
+    <br />
+    <a href="indexShow.html">Note List</a>
+    <button id="loadButton">Load</button>
     <h3>Title</h3>
     <p id="titlep"></p>
     <h3>Description</h3>
@@ -19,17 +29,18 @@
     <h3>Type</h3>
     <p id="typep"></p>
     <h2>Inputs</h2>
-    <label for="checkbox1">Did you meet the minimum today?</label>
-    <input type="checkbox" id="checkbox1" name="checkbox1" />
+    <label>Did you meet the minimum today?</label>
+    <input type="checkbox" id="checkbox1" />
     <br />
-    <label for="checkbox2">Did you exceed it?</label>
-    <input type="checkbox" id="checkbox1" name="checkbox1" />
+    <label>Did you exceed it?</label>
+    <input type="checkbox" id="checkbox2" />
     <br />
     <label>If so, by how much?</label>
     <div id="percent">
-      <input />
+      <input id="percentage" />
       <p>%</p>
     </div>
+    <button id="saveEntry">Save Entry</button>
     <script src="script.js"></script>
   </body>
 </html>
