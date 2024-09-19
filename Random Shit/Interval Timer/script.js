@@ -10,7 +10,8 @@ audioPlayerRest.src = "1a.mp3";
 //
 const timer = document.getElementById("timer");
 
-let cumulativeTimeTimer = 0;
+let cumulativeWorkTimeTimer = 0;
+let cumulativeRestTimeTimer = 0;
 //
 function calcTotalTime(minuteValue, secondValue) {
   const totalTime = minuteValue * 60000 + secondValue * 1000;
@@ -24,41 +25,53 @@ function runRound(totalWorkTime, totalRestTime, roundIndex) {
   audioPlayerWork.play();
   document.body.style.backgroundColor = "green";
   //
-  let timerTime = totalWorkTime / 1000;
+  let workTimerTime = totalWorkTime / 1000;
+  let restTimerTime = totalRestTime / 1000;
+  //Set work Timer
   for (let i = 0; i < totalWorkTime / 1000; i++) {
-    console.log("After:", cumulativeTimeTimer, " Set: Timer Time", timerTime);
     setTimeout(
-      ((timerTime) => {
+      ((workTimerTime) => {
         return () => {
-          displayTime(timerTime);
+          displayTime(workTimerTime);
         };
-      })(timerTime),
-      cumulativeTimeTimer * 1000
+      })(workTimerTime),
+      cumulativeWorkTimeTimer * 1000
     );
-    cumulativeTimeTimer++;
-    timerTime--;
+    cumulativeWorkTimeTimer++;
+    workTimerTime--;
   }
 
+  //when work time is over show play rest sound and color set rest done announcement timer and set rest timer
   setTimeout(() => {
     console.log(`Round ${roundIndex + 1}: Work Done`);
     audioPlayerRest.load();
     audioPlayerRest.play();
     document.body.style.backgroundColor = "grey";
+
+    //set rest timer
+    for (let i = 0; i < totalRestTime / 1000; i++) {
+      setTimeout(
+        ((restTimerTime) => {
+          return () => {
+            displayTime(restTimerTime);
+          };
+        })(restTimerTime),
+        cumulativeRestTimeTimer * 1000
+      );
+      cumulativeRestTimeTimer++;
+      restTimerTime--;
+    }
+    //set rest done announcement timer
     setTimeout(() => {
       console.log(`Round ${roundIndex + 1}: Rest Done`);
-      // audioPlayerWork.load();
-      // audioPlayerWork.play();
     }, totalRestTime);
   }, totalWorkTime);
 }
-
 ///////
 function displayTime(time) {
   timer.innerHTML = time;
   console.log("time", time);
   console.log("timerinnerHTML", timer.innerHTML);
-  // time = time - 1;
-  // return time;
 }
 
 button.addEventListener("click", function () {
