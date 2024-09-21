@@ -80,4 +80,4 @@ const encoded = encoder(text, 10);
 const decoded = decoder(encoded, 10);
 
 console.log(encoded);
-console.log(decoded);
+// console.log(decoded);
