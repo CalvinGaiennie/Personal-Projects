@@ -1,4 +1,8 @@
-const array = [5, 2, 8, 23, 65, 60, 34, 43, 22, 7, 9, 15, 13, 17, 27, 39];
+"use strict";
+
+const selectionSortInput = document.getElementById("ss-input");
+const selectionSortButton = document.getElementById("ss-button");
+const selectionSortOutput = document.getElementById("ss-output");
 
 function findSmallest(ar) {
   let smallest = Math.min(...ar);
@@ -17,5 +21,20 @@ function selectionSort(arr) {
   return arr;
 }
 
-const sortedArray = selectionSort(array);
-console.log(sortedArray);
+function seperateInputSS() {
+  const inputV = selectionSortInput.value;
+  let array = inputV.split(",");
+  array.forEach(function (curr, i, arr) {
+    curr = Number(curr);
+    arr[i] = curr;
+  });
+  return array;
+}
+
+selectionSortButton.addEventListener("click", function () {
+  let array = seperateInputSS();
+  console.log(array);
+  let sorted = selectionSort(array);
+  console.log(sorted);
+  selectionSortOutput.innerHTML = sorted;
+});

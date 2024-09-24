@@ -1,53 +1,21 @@
 "use strict";
-const object = {
-  I: 1,
-  V: 5,
-  X: 10,
-  L: 50,
-  C: 100,
-  D: 500,
-  M: 1000,
-  IV: 4,
-  IX: 9,
-  XL: 40,
-  XC: 90,
-  CD: 400,
-  CM: 900,
-};
-
-// 80%
-
-var romanToInt = function (s) {
-  let arr = [];
-  for (let i = 0; i < s.length; i++) {
-    let curr = object[s[i]];
-    let prev = object[s[i - 1]];
-    if (
-      (curr == 5 && prev == "1") ||
-      (curr == 50 && prev == "10") ||
-      (curr == 500 && prev == "100")
-    ) {
-      curr = curr * 0.6;
-    } else if (
-      (curr == 10 && prev == "1") ||
-      (curr == 100 && prev == "10") ||
-      (curr == 1000 && prev == "100")
-    ) {
-      curr = curr * 0.8;
-    }
-    arr.push(curr);
+function search(nums, target) {
+  let spot;
+  const index = nums.indexOf(target);
+  if (index > -1) {
+    return nums.indexOf(target);
+  } else {
+    nums.forEach(function (number, i) {
+      if (number < target) {
+        console.log(number, i);
+      } else {
+        // what if the number needs to be last?
+        spot = nums.indexOf(i);
+      }
+    });
   }
-  const sum = arr.reduce((accumulator, currentValue) => {
-    return accumulator + currentValue;
-  }, 0);
-  console.log(sum);
-  return sum;
-};
+  return spot;
+}
 
-romanToInt("III");
-romanToInt("IV");
-romanToInt("V");
-
-romanToInt("LVIII");
-
-romanToInt("MCMXCIV");
+const array = [1, 3, 5, 9];
+console.log(search(array, 10));

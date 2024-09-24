@@ -3,6 +3,15 @@
 const text =
   "Ceaser used this cypher to encode messages. Are you going to use it?";
 
+//
+const rminput = document.getElementById("rme-input");
+const rmbutton = document.getElementById("rme-button");
+const rmoutput = document.getElementById("rme-output");
+//
+const drminput = document.getElementById("rmd-input");
+const drmbutton = document.getElementById("rmd-button");
+const drmoutput = document.getElementById("rmd-output");
+
 // const pairs = [
 //   { a, n },
 //   { b, o },
@@ -73,15 +82,43 @@ function reflect(letter) {
 
 function reflectText(text) {
   text = text.toLowerCase();
-  console.log(text);
   let newText = "";
   for (let i = 0; i < text.length; i++) {
     const newLetter = reflect(text[i]);
     newText = newText + newLetter;
-    console.log(newText);
   }
   return newText;
 }
 
-const stuff = reflectText(text);
-console.log(stuff);
+rmbutton.addEventListener("click", function () {
+  let text = rminput.value;
+  let reflectedText = reflectText(text);
+  rmoutput.innerHTML = reflectedText;
+});
+
+//////
+
+function unReflect(letter) {
+  let obj = pairsO;
+  let newLetter;
+  if (isLetter(letter) == true) {
+    newLetter = Object.keys(obj).find((i) => obj[i] === value);
+  } else return letter;
+  return newLetter;
+}
+
+function unReflectText(text) {
+  text = text.toLowerCase();
+  let newText = "";
+  for (let i = 0; i < text.length; i++) {
+    const newLetter = reflect(text[i]);
+    newText = newText + newLetter;
+  }
+  return newText;
+}
+
+drmbutton.addEventListener("click", function () {
+  let text = drminput.value;
+  let reflectedText = unReflectText(text);
+  drmoutput.innerHTML = reflectedText;
+});
