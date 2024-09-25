@@ -1,4 +1,11 @@
 "use strict";
+const rninput = document.getElementById("rne-input");
+const rnbutton = document.getElementById("rne-button");
+const rnoutput = document.getElementById("rne-output");
+//
+const drninput = document.getElementById("rnd-input");
+const drnbutton = document.getElementById("rnd-button");
+const drnoutput = document.getElementById("rnd-output");
 const object = {
   I: 1,
   V: 5,
@@ -14,8 +21,6 @@ const object = {
   CD: 400,
   CM: 900,
 };
-
-// 80%
 
 var romanToInt = function (s) {
   let arr = [];
@@ -44,10 +49,8 @@ var romanToInt = function (s) {
   return sum;
 };
 
-romanToInt("III");
-romanToInt("IV");
-romanToInt("V");
-
-romanToInt("LVIII");
-
-romanToInt("MCMXCIV");
+rnbutton.addEventListener("click", function () {
+  let text = rninput.value;
+  let number = romanToInt(text);
+  rnoutput.innerHTML = number;
+});
