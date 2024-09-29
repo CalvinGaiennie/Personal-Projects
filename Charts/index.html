@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chart.js Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      #dataInput,
+      #dataInputBar,
+      #dataInputPie,
+      #dataInputLine,
+      #dataInputRadar,
+      #dataInputDoughnut,
+      #dataInputPolar,
+      #dataInputBubble {
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .chart-container {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .header {
+        margin-bottom: 10px;
+      }
+
+      input,
+      button {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="scatter">
+      <div id="dataInput">
+        <h3 class="header">Scatter Chart</h3>
+        <p>Input your X data separated by commas</p>
+        <input id="xData" />
+        <p>Input your Y data separated by commas</p>
+        <input id="yData" />
+        <br />
+        <button id="submit">Submit</button>
+      </div>
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Bar">
+      <div id="dataInputBar">
+        <h3 class="header">Bar Chart</h3>
+        <p>Input your labels separated by commas</p>
+        <input id="xDataBar" />
+        <p>Input your amounts separated by commas</p>
+        <input id="yDataBar" />
+        <br />
+        <button id="submitBar">Submit</button>
+      </div>
+      <canvas id="myChartBar" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Line">
+      <div id="dataInputLine">
+        <h3 class="header">Line Chart</h3>
+        <p>Input your X data separated by commas</p>
+        <input id="xDataLine" />
+        <p>Input your Y data separated by commas</p>
+        <input id="yDataLine" />
+        <br />
+        <button id="submitLine">Submit</button>
+      </div>
+      <canvas id="myChartLine" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Radar">
+      <div id="dataInputRadar">
+        <h3 class="header">Radar Chart</h3>
+        <p>Input your labels separated by commas</p>
+        <input id="xDataRadar" />
+        <p>Input your amounts separated by commas</p>
+        <input id="yDataRadar" />
+        <br />
+        <button id="submitRadar">Submit</button>
+      </div>
+      <canvas id="myChartRadar" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Doughnut">
+      <div id="dataInputDoughnut">
+        <h3 class="header">Doughnut Chart</h3>
+        <p>Input your labels separated by commas</p>
+        <input id="xDataDoughnut" />
+        <p>Input your amounts separated by commas</p>
+        <input id="yDataDoughnut" />
+        <br />
+        <button id="submitDoughnut">Submit</button>
+      </div>
+      <canvas id="myChartDoughnut" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Pie">
+      <div id="dataInputPie">
+        <h3 class="header">Pie Chart</h3>
+        <p>Input your labels separated by commas</p>
+        <input id="xDataPie" />
+        <p>Input your amounts separated by commas</p>
+        <input id="yDataPie" />
+        <br />
+        <button id="submitPie">Submit</button>
+      </div>
+      <canvas id="myChartPie" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Polar">
+      <div id="dataInputPolar">
+        <h3 class="header">Polar Area Chart</h3>
+        <p>Input your labels separated by commas</p>
+        <input id="xDataPolar" />
+        <p>Input your amounts separated by commas</p>
+        <input id="yDataPolar" />
+        <br />
+        <button id="submitPolar">Submit</button>
+      </div>
+      <canvas id="myChartPolar" width="400" height="200"></canvas>
+    </div>
+
+    <div id="Bubble">
+      <div id="dataInputBubble">
+        <h3 class="header">Bubble Chart</h3>
+        <p>Input your X data separated by commas</p>
+        <input id="xDataBubble" />
+        <p>Input your Y data separated by commas</p>
+        <input id="yDataBubble" />
+        <p>Input your bubble sizes separated by commas</p>
+        <input id="bubbleSizes" />
+        <br />
+        <button id="submitBubble">Submit</button>
+      </div>
+      <canvas id="myChartBubble" width="400" height="200"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
