@@ -13,7 +13,8 @@ function seperateInputBS() {
   });
   return array;
 }
-
+'1,2,1,2,12,243'
+[1,2,1,2,12,]
 function bubbleSort(arr) {
   let n = 0;
   console.log(arr);

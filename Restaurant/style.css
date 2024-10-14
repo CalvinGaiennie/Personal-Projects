@@ -1,0 +1,15 @@
+.image-container {
+  position: fixed;
+  right: 20px; /* Keep the container fixed to the right */
+  top: 0; /* Align it from the top */
+  bottom: 0; /* Align it from the bottom to control the height */
+  max-height: 90vh; /* Ensure the container height does not exceed viewport */
+  display: flex; /* Use flex to center the image inside the container */
+  align-items: center; /* Vertically center the image */
+}
+
+.image-container img {
+  width: 50vw; /* Image width scales with viewport width */
+  max-height: 100%; /* Prevent the image from exceeding the container's height */
+  object-fit: contain; /* Preserve the aspect ratio */
+}
