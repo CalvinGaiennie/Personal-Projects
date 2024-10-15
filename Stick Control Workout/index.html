@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metronome</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Metronome</h1>
+    <div id="imgDiv"></div>
+    <div id="measureNumberDiv"></div>
+    <h2>Note Type</h2>
+    <select id="noteType">
+      <option value=".25">Quarter Notes</option>
+      <option value=".125">Eighth Notes</option>
+    </select>
+    <h2>BMP</h2>
+    <select id="BPM"></select>
+    <br />
+    <audio id="audioPlayer" controls>
+      Your browser does not support the audio tag.
+    </audio>
+    <br />
+    <audio id="audioPlayer2" controls>
+      Your browser does not support the audio tag.
+    </audio>
+    <br />
+    <p id="state">Not Playing</p>
+    <button id="toggle">Toggle</button>
+    <script src="script.js"></script>
+  </body>
+</html>

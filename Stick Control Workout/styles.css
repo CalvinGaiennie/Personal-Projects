@@ -5,3 +5,7 @@
   display: flex; /* Flexbox layout */
   gap: 10px; /* Optional: spacing between items */
 }
+
+img {
+  width: 70vw;
+}
