@@ -1,0 +1,7 @@
+* {
+  /* background-color: rgb(162, 162, 227); */
+}
+.container {
+  display: flex; /* Flexbox layout */
+  gap: 10px; /* Optional: spacing between items */
+}
