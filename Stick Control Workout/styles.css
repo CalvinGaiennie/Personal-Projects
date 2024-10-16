@@ -7,5 +7,44 @@
 }
 
 img {
-  width: 70vw;
+  width: 64vw;
+}
+
+#container {
+  display: flex;
+  gap: 10px;
+}
+
+#audioPlayer {
+  display: none;
+}
+
+#audioPlayer2 {
+  display: none;
+}
+
+.state {
+  width: 30px;
+}
+
+.side-banner {
+  position: fixed; /* Keeps the banner fixed on the side */
+  top: 0;
+  right: 0; /* Change to 'left: 0;' to position on the left */
+  width: 31vw;
+  height: 100%;
+  background-color: #f4f4f4;
+  border-left: 2px solid #ccc;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+.main-content {
+  margin-right: 220px; /* Leave space for the side banner on the right */
+  padding: 20px;
+}
+
+.bannerImg {
+  width: 30vw;
 }

@@ -5,10 +5,10 @@ const audioPlayer2 = document.getElementById("audioPlayer2");
 audioPlayer2.src = "other.wav";
 const toggle = document.getElementById("toggle");
 const minute = 60000;
-let state = "playing";
-const stateP = document.getElementById("state");
+let state = "paused";
 const BPMEl = document.getElementById("BPM");
 const noteTypeEl = document.getElementById("noteType");
+const bannerDiv = document.getElementById("banner-title");
 let timeoutIds = [];
 let totalTime = 0;
 const imageDiv = document.getElementById("imgDiv");
@@ -16,12 +16,16 @@ const measureNumberDiv = document.getElementById("measureNumberDiv");
 for (let i = 30; i <= 200; i++) {
   const option = document.createElement("option");
   option.value = i;
-  option.text = i;
+  option.text = `${i} BPM `;
   if (i === 90) {
     option.selected = true;
   }
   BPMEl.appendChild(option);
 }
+const option = document.createElement("option");
+option.value = 500;
+option.text = "500 BPM";
+BPMEl.appendChild(option);
 
 function click() {
   audioPlayer.load();
@@ -115,15 +119,35 @@ function workoutOne() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  // i need to update these locations
+  for (let i = 1; i <= 23; i++) {
+    const img = document.createElement("img");
+    img.src = `./images/rudiment${i}.png`;
+    img.classList = "bannerImg";
+    bannerDiv.appendChild(img);
+  }
+});
+
 toggle.addEventListener("click", function () {
   //starts and stops the workout
   if (state == "playing") {
     state = "paused";
-    stateP.innerHTML = state;
+    const img = document.createElement("img");
+    img.src = `./Play.png`;
+    img.classList = "state";
+    toggle.innerHTML = "";
+    toggle.appendChild(img);
     clearAllTimeouts();
   } else {
     state = "playing";
-    stateP.innerHTML = state;
+    //
+    const img = document.createElement("img");
+    img.src = `./pause.png`;
+    img.classList = "state";
+    toggle.innerHTML = "";
+    toggle.appendChild(img);
+    //
     workoutOne();
   }
 });

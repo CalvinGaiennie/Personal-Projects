@@ -7,27 +7,34 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Metronome</h1>
-    <div id="imgDiv"></div>
-    <div id="measureNumberDiv"></div>
-    <h2>Note Type</h2>
-    <select id="noteType">
-      <option value=".25">Quarter Notes</option>
-      <option value=".125">Eighth Notes</option>
-    </select>
-    <h2>BMP</h2>
-    <select id="BPM"></select>
-    <br />
-    <audio id="audioPlayer" controls>
-      Your browser does not support the audio tag.
-    </audio>
-    <br />
-    <audio id="audioPlayer2" controls>
-      Your browser does not support the audio tag.
-    </audio>
-    <br />
-    <p id="state">Not Playing</p>
-    <button id="toggle">Toggle</button>
+    <div class="side-banner">
+      <h2 id="banner-title">All Rudiments</h2>
+    </div>
+    <div class="main-body">
+      <h1>Stick Control Workout</h1>
+      <div id="imgDiv"></div>
+      <div id="measureNumberDiv"></div>
+      <div id="container">
+        <div>
+          <h2>Note Type</h2>
+          <select id="noteType">
+            <option value=".25">Quarter Notes</option>
+            <option value=".125">Eighth Notes</option>
+          </select>
+        </div>
+        <div>
+          <h2>BMP</h2>
+          <select id="BPM"></select>
+        </div>
+      </div>
+      <button id="toggle"><img src="./Play.png" class="state" /></button>
+      <audio id="audioPlayer" controls>
+        Your browser does not support the audio tag.
+      </audio>
+      <audio id="audioPlayer2" controls>
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
