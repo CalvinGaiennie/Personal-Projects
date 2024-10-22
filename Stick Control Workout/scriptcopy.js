@@ -10,6 +10,7 @@ const imageDiv = document.getElementById("imgDiv");
 const measureNumberDiv = document.getElementById("measureNumberDiv");
 const BPMEl = document.getElementById("BPM");
 const noteTypeEl = document.getElementById("noteType");
+let noteType = noteTypeEl.value;
 const bannerDiv = document.getElementById("banner-title");
 
 //OTHER variables
@@ -17,7 +18,7 @@ const minute = 60000;
 let beatCount = 3;
 let measureNumber = 1;
 let state = "paused";
-let imageNumber = 1;
+let imageNumber = 0;
 let measureLength;
 let rudimentLength;
 
@@ -43,7 +44,7 @@ function click2() {
 function calcTime() {
   const BPM = BPMEl.value;
   let time = minute / BPM;
-  let noteType = noteTypeEl.value;
+  noteType = noteTypeEl.value;
   if (noteType == 0.125) {
     time = time / 2;
   }
@@ -55,14 +56,19 @@ function displayMeasureNumber() {
   const num = document.createElement("p");
   num.innerHTML = measureNumber;
   measureNumberDiv.appendChild(num);
+  if (measureNumber == "40") {
+    measureNumber = 1;
+    incrementImageNumber();
+    displayImage();
+  }
 }
 
 function incrementImageNumber() {
-  imageNumber = imageNumber + 1;
+  imageNumber += 1;
 }
 
 function incrementMeasureNumber() {
-  measureNumber = measureNumber + 1;
+  measureNumber += 1;
 }
 
 function resetMeasureNumber() {
@@ -70,83 +76,105 @@ function resetMeasureNumber() {
 }
 
 function displayImage() {
-  console.log("display image called");
   imageDiv.innerHTML = "";
   const img = document.createElement("img");
   img.src = `./images/rudiment${imageNumber}.png`;
-  console.log("Image Number", imageNumber);
   imageDiv.appendChild(img);
 }
 
 function playMetronome() {
   beatCount++;
-  if (beatCount % 4 === 0) {
-    // Every fourth beat, play the accent sound
-    click();
+  if (noteType == 0.25) {
+    if (beatCount % 4 === 0) {
+      // Every fourth beat, play the accent sound
+      click();
+      displayMeasureNumber();
+      incrementMeasureNumber();
+    } else {
+      // For all other beats, play the normal sound
+      click2();
+    }
   } else {
-    // For all other beats, play the normal sound
-    click2();
+    if (beatCount % 8 === 0) {
+      // Every eighth beat, play the accent sound
+      click();
+      displayMeasureNumber();
+      incrementMeasureNumber();
+    } else {
+      // For all other beats, play the normal sound
+      click2();
+    }
   }
 }
 
 function measureCounter() {
-  //start displaying number
-  let displayNum = setInterval(displayMeasureNumber, measureLength);
-
-  // start iterating measure number
-  setInterval(incrementMeasureNumber, measureLength);
-
-  // stop displaying number
-  setTimeout(() => {
-    clearInterval(displayNum);
-  }, rudimentLength);
-
-  // stop iterating measure number
-  setTimeout(() => {
-    clearInterval(metronomeInterval);
-  }, rudimentLength);
-
-  // reset MeasureNumber to 1
-  setTimeout(() => {
-    resetMeasureNumber;
-  }, rudimentLength);
-
-  //   setTimeout(() => {
-  //     clearInterval(metronomeInterval);
-  //   }, rudimentLength);
+  displayMeasureNumber();
+  incrementMeasureNumber();
 }
 
+function stopWorkout() {
+  clearInterval(metronomeInterval);
+  clearInterval(measureCounterInterval);
+  clearInterval(imgNumInterval);
+  clearInterval(displayImageInterval);
+}
+
+function startWorkout() {
+  //get user selected settings
+  let time = calcTime();
+  if (noteType == 0.25) {
+    measureLength = time * 4;
+  } else {
+    measureLength = time * 8;
+  }
+  rudimentLength = measureLength * 40;
+  let workout = rudimentLength * 24;
+
+  // start workout
+  metronomeInterval = setInterval(playMetronome, time);
+
+  //stop workout
+  setTimeout(() => {
+    stopWorkout();
+  }, workout);
+}
 ////////////////////////////////////////////////////////////////
 //EVENT LISTENERS
+
 //sets up sidebar and selector for bpm
 document.addEventListener("DOMContentLoaded", function () {
   //setup the bpm select element
   const option = document.createElement("option");
-  option.value = 500;
-  option.text = "500 BPM";
+  option.value = 8000;
+  option.text = "8000 BPM";
   BPMEl.appendChild(option);
   ////
   for (let i = 30; i <= 200; i++) {
     const option = document.createElement("option");
     option.value = i;
     option.text = `${i} BPM `;
-    if (i === 500) {
+    if (i === 90) {
       option.selected = true;
     }
     BPMEl.appendChild(option);
   }
-  // i need to update these locations
-  for (let i = 1; i <= 23; i++) {
+
+  // Populate images in the banner
+  for (let i = 1; i <= 25; i++) {
     const img = document.createElement("img");
     img.src = `./images/rudiment${i}.png`;
     img.classList = "bannerImg";
     bannerDiv.appendChild(img);
   }
+
+  //setup thing
+  incrementImageNumber();
+  displayImage();
 });
 
 //starts and stops metronome
 toggle.addEventListener("click", function () {
-  if (state == "paused") {
+  if (state === "paused") {
     // change state and button image
     state = "playing";
     const img = document.createElement("img");
@@ -154,36 +182,9 @@ toggle.addEventListener("click", function () {
     img.classList = "state";
     toggle.innerHTML = "";
     toggle.appendChild(img);
-    //check settings
-    let time = calcTime();
-    measureLength = time * 4;
-    rudimentLength = measureLength * 40;
-    let workout = rudimentLength * 24;
 
-    // start workout
-    metronomeInterval = setInterval(playMetronome, time);
-    setTimeout(() => {
-      clearInterval(metronomeInterval);
-    }, workout);
-
-    // start measure counter
-    measureCounterInterval = setInterval(measureCounter, measureLength);
-    setTimeout(() => {
-      clearInterval(measureCounterInterval);
-    }, workout);
-
-    // start image num changer
-    imgNumInterval = setInterval(incrementImageNumber, rudimentLength);
-
-    displayImageInterval = setInterval(displayImage, rudimentLength);
-
-    setTimeout(() => {
-      clearInterval(imgNumInterval);
-    }, workout);
-
-    setTimeout(() => {
-      clearInterval(displayImageInterval);
-    }, workout);
+    //Start Workout
+    startWorkout();
   } else {
     // change state and button image
     state = "paused";
@@ -192,26 +193,8 @@ toggle.addEventListener("click", function () {
     img.classList = "state";
     toggle.innerHTML = "";
     toggle.appendChild(img);
-    //interupt workout
-    clearInterval(metronomeInterval);
-    clearInterval(measureCounterInterval);
-    clearInterval(imgNumInterval);
-    clearInterval(displayImageInterval);
+
+    //Stop workout
+    stopWorkout();
   }
 });
-
-/*
-figure out the length of 
-a beat
-a rudiment
-the workout
-
-start a metronome 
-
-start measure counter 
-
-change the photo and reset measure counter every time a rudiment is done
-
-
-stop the metronome and measure counter when the workout is done
-*/
