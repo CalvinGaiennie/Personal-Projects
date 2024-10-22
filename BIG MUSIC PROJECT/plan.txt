@@ -1,0 +1,25 @@
+
+Overview
+I want to create 1 large full stack project showing off and challenging my programming skills.
+I am planning on building an app containing resources musicians.
+
+
+List of Resources
+• list / lecture on what a begginer guitarist needs to know.
+•intermediate guitar theory lecture.
+• chord/ scale generator: including scales and arpeggios by shape, triad shapes, barre chords, and open chords.
+•metronome
+•stick control workouts
+•chord chart generator
+•tab generator
+•drum notation generator
+•Ear trainer by progressions 
+•Ear trainer bass
+•Ear trainer keys
+•Ear trainer melodies
+
+
+What is the database needed for?
+• let users build their own rudiment workouts
+• store user created tabs and drum notation
+• collect user suggestions on how to improve the app. (if the app is live hosted somewhere where these can be sent to me)

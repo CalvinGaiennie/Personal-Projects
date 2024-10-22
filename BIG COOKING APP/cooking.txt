@@ -1,0 +1,14 @@
+Overview
+I want to build a cooking app
+Each recipe will be written out very simply showing an ingredient list, a list of steps, list of equipment, and built in timers.
+
+
+Resources
+• Built in recipes with timers, dynamic serving/ingredient ammounts
+• reference page with measurement converstions, protein temps, and other basic info
+• an automatic measurement converter
+• a section listing and teaching basic cooking skills: ex put some beans in a skillet and practice skillet tossing
+
+
+What is the database for
+• allowing users to save their own recipes
