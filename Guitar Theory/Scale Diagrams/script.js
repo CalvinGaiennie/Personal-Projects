@@ -78,7 +78,7 @@ const instrumentTuningPresets = {
   "Guitar (6 Strings)": [4, 11, 7, 2, 9, 4],
   "Bass (4 String)": [7, 2, 9, 4],
   "Bass (5 Strings": [7, 2, 9, 4, 11],
-  "Ukelele (standard)": [9, 4, 0, 7],
+  // "Ukelele (standard)": [9, 4, 0, 7],
 };
 
 const notesSharp2 = [

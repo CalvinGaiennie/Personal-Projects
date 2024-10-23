@@ -341,8 +341,21 @@ label {
 }
 
 #chart {
-  width: 1000px;
-  height: 650px;
+  width: 45vw;
+  height: 80vh;
   font-size: 24px;
-  padding: 50px;
+  padding: 5px;
+}
+
+#chartBanner {
+  width: 50vw;
+}
+
+#pdfPreview {
+  width: 45vw;
+  padding-left: 5px;
+}
+
+#previewZone {
+  padding-left: 51vw;
 }

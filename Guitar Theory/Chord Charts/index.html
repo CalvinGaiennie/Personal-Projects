@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Generator</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <header class="banner">
+      <div class="bannerContent grid">
+        <a href="../../Landing Page/index.html" style="text-decoration: none"
+          >All</a
+        >
+        <a style="text-decoration: none" href="../index.html">Music Theory</a>
+        <a href="../index2.html" style="text-decoration: none">Fretboard IQ</a>
+        <br />
+        <a href="../indexETC.html" style="text-decoration: none"
+          >Ear Training</a
+        >
+        <br />
+        <a href="../Scale Diagrams/index.html" style="text-decoration: none"
+          >Chords and Scales</a
+        >
+        <br />
+        <a href="index.html" style="text-decoration: none"
+          >Chord Chart Creator</a
+        >
+      </div>
+    </header>
+    <aside class="left-banner" id="chartBanner">
+      <div class="left-banner-label">
+        <h2>Create Chord Chart</h2>
+      </div>
+      <button type="button" onclick="generatePreview()">Show Preview</button>
+      <button type="button" onclick="savePDF()">Save to PDF</button>
+      <br />
+      <textarea id="chart" placeholder="Enter text here"></textarea>
+    </aside>
+    <div id="previewZone">
+      <h3>PDF Preview:</h3>
+      <iframe id="pdfPreview" style="width: 100%; height: 500px"></iframe>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
