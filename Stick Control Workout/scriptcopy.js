@@ -12,6 +12,7 @@ const BPMEl = document.getElementById("BPM");
 const noteTypeEl = document.getElementById("noteType");
 let noteType = noteTypeEl.value;
 const bannerDiv = document.getElementById("banner-title");
+const rudimentTextEl = document.getElementById("rudimentText");
 
 //OTHER variables
 const minute = 60000;
@@ -19,6 +20,7 @@ let beatCount = 3;
 let measureNumber = 1;
 let state = "paused";
 let imageNumber = 0;
+let rudimentNumber = -1;
 let measureLength;
 let rudimentLength;
 
@@ -26,7 +28,105 @@ let rudimentLength;
 let metronomeInterval;
 let measureCounterInterval;
 let imgNumInterval;
-let displayImageInterval;
+
+const rudiments = [
+  {
+    RudimentNumber: "One",
+    Rudiment: " 1: R L R L    R L R L      R L R L    R L R L",
+  },
+  {
+    RudimentNumber: "Two",
+    Rudiment: " 2: L R L R    L R L R      L R L R    L R L R",
+  },
+  {
+    RudimentNumber: "Three",
+    Rudiment: " 3: R R L L    R R L L      R R L L    R R L L",
+  },
+  {
+    RudimentNumber: "Four",
+    Rudiment: " 4: L L R R    L L R R      L L R R    L L R R",
+  },
+  {
+    RudimentNumber: "Five",
+    Rudiment: " 5: R L R R    L R L L      R L R R    L R L L",
+  },
+  {
+    RudimentNumber: "Six",
+    Rudiment: " 6: R L L R    L R R L      R L L R    L R R L",
+  },
+  {
+    RudimentNumber: "Seven",
+    Rudiment: " 7: R R L R    L L R L      R R L R    L L R L",
+  },
+  {
+    RudimentNumber: "Eight",
+    Rudiment: " 8: R L R L    L R L R      R L R L    L R L R",
+  },
+  {
+    RudimentNumber: "Nine",
+    Rudiment: " 9: R R R L    R R R L      R R R L    R R R L",
+  },
+  {
+    RudimentNumber: "Ten",
+    Rudiment: "10: L L L R    L L L R      L L L R    L L L R",
+  },
+  {
+    RudimentNumber: "Eleven",
+    Rudiment: "11: R L L L    R L L L      R L L L    R L L L",
+  },
+  {
+    RudimentNumber: "Twelve",
+    Rudiment: "12: L R R R    L R R R      L R R R    L R R R",
+  },
+  {
+    RudimentNumber: "Thirteen",
+    Rudiment: "13: R R R R    L L L L      R R R R    L L L L",
+  },
+  {
+    RudimentNumber: "Fourteen",
+    Rudiment: "14: R L R L    R R L L      R L R L    R R L L",
+  },
+  {
+    RudimentNumber: "Fifteen",
+    Rudiment: "15: L R L R    L L R R      L R L R    L L R R",
+  },
+  {
+    RudimentNumber: "Sixteen",
+    Rudiment: "16: R L R L    R L R R      L R L R    L R L L",
+  },
+  {
+    RudimentNumber: "Seventeen",
+    Rudiment: "17: R L R L    R L L R      L R L R    L R R L",
+  },
+  {
+    RudimentNumber: "Eighteen",
+    Rudiment: "18: R L R L    R R L R      L R L R    L L R L",
+  },
+  {
+    RudimentNumber: "Nineteen",
+    Rudiment: "19: R L R L    R R R L      R L R L    R R R L",
+  },
+  {
+    RudimentNumber: "Twenty",
+    Rudiment: "20: L R L R    L L L R      L R L R    L L L R",
+  },
+  {
+    RudimentNumber: "TwentyOne",
+    Rudiment: "21: R L R L    R L L L      R L R L    R L L L",
+  },
+  {
+    RudimentNumber: "TwentyTwo",
+    Rudiment: "22: L R L R    L R R R      L R L R    L R R R",
+  },
+  {
+    RudimentNumber: "TwentyThree",
+    Rudiment: "23: R L R L    R R R R      L R L R    L L L L",
+  },
+  {
+    RudimentNumber: "TwentyFour",
+    Rudiment: "24: R R L L    R L R R      L L R R    L R L L",
+  },
+];
 /////////////////////////////////////////////////////////////////
 // CALLBACK FUNCTIONS
 //make the 1 sound
@@ -58,13 +158,17 @@ function displayMeasureNumber() {
   measureNumberDiv.appendChild(num);
   if (measureNumber == "40") {
     measureNumber = 1;
-    incrementImageNumber();
-    displayImage();
+    incrementRudimentNumber();
+    displayRudimentText();
   }
 }
 
-function incrementImageNumber() {
-  imageNumber += 1;
+function incrementRudimentNumber() {
+  rudimentNumber += 1;
+  console.log(rudimentNumber);
+  if (rudimentNumber == 25) {
+    stopWorkout();
+  }
 }
 
 function incrementMeasureNumber() {
@@ -75,11 +179,10 @@ function resetMeasureNumber() {
   measureNumber = 1;
 }
 
-function displayImage() {
-  imageDiv.innerHTML = "";
-  const img = document.createElement("img");
-  img.src = `./images/rudiment${imageNumber}.png`;
-  imageDiv.appendChild(img);
+function displayRudimentText() {
+  let currentRudimentObject = rudiments[rudimentNumber];
+  let currentRudiment = currentRudimentObject.Rudiment;
+  rudimentTextEl.innerHTML = `<pre>${currentRudiment}</pre>`;
 }
 
 function playMetronome() {
@@ -87,9 +190,9 @@ function playMetronome() {
   if (noteType == 0.25) {
     if (beatCount % 4 === 0) {
       // Every fourth beat, play the accent sound
-      click();
       displayMeasureNumber();
       incrementMeasureNumber();
+      click();
     } else {
       // For all other beats, play the normal sound
       click2();
@@ -97,9 +200,9 @@ function playMetronome() {
   } else {
     if (beatCount % 8 === 0) {
       // Every eighth beat, play the accent sound
-      click();
       displayMeasureNumber();
       incrementMeasureNumber();
+      click();
     } else {
       // For all other beats, play the normal sound
       click2();
@@ -116,7 +219,6 @@ function stopWorkout() {
   clearInterval(metronomeInterval);
   clearInterval(measureCounterInterval);
   clearInterval(imgNumInterval);
-  clearInterval(displayImageInterval);
 }
 
 function startWorkout() {
@@ -132,11 +234,11 @@ function startWorkout() {
 
   // start workout
   metronomeInterval = setInterval(playMetronome, time);
+}
 
-  //stop workout
-  setTimeout(() => {
-    stopWorkout();
-  }, workout);
+function handleImageClick(i) {
+  rudimentNumber = i;
+  measureNumber = 0;
 }
 ////////////////////////////////////////////////////////////////
 //EVENT LISTENERS
@@ -145,8 +247,8 @@ function startWorkout() {
 document.addEventListener("DOMContentLoaded", function () {
   //setup the bpm select element
   const option = document.createElement("option");
-  option.value = 8000;
-  option.text = "8000 BPM";
+  option.value = 400;
+  option.text = "400 BPM";
   BPMEl.appendChild(option);
   ////
   for (let i = 30; i <= 200; i++) {
@@ -164,12 +266,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const img = document.createElement("img");
     img.src = `./images/rudiment${i}.png`;
     img.classList = "bannerImg";
+
+    img.setAttribute(
+      "onclick",
+      `handleImageClick(${i - 1}); displayRudimentText();`
+    );
+
     bannerDiv.appendChild(img);
   }
 
   //setup thing
-  incrementImageNumber();
-  displayImage();
+  incrementRudimentNumber();
+  displayRudimentText();
 });
 
 //starts and stops metronome

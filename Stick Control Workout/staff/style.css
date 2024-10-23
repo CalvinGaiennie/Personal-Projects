@@ -1,0 +1,200 @@
+hr {
+  border: none;
+  height: 2px;
+  background-color: #000; /* Line color */
+  width: 730px; /* Line width */
+  margin: 15px auto; /* Center the line */
+}
+.vertical-line {
+  width: 6px; /* Line thickness */
+  height: 70px; /* Line height */
+  background-color: #000; /* Line color */
+  margin: 20px; /* Optional margin */
+  position: relative;
+  top: 90px;
+  left: 20px;
+}
+
+.vertical-line2 {
+  width: 2px; /* Line thickness */
+  height: 70px; /* Line height */
+  background-color: #000; /* Line color */
+  margin: 20px; /* Optional margin */
+  position: relative;
+  top: -90px;
+  left: 40px;
+}
+.vertical-line3 {
+  width: 2px; /* Line thickness */
+  height: 70px; /* Line height */
+  background-color: #000; /* Line color */
+  margin: 20px; /* Optional margin */
+  position: relative;
+  top: -180px;
+  left: 380px;
+}
+
+.vertical-line4 {
+  width: 2px; /* Line thickness */
+  height: 70px; /* Line height */
+  background-color: #000; /* Line color */
+  margin: 20px; /* Optional margin */
+  position: relative;
+  top: -270px;
+  left: 720px;
+}
+
+.oval {
+  width: 15px; /* Width of the oval */
+  height: 15px; /* Height of the oval */
+  background-color: black; /* Background color of the oval */
+  border-radius: 50%; /* Creates the oval shape */
+  margin: 20px auto; /* Center the oval horizontally */
+  position: relative;
+}
+#oval1 {
+  top: -341px;
+  left: -285px;
+}
+#oval2 {
+  top: -376px;
+  left: -255px;
+}
+#oval3 {
+  top: -411px;
+  left: -225px;
+}
+#oval4 {
+  top: -446px;
+  left: -195px;
+}
+#oval5 {
+  top: -481px;
+  left: -125px;
+}
+#oval6 {
+  top: -516px;
+  left: -95px;
+}
+#oval7 {
+  top: -551px;
+  left: -65px;
+}
+#oval8 {
+  top: -586px;
+  left: -35px;
+}
+#oval9 {
+  top: -621px;
+  left: 65px;
+}
+#oval10 {
+  top: -656px;
+  left: 95px;
+}
+#oval11 {
+  top: -691px;
+  left: 125px;
+}
+#oval12 {
+  top: -726px;
+  left: 155px;
+}
+#oval13 {
+  top: -761px;
+  left: 225px;
+}
+#oval14 {
+  top: -796px;
+  left: 255px;
+}
+#oval15 {
+  top: -831px;
+  left: 285px;
+}
+#oval16 {
+  top: -866px;
+  left: 315px;
+}
+
+.stem {
+  width: 2px; /* Line thickness */
+  height: 50px; /* Line height */
+  background-color: #000; /* Line color */
+  position: relative;
+}
+
+#stem1 {
+  top: -939px;
+  left: 82px;
+}
+#stem2 {
+  left: 30px;
+}
+#stem3 {
+  left: 30px;
+}
+#stem4 {
+  left: 30px;
+}
+#stem5 {
+  left: 70px;
+}
+#stem6 {
+  left: 30px;
+}
+#stem7 {
+  left: 30px;
+}
+
+#stem8 {
+  left: 30px;
+}
+
+#stem9 {
+  left: 100px;
+}
+#stem10 {
+  left: 30px;
+}
+#stem11 {
+  left: 30px;
+}
+#stem12 {
+  left: 30px;
+}
+#stem13 {
+  left: 70px;
+}
+#stem14 {
+  left: 30px;
+}
+#stem15 {
+  left: 30px;
+}
+#stem16 {
+  left: 30px;
+}
+
+.connector {
+  height: 4px;
+  width: 91px;
+  position: relative;
+}
+
+#connector1 {
+  left: -233px;
+  top: -1005px;
+}
+#connector2 {
+  left: -73px;
+  top: -1024px;
+}
+#connector3 {
+  left: 117px;
+  top: -1042px;
+}
+#connector4 {
+  left: 277px;
+  top: -1061px;
+}
