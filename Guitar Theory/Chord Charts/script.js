@@ -1,17 +1,18 @@
 "use strict";
 
 let doc; // Declare a global variable to hold the jsPDF instance
-
+const chart = document.getElementById("chart");
+const preview = document.getElementById("preview");
 // Function to generate PDF
 function generatePDF() {
   const { jsPDF } = window.jspdf;
   doc = new jsPDF(); // Create a new jsPDF instance
 
   // Get the content from the textarea
-  const chart = document.getElementById("chart").value;
+  const chartValue = document.getElementById("chart").value;
 
   // Add the content to the PDF
-  doc.text(chart, 10, 10);
+  doc.text(chartValue, 10, 10);
 }
 
 // Function to show a preview of the PDF
@@ -34,4 +35,29 @@ function savePDF() {
 
 document.addEventListener("DOMContentLoaded", function () {
   generatePreview();
+});
+//////////////////////////////////////////
+function formatString(str) {
+  // add '|' every four charachters
+  for (let i = 0; i <= str.length; i++) {
+    let four = i * 5;
+    if (str.length >= four) {
+      str = str.slice(0, four) + "|" + str.slice(four);
+    }
+  }
+  // add a new line after 4 bars
+  for (let i = 0; i <= str.length; i++) {
+    let line = i * 22;
+    if (str.length >= line) {
+      str = str.slice(0, line) + "\n" + "|" + str.slice(line);
+    }
+  }
+  console.log(str);
+  return str;
+}
+
+preview.addEventListener("click", function () {
+  const chartV = chart.value;
+  const newString = formatString(chartV);
+  console.log(newString);
 });
