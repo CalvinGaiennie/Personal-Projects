@@ -1,21 +1,34 @@
 "use strict";
 
-let doc; // Declare a global variable to hold the jsPDF instance
+let doc;
 const chart = document.getElementById("chart");
 const preview = document.getElementById("preview");
-// Function to generate PDF
+const titleEl = document.getElementById("title");
+const saveEl = document.getElementById("save");
+
 function generatePDF() {
   const { jsPDF } = window.jspdf;
   doc = new jsPDF(); // Create a new jsPDF instance
 
   // Get the content from the textarea
+  const title = titleEl.value;
   const chartValue = document.getElementById("chart").value;
+  const formattedText = formatString(chartValue);
 
-  // Add the content to the PDF
-  doc.text(chartValue, 10, 10);
+  // Split the formatted text into individual lines
+  const lines = formattedText.split("\n");
+  const fontSize = 26;
+  doc.setFontSize(fontSize);
+  doc.text(title, fontSize, fontSize);
+  let yOffset = fontSize;
+
+  yOffset += fontSize;
+  lines.forEach((line) => {
+    doc.text(line, fontSize, yOffset);
+    yOffset += fontSize;
+  });
 }
 
-// Function to show a preview of the PDF
 function generatePreview() {
   generatePDF(); // Generate the PDF
 
@@ -27,17 +40,23 @@ function generatePreview() {
   document.getElementById("pdfPreview").src = previewUrl;
 }
 
-// Function to save the PDF
 function savePDF() {
   generatePDF(); // Ensure the PDF is generated
   doc.save("user-input.pdf"); // Save the PDF
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  generatePreview();
-});
-//////////////////////////////////////////
+function makeSubs(str) {
+  let length = str.length;
+  for (let i = 0; i <= length; i++) {
+    if (str[i] == ",") {
+      str = str.slice(0, i) + "/" + str.slice(i + 1);
+    }
+  }
+  return str;
+}
+
 function formatString(str) {
+  str = makeSubs(str);
   // add '|' every four charachters
   for (let i = 0; i <= str.length; i++) {
     let four = i * 5;
@@ -46,18 +65,34 @@ function formatString(str) {
     }
   }
   // add a new line after 4 bars
-  for (let i = 0; i <= str.length; i++) {
+  for (let i = 1; i <= str.length; i++) {
+    let line = i * 21;
+    if (str.length >= line) {
+      str = str.slice(0, line) + "\n" + str.slice(line);
+    }
+  }
+  for (let i = 1; i <= str.length; i++) {
     let line = i * 22;
     if (str.length >= line) {
-      str = str.slice(0, line) + "\n" + "|" + str.slice(line);
+      str = str.slice(0, line) + "|" + str.slice(line);
     }
   }
   console.log(str);
   return str;
 }
+function addTitle() {}
+
+document.addEventListener("DOMContentLoaded", function () {
+  generatePreview();
+});
 
 preview.addEventListener("click", function () {
+  generatePreview();
   const chartV = chart.value;
   const newString = formatString(chartV);
   console.log(newString);
+});
+
+saveEl.addEventListener("click", function () {
+  savePDF();
 });

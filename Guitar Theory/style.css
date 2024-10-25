@@ -346,6 +346,12 @@ label {
   font-size: 24px;
   padding: 5px;
 }
+#title {
+  width: 45vw;
+  height: 5vh;
+  font-size: 24px;
+  padding: 5px;
+}
 
 #chartBanner {
   width: 50vw;
