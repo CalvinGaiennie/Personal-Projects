@@ -201,7 +201,7 @@ label {
 .fretboard {
   display: flex;
   flex-direction: column;
-  background: #be975b url(wood-pattern.png);
+  background: #be975b url(../assets/wood-pattern.png);
   width: 100%;
   min-width: 1500px;
   height: calc(var(--fretboard-height) * 1px);
@@ -342,7 +342,7 @@ label {
 
 #chart {
   width: 45vw;
-  height: 80vh;
+  height: 50vh;
   font-size: 24px;
   padding: 5px;
 }
@@ -358,10 +358,15 @@ label {
 }
 
 #pdfPreview {
-  width: 45vw;
+  width: 80vw;
   padding-left: 5px;
 }
 
 #previewZone {
   padding-left: 51vw;
+}
+
+#settingsBody {
+  display: flex;
+  gap: 60px; /* optional: adds space between items */
 }

@@ -17,16 +17,30 @@ function generatePDF() {
 
   // Split the formatted text into individual lines
   const lines = formattedText.split("\n");
-  const fontSize = 26;
+  const fontSize = 20;
+  const pageHeight = doc.internal.pageSize.height;
+  const lineHeight = fontSize * 1.15;
+
+  //setup title
   doc.setFontSize(fontSize);
   doc.text(title, fontSize, fontSize);
   let yOffset = fontSize;
 
   yOffset += fontSize;
+
   lines.forEach((line) => {
+    // Check if adding another line will exceed page height
+    if (yOffset + lineHeight > pageHeight) {
+      doc.addPage(); // Create a new page
+      yOffset = fontSize; // Reset yOffset for the new page
+    }
     doc.text(line, fontSize, yOffset);
-    yOffset += fontSize;
+    yOffset += lineHeight;
   });
+  // lines.forEach((line) => {
+  //   doc.text(line, fontSize, yOffset);
+  //   yOffset += fontSize;
+  // });
 }
 
 function generatePreview() {

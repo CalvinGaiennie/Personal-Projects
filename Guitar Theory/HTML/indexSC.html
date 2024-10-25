@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metronome</title>
+    <link rel="stylesheet" href="../css/styleSC.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <div class="bannerContent grid">
+        <a href="../../Landing Page/index.html" style="text-decoration: none"
+        >All</a
+      >
+      <a style="text-decoration: none" href="indexMT.html">Music Theory</a>
+      <a href="indexFT.html" style="text-decoration: none">Fretboard IQ</a>
+      <br />
+      <a href="indexETC.html" style="text-decoration: none">Ear Training</a>
+      <br />
+      <a href="indexSD.html" style="text-decoration: none"
+        >Chords and Scales</a
+      >
+      <br />
+      <a href="indexCC.html" style="text-decoration: none"
+        >Chord Chart Creator</a
+      >
+      <a href="indexSC.html" style="text-decoration: none"
+          >Stick Control Workout</a
+        >
+      </div>
+    </header>
+    <div class="side-banner">
+      <h2 id="banner-title">All Rudiments</h2>
+    </div>
+    <div class="main-body">
+      <div id="metronome">
+      <h1>Metronome</h1>
+      <div id="metronome-settings">
+        <div id="metronome-bpm">
+          <h3>BPM</h3>
+          <select></select>
+        </div>
+        <div id="metronome-note-type">
+          <h3>Note Type</h3>
+          <select></select>
+        </div>
+        <div id="metronome-time-signature">
+          <h3>Time Signature</h3>
+          <select></select>
+        </div>
+      </div>
+      <br>
+      <button>Play</button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div id="stick-control-workout">
+      <h1>Stick Control Workout</h1>
+      <img src="../assets/StickControlImages/staff.png" />
+      <p id="rudimentText">Put rudiment here</p>
+      <div id="imgDiv" src=></div>
+      <div id="measureNumberDiv"></div>
+      <div id="container">
+        <div>
+          <h2>Note Type</h2>
+          <select id="noteType">
+            <option value=".25">Quarter Notes</option>
+            <option selected="true" value=".125">Eighth Notes</option>
+          </select>
+        </div>
+        <div>
+          <h2>BMP</h2>
+          <select id="BPM"></select>
+        </div>
+      </div>
+      <button id="toggle"><img src="../assets/StickControlImages/Play.png" class="state" /></button>
+      <audio id="audioPlayer" controls>
+        Your browser does not support the audio tag.
+      </audio>
+      <audio id="audioPlayer2" controls>
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+  </div>
+    <script src="../js/scriptSC.js"></script>
+  </body>
+</html>

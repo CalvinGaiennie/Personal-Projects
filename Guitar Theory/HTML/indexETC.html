@@ -4,25 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ear Training</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <header class="banner">
       <div class="bannerContent grid">
-        <a href="../Landing Page/index.html" style="text-decoration: none"
+        <a href="../../Landing Page/index.html" style="text-decoration: none"
           >All</a
         >
-        <a style="text-decoration: none" ; href="index.html">Music Theory</a>
-        <a href="index2.html" style="text-decoration: none" ;>Fretboard IQ</a>
+        <a style="text-decoration: none" href="indexMT.html">Music Theory</a>
+        <a href="indexFT.html" style="text-decoration: none">Fretboard IQ</a>
         <br />
-        <a href="indexETC.html" style="text-decoration: none" ;>Ear Training</a>
+        <a href="indexETC.html" style="text-decoration: none">Ear Training</a>
         <br />
-        <a href="./Scale Diagrams/index.html" style="text-decoration: none" ;
+        <a href="indexSD.html" style="text-decoration: none"
           >Chords and Scales</a
         >
         <br />
-        <a href="./Chord Charts/index.html" style="text-decoration: none" ;
+        <a href="indexCC.html" style="text-decoration: none"
           >Chord Chart Creator</a
+        >
+        <a href="indexSC.html" style="text-decoration: none"
+          >Stick Control Workout</a
         >
       </div>
     </header>
@@ -263,7 +266,7 @@
           const audioPlayer = document.getElementById("audioPlayer");
 
           // Set the source of the video player
-          audioPlayer.src = "songs/" + randomAudio;
+          audioPlayer.src = "../assets/Songs/" + randomAudio;
 
           // Load and play the video
           audioPlayer.load();
