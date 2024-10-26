@@ -1,11 +1,13 @@
 "use strict";
 /////////////////////////////////////////////////
-//ELEMENTS
+//General ELEMENTS
 const audioPlayer = document.getElementById("audioPlayer");
 audioPlayer.src = "../assets/Stick Control Sounds/first.mp3";
 const audioPlayer2 = document.getElementById("audioPlayer2");
 audioPlayer2.src = "../assets/Stick Control Sounds/other.wav";
-const toggle = document.getElementById("toggle");
+
+//Stick Control Elements
+const toggleStickControl = document.getElementById("toggle");
 const imageDiv = document.getElementById("imgDiv");
 const measureNumberDiv = document.getElementById("measureNumberDiv");
 const BPMEl = document.getElementById("BPM");
@@ -13,6 +15,10 @@ const noteTypeEl = document.getElementById("noteType");
 let noteType = noteTypeEl.value;
 const bannerDiv = document.getElementById("banner-title");
 const rudimentTextEl = document.getElementById("rudimentText");
+
+// Metronome Elements
+const metronomeBPMEl = document.getElementById("metronomeBPM");
+const toggleMetronome = document.getElementById("toggleMetronome");
 
 //OTHER variables
 const minute = 60000;
@@ -258,6 +264,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (i === 90) {
       option.selected = true;
     }
+    metronomeBPMEl.appendChild(option);
+  }
+  //
+  for (let i = 30; i <= 200; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.text = `${i} BPM `;
+    if (i === 90) {
+      option.selected = true;
+    }
     BPMEl.appendChild(option);
   }
 
@@ -281,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //starts and stops metronome
-toggle.addEventListener("click", function () {
+toggleStickControl.addEventListener("click", function () {
   if (state === "paused") {
     // change state and button image
     state = "playing";
@@ -306,3 +322,5 @@ toggle.addEventListener("click", function () {
     stopWorkout();
   }
 });
+
+toggleMetronome.addEventListener("click", function () {});

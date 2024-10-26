@@ -25,7 +25,7 @@
         >Chord Chart Creator</a
       >
       <a href="indexSC.html" style="text-decoration: none"
-          >Stick Control Workout</a
+          >Metronome/Stick Control Workout</a
         >
       </div>
     </header>
@@ -38,11 +38,14 @@
       <div id="metronome-settings">
         <div id="metronome-bpm">
           <h3>BPM</h3>
-          <select></select>
+          <select id="metronomeBPM"></select>
         </div>
         <div id="metronome-note-type">
           <h3>Note Type</h3>
-          <select></select>
+          <select id="metronomeNoteType">
+            <option value=".25">Quarter Notes</option>
+            <option selected="true" value=".125">Eighth Notes</option>
+          </select>
         </div>
         <div id="metronome-time-signature">
           <h3>Time Signature</h3>
@@ -50,7 +53,7 @@
         </div>
       </div>
       <br>
-      <button>Play</button>
+      <button id='toggleMetronome'>Play</button>
     </div>
     <br>
     <br>
