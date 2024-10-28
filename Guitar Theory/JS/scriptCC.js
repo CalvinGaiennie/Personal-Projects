@@ -13,7 +13,8 @@ function generatePDF() {
   // Get the content from the textarea
   const title = titleEl.value;
   const chartValue = document.getElementById("chart").value;
-  const formattedText = formatString(chartValue);
+  const chartValueNoSpaces = removeSpaces(chartValue);
+  const formattedText = formatString(chartValueNoSpaces);
 
   // Split the formatted text into individual lines
   const lines = formattedText.split("\n");
@@ -91,9 +92,26 @@ function formatString(str) {
       str = str.slice(0, line) + "|" + str.slice(line);
     }
   }
+  return str;
+}
+function removeSpaces(str) {
+  for (let i = 1; i < str.length; i++) {
+    let j = i + 1;
+    if (str[i] == " ") {
+      str = str.slice(0, i) + str.slice(j);
+      i--;
+    }
+    console.log(str);
+  }
   console.log(str);
   return str;
 }
+
+// this is more efficient but idk how it works so im not going to use it for now. chat wrote it and i want to figure out how it works before i use it
+// function removeSpaces(str) {
+//   return str.replace(/\s+/g, "");
+// }
+
 function addTitle() {}
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -104,7 +122,6 @@ preview.addEventListener("click", function () {
   generatePreview();
   const chartV = chart.value;
   const newString = formatString(chartV);
-  console.log(newString);
 });
 
 saveEl.addEventListener("click", function () {
