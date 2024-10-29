@@ -1,3 +1,4 @@
+//Get HTML Elements
 root = document.documentElement;
 const fretboard = document.querySelector(".fretboard");
 const noteNameSection = document.querySelector(".note-name-section");
@@ -20,6 +21,8 @@ const scaleInput = document.getElementById("scaleInput");
 const scaleDisplayButton = document.querySelector("#scale-display-button");
 const scaleDisplayField = document.querySelector("#scale-display");
 const scaleGeneratorInput = document.querySelector("#scale-generator-input");
+const chordDisplayButton = document.getElementById("chord-display-button");
+//Set up variables
 let allNotes;
 let showMultipleNotes = false;
 
@@ -320,6 +323,8 @@ const scaleFormulas = {
 let selectedInstrument = "Guitar (6 Strings)";
 let numberOfStrings = instrumentTuningPresets[selectedInstrument].length;
 
+let openG = ["G3", "B2"];
+//Start setting up the app
 const app = {
   init() {
     this.setupFretboard();
@@ -549,6 +554,33 @@ app.displayExactScaleOnFretboard = function (scale) {
     });
   });
 };
+
+app.displayChordOnFretboard = function (chord) {
+  // Clear all previous highlights
+  allNotes.forEach((noteFret) => {
+    noteFret.style.setProperty("--noteDotOpacity", 0);
+  });
+  ////// Get rid of hover over thing
+  fretboard.removeEventListener("mouseover", this.showNoteDot);
+  fretboard.removeEventListener("mouseout", this.hideNoteDot);
+
+  // Highlight the notes that are part of the chord
+
+  chord.forEach((note) => {
+    allNotes.forEach((noteFret) => {
+      if (noteFret.dataset.exactnote === note) {
+        noteFret.style.setProperty("--noteDotOpacity", 1);
+      }
+    });
+  });
+};
+
+chordDisplayButton.addEventListener("click", function () {
+  const chordName = document.getElementById("chord-generator");
+  const chordNameValue = "" + chordName.value;
+  console.log(chordNameValue);
+  app.displayChordOnFretboard(chordNameValue);
+});
 
 scaleDisplayButton.addEventListener("click", (event) => {
   const scaleShapeNumber = document.getElementById("scaleShapeInput");
