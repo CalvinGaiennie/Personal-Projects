@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=, initial-scale=1.0" />
+      <title>SAM</title>
+      <style></style>
+    </head>
+    <body>
+      <h1>Greeter</h1>
+      <p>What is your name?</p>
+      <input id="name" />
+      <button 
+      id="button">Submit
+    </button>
+    </body>
+    <script>
+      const name = document.getElementById("name");
+      const button = document.getElementById("button");
+      button.addEventListener("click",function() {const userName = name.value;
+        alert(`Hello, ${userName}!`);
+      });
+    </script>
+  </html>
+</DOCTYPE>
