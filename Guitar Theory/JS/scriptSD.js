@@ -22,7 +22,8 @@ const scaleDisplayButton = document.querySelector("#scale-display-button");
 const scaleDisplayField = document.querySelector("#scale-display");
 const scaleGeneratorInput = document.querySelector("#scale-generator-input");
 const chordDisplayButton = document.getElementById("chord-display-button");
-//Set up variables
+
+//Variables for Initial Setup
 let allNotes;
 let showMultipleNotes = false;
 
@@ -32,6 +33,44 @@ let accidentals = "flats";
 
 const singleFretMarkPositions = [3, 5, 7, 9, 15, 17, 19, 21];
 const doubleFretMarkPositions = [12, 24];
+
+const instrumentTuningPresets = {
+  "Guitar (6 Strings)": [4, 11, 7, 2, 9, 4],
+  "Bass (4 String)": [7, 2, 9, 4],
+  "Bass (5 Strings": [7, 2, 9, 4, 11],
+  // "Ukelele (standard)": [9, 4, 0, 7],
+};
+
+let selectedInstrument = "Guitar (6 Strings)";
+let numberOfStrings = instrumentTuningPresets[selectedInstrument].length;
+
+// Variables for scales and chords
+const notesSharp2 = [
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+];
 
 const notesFlat = [
   "C",
@@ -75,40 +114,6 @@ const notesIntervals = [
   "6",
   "7b",
   "7",
-];
-
-const instrumentTuningPresets = {
-  "Guitar (6 Strings)": [4, 11, 7, 2, 9, 4],
-  "Bass (4 String)": [7, 2, 9, 4],
-  "Bass (5 Strings": [7, 2, 9, 4, 11],
-  // "Ukelele (standard)": [9, 4, 0, 7],
-};
-
-const notesSharp2 = [
-  "c",
-  "c#",
-  "d",
-  "d#",
-  "e",
-  "f",
-  "f#",
-  "g",
-  "g#",
-  "a",
-  "a#",
-  "b",
-  "c",
-  "c#",
-  "d",
-  "d#",
-  "e",
-  "f",
-  "f#",
-  "g",
-  "g#",
-  "a",
-  "a#",
-  "b",
 ];
 const allShapes = {
   majorScaleFormula: {
@@ -307,6 +312,7 @@ const allShapes = {
     five: ["12", "15", "14", "14", "13", "12"],
   },
 };
+
 const majorScaleFormula = [0, 2, 4, 5, 7, 9, 11, 12];
 const majorPentatonicFormula = [0, 2, 4, 7, 9, 12];
 const minorPentatonicFormula = [0, 3, 5, 7, 10, 12];
@@ -320,30 +326,39 @@ const scaleFormulas = {
   minorArpeggioFormula: minorArpeggioFormula,
 };
 
-let selectedInstrument = "Guitar (6 Strings)";
-let numberOfStrings = instrumentTuningPresets[selectedInstrument].length;
+const chords = {
+  A: ["E0", "A0", "E2", "A2", "C#2", "D♭2"],
+  Am: ["E0", "A0", "E2", "A2", "C1"],
+  C: ["C3", "E2", "G0", "C1", "E0"],
+  D: ["D0", "A2", "D3", "F#2", "G♭2"],
+  Dm: ["D0", "A2", "D3", "F1"],
+  E: ["E0", "B2", "E2", "G#1", "A♭1", "B0"],
+  Em: ["E0", "B2", "E2", "G0", "B0"],
+  F: ["F1", "C3", "F3", "A2", "C1"],
+  G: ["G3", "B2"],
+};
 
-let openG = ["G3", "B2"];
-//Start setting up the app
+//Functions
 const app = {
+  //starts app
   init() {
     this.setupFretboard();
     this.setupSelectedInstrumentSelector();
-    // this.setupNoteNameSection();
     this.setupEventListeners();
   },
+  //builds the fretboard
   setupFretboard() {
     fretboard.innerHTML = "";
     root.style.setProperty("--number-of-strings", numberOfStrings);
     // Add strings to fretboard
     for (let i = 0; i < numberOfStrings; i++) {
-      let string = tools.createElement("div");
+      let string = app.createElement("div");
       string.classList.add("string");
       string.classList.add(`string${i + 1}`);
       fretboard.appendChild(string);
       // Create frets
       for (let fret = 0; fret <= numberOfFrets; fret++) {
-        let noteFret = tools.createElement("div");
+        let noteFret = app.createElement("div");
         noteFret.classList.add("note-fret");
         string.appendChild(noteFret);
 
@@ -360,7 +375,7 @@ const app = {
         }
         //add double fretmarks
         if (i === 0 && doubleFretMarkPositions.indexOf(fret) !== -1) {
-          let doubleFretMark = tools.createElement("div");
+          let doubleFretMark = app.createElement("div");
           doubleFretMark.classList.add("double-fretmark");
           noteFret.appendChild(doubleFretMark);
         }
@@ -382,23 +397,11 @@ const app = {
   },
   setupSelectedInstrumentSelector() {
     for (instrument in instrumentTuningPresets) {
-      let instrumentOption = tools.createElement("option", instrument);
+      let instrumentOption = app.createElement("option", instrument);
       selectedInstrumentSelector.appendChild(instrumentOption);
     }
   },
-  setupNoteNameSection() {
-    noteNameSection.innerHTML = "";
-    let noteNames;
-    if (accidentals === "flats") {
-      noteNames = notesFlat;
-    } else {
-      noteNames = notesSharp;
-    }
-    noteNames.forEach((noteName) => {
-      let noteNameElement = tools.createElement("span", noteName);
-      noteNameSection.appendChild(noteNameElement);
-    });
-  },
+  //makes a note visible
   showNoteDot(event) {
     if (event.target.classList.contains("note-fret")) {
       if (showMultipleNotes) {
@@ -408,6 +411,7 @@ const app = {
       }
     }
   },
+  //hides a note
   hideNoteDot(event) {
     if (showMultipleNotes) {
       app.toggleMultipleNotes(event.target.dataset.note, 0);
@@ -426,7 +430,6 @@ const app = {
       if (event.target.classList.contains("acc-select")) {
         accidentals = event.target.value;
         this.setupFretboard();
-        // this.setupNoteNameSection();
       } else {
         return;
       }
@@ -471,9 +474,139 @@ const app = {
       }
     }
   },
-};
 
-const tools = {
+  selectBank() {
+    let bank;
+    if (accidentals === "flats") {
+      bank = notesFlat;
+    } else if (accidentals === "sharps") {
+      bank = notesSharp;
+    } else if (accidentals === "intervals") {
+      bank = notesIntervals;
+    }
+    return bank;
+  },
+
+  makeScale(startNote, scaleFormula) {
+    const noteBank = app.selectBank();
+    const scale = [];
+    const startIndex = notesSharp2.indexOf(startNote);
+    for (i = 0; i < scaleFormula.length; i++) {
+      const noteIndex = (startIndex + scaleFormula[i]) % noteBank.length;
+      let note = noteBank[noteIndex];
+      scale.push(note.toUpperCase());
+    }
+    return scale;
+  },
+  displayScale(scale) {
+    const scaleDisplay = document.querySelector("#scale-display");
+    scaleDisplay.innerHTML = "";
+    scale.forEach((note) => {
+      const noteElement = app.createElement("span", `${note},`);
+      scaleDisplay.appendChild(noteElement);
+    });
+  },
+
+  displayScaleOnFretboard(scale) {
+    // Clear all previous highlights
+    allNotes.forEach((noteFret) => {
+      noteFret.style.setProperty("--noteDotOpacity", 0);
+    });
+    ////// Get rid of hover over thing
+    fretboard.removeEventListener("mouseover", this.showNoteDot);
+    fretboard.removeEventListener("mouseout", this.hideNoteDot);
+
+    // Highlight the notes that are part of the scale
+    scale.forEach((note) => {
+      allNotes.forEach((noteFret) => {
+        if (noteFret.dataset.note === note) {
+          noteFret.style.setProperty("--noteDotOpacity", 1);
+        }
+      });
+    });
+  },
+  displayExactScaleOnFretboard(scale) {
+    // Clear all previous highlights
+    allNotes.forEach((noteFret) => {
+      noteFret.style.setProperty("--noteDotOpacity", 0);
+    });
+    ////// Get rid of hover over thing
+    fretboard.removeEventListener("mouseover", this.showNoteDot);
+    fretboard.removeEventListener("mouseout", this.hideNoteDot);
+
+    // Highlight the notes that are part of the scale
+    scale.forEach((note) => {
+      allNotes.forEach((noteFret) => {
+        if (noteFret.dataset.exactnote === note) {
+          noteFret.style.setProperty("--noteDotOpacity", 1);
+        }
+      });
+    });
+  },
+  displayChordOnFretboard(chord) {
+    // Clear all previous highlights
+    allNotes.forEach((noteFret) => {
+      noteFret.style.setProperty("--noteDotOpacity", 0);
+    });
+    ////// Get rid of hover over thing
+    fretboard.removeEventListener("mouseover", this.showNoteDot);
+    fretboard.removeEventListener("mouseout", this.hideNoteDot);
+
+    // Highlight the notes that are part of the chord
+    const chordD = chord;
+    chordD.forEach((note) => {
+      allNotes.forEach((noteFret) => {
+        if (noteFret.dataset.exactnote === note) {
+          noteFret.style.setProperty("--noteDotOpacity", 1);
+        }
+      });
+    });
+  },
+  scalePlusNums(scale, numbers) {
+    let scale2 = [...scale];
+    scale2.pop();
+    scale2.push(...scale);
+    scale2.push(scale2[1]);
+    const newScale = [];
+    for (i = 0; i < scale2.length; i++) {
+      const newNote = scale2[i] + `${numbers[i]}`;
+      newScale.push(newNote);
+    }
+    return newScale;
+  },
+  convert(scale, shape) {
+    const newShape = [];
+    const root = scale[0];
+    const notes = [
+      "A",
+      "A3",
+      "B",
+      "C",
+      "C#",
+      "D",
+      "D#",
+      "E",
+      "F",
+      "F#",
+      "G",
+      "G#",
+    ];
+    shape.forEach(function (number, index) {
+      let newNum = Number(number) + Math.abs(notes.indexOf(root));
+      newNum = newNum + "";
+      newShape.push(newNum);
+    });
+    const allBig = newShape.every(function (num) {
+      return num >= 12;
+    });
+    if (allBig == true) {
+      newShape.forEach((value, index, array) => {
+        array[index] = value - 12;
+      });
+    } else {
+    }
+    return newShape;
+  },
   createElement(element, content) {
     element = document.createElement(element);
     if (arguments.length > 1) {
@@ -482,107 +615,19 @@ const tools = {
     return element;
   },
 };
+
+//Start App
 app.init();
 
-function selectBank() {
-  let bank;
-  if (accidentals === "flats") {
-    bank = notesFlat;
-  } else if (accidentals === "sharps") {
-    bank = notesSharp;
-  } else if (accidentals === "intervals") {
-    bank = notesIntervals;
-  }
-  return bank;
-}
-
-function makeScale(startNote, scaleFormula) {
-  const noteBank = selectBank();
-  const scale = [];
-  const startIndex = notesSharp2.indexOf(startNote);
-  for (i = 0; i < scaleFormula.length; i++) {
-    const noteIndex = (startIndex + scaleFormula[i]) % noteBank.length;
-    let note = noteBank[noteIndex];
-    scale.push(note.toUpperCase());
-  }
-  return scale;
-}
-
-function displayScale(scale) {
-  const scaleDisplay = document.querySelector("#scale-display");
-  scaleDisplay.innerHTML = "";
-  scale.forEach((note) => {
-    const noteElement = tools.createElement("span", `${note},`);
-    scaleDisplay.appendChild(noteElement);
-  });
-}
-
-app.displayScaleOnFretboard = function (scale) {
-  // Clear all previous highlights
-  allNotes.forEach((noteFret) => {
-    noteFret.style.setProperty("--noteDotOpacity", 0);
-  });
-  ////// Get rid of hover over thing
-  fretboard.removeEventListener("mouseover", this.showNoteDot);
-  fretboard.removeEventListener("mouseout", this.hideNoteDot);
-
-  // Highlight the notes that are part of the scale
-  scale.forEach((note) => {
-    allNotes.forEach((noteFret) => {
-      if (noteFret.dataset.note === note) {
-        noteFret.style.setProperty("--noteDotOpacity", 1);
-      }
-    });
-  });
-};
-
-app.displayExactScaleOnFretboard = function (scale) {
-  // Clear all previous highlights
-  allNotes.forEach((noteFret) => {
-    noteFret.style.setProperty("--noteDotOpacity", 0);
-  });
-  ////// Get rid of hover over thing
-  fretboard.removeEventListener("mouseover", this.showNoteDot);
-  fretboard.removeEventListener("mouseout", this.hideNoteDot);
-
-  // Highlight the notes that are part of the scale
-  scale.forEach((note) => {
-    allNotes.forEach((noteFret) => {
-      if (noteFret.dataset.exactnote === note) {
-        noteFret.style.setProperty("--noteDotOpacity", 1);
-      }
-    });
-  });
-};
-
-app.displayChordOnFretboard = function (chord) {
-  // Clear all previous highlights
-  allNotes.forEach((noteFret) => {
-    noteFret.style.setProperty("--noteDotOpacity", 0);
-  });
-  ////// Get rid of hover over thing
-  fretboard.removeEventListener("mouseover", this.showNoteDot);
-  fretboard.removeEventListener("mouseout", this.hideNoteDot);
-
-  // Highlight the notes that are part of the chord
-
-  chord.forEach((note) => {
-    allNotes.forEach((noteFret) => {
-      if (noteFret.dataset.exactnote === note) {
-        noteFret.style.setProperty("--noteDotOpacity", 1);
-      }
-    });
-  });
-};
-
+//Event Listeners
 chordDisplayButton.addEventListener("click", function () {
   const chordName = document.getElementById("chord-generator");
   const chordNameValue = "" + chordName.value;
-  console.log(chordNameValue);
-  app.displayChordOnFretboard(chordNameValue);
+  const value = chords[chordNameValue];
+  app.displayChordOnFretboard(value);
 });
 
-scaleDisplayButton.addEventListener("click", (event) => {
+scaleDisplayButton.addEventListener("click", function () {
   const scaleShapeNumber = document.getElementById("scaleShapeInput");
   const scaleShapeValue = "" + scaleShapeNumber.value;
 
@@ -592,9 +637,9 @@ scaleDisplayButton.addEventListener("click", (event) => {
 
     const scaleFormula = scaleFormulas[scaleType];
     if (scaleFormula) {
-      const scale = makeScale(startNote, scaleFormula);
+      const scale = app.makeScale(startNote, scaleFormula);
       if (scale.length) {
-        displayScale(scale); // Display scale in the UI
+        app.displayScale(scale); // Display scale in the UI
         app.displayScaleOnFretboard(scale); // Highlight scale on the fretboard
       }
     }
@@ -610,12 +655,12 @@ scaleDisplayButton.addEventListener("click", (event) => {
     const scaleFormula = scaleFormulas[scaleType];
 
     if (scaleFormula) {
-      const scale = makeScale(startNote, scaleFormula);
-      const newShape = convert(scale, shape2);
+      const scale = app.makeScale(startNote, scaleFormula);
+      const newShape = app.convert(scale, shape2);
       if (scale.length) {
-        displayScale(scale); // Log the generated scale
+        app.displayScale(scale); // Log the generated scale
       }
-      const shape3 = scalePlusNums(scale, newShape);
+      const shape3 = app.scalePlusNums(scale, newShape);
       if (shape3) {
         app.displayExactScaleOnFretboard(shape3);
       } else {
@@ -624,53 +669,3 @@ scaleDisplayButton.addEventListener("click", (event) => {
     }
   }
 });
-
-function scalePlusNums(scale, numbers) {
-  let scale2 = [...scale];
-  scale2.pop();
-  scale2.push(...scale);
-  scale2.push(scale2[1]);
-  const newScale = [];
-  for (i = 0; i < scale2.length; i++) {
-    const newNote = scale2[i] + `${numbers[i]}`;
-    newScale.push(newNote);
-  }
-  return newScale;
-}
-
-function convert(scale, shape) {
-  const newShape = [];
-  const root = scale[0];
-  const notes = [
-    "A",
-    "A3",
-    "B",
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-  ];
-  shape.forEach(function (number, index) {
-    let newNum = Number(number) + Math.abs(notes.indexOf(root));
-    newNum = newNum + "";
-    newShape.push(newNum);
-  });
-  console.log("New Shape:", newShape);
-  const allBig = newShape.every(function (num) {
-    return num >= 12;
-  });
-  console.log(allBig);
-  if (allBig == true) {
-    newShape.forEach((value, index, array) => {
-      array[index] = value - 12;
-      console.log("Minus 12:", newShape);
-    });
-  } else {
-  }
-  return newShape;
-}

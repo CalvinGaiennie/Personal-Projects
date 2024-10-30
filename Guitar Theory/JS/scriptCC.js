@@ -71,6 +71,7 @@ function makeSubs(str) {
 }
 
 function formatString(str) {
+  console.log(str);
   str = makeSubs(str);
   // add '|' every four charachters
   for (let i = 0; i <= str.length; i++) {
@@ -92,6 +93,7 @@ function formatString(str) {
       str = str.slice(0, line) + "|" + str.slice(line);
     }
   }
+  console.log(str);
   return str;
 }
 function removeSpaces(str) {
