@@ -188,20 +188,20 @@ function getRecipe() {
   return recipe;
 }
 
-function createElement(element, content) {
-  const el = document.createElement(element);
-  if (content) {
-    el.innerHTML = content;
-  }
-  return el;
-}
-
 function updateIngredientMap(numOfServings) {
   recipe = getRecipe();
   ingredientMap = { ...recipe.ingredientMap };
   Object.keys(ingredientMap).forEach((key, index) => {
     ingredientMap[key] = ingredientMap[key] * numOfServings;
   });
+}
+
+function createElement(element, content) {
+  const el = document.createElement(element);
+  if (content) {
+    el.innerHTML = content;
+  }
+  return el;
 }
 
 function updateHTML(updatedElements, place) {
