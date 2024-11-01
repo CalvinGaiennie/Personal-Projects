@@ -181,6 +181,13 @@ const bassOnly = {
   ],
 };
 
+const melodiesOnly = {
+  beginnerGMelodies: {},
+  beginnerMelodies: {},
+  intermediateMelodies: {},
+  advancedMelodies: {},
+};
+
 const difficultyMapGuitarOnly = {
   videosBeginner: guitarOnly.videosBeginner,
   videosBeginnerG: guitarOnly.videosBeginnerG,
@@ -196,6 +203,12 @@ const difficultyMapBassOnly = {
   advancedBass: bassOnly.advancedBass,
 };
 
+const difficultyMapMelodiesOnly = {
+  beginnerMelodiesG: melodiesOnly.beginnerGMelodies,
+  beginnerMelodies: melodiesOnly.beginnerMelodies,
+  intermediateMelodies: melodiesOnly.intermediateMelodies,
+  advancedMelodies: melodiesOnly.advancedMelodies,
+};
 const rules = {
   guitarOnly: [
     {
@@ -305,6 +318,53 @@ const rules = {
       content: "All Notes",
     },
   ],
+  melodiesOnly: [
+    {
+      type: "h3",
+      class: "t",
+      content: "Guide",
+    },
+    {
+      type: "h4",
+      class: "difficulty0",
+      content: "BeginnerG (0)",
+    },
+    {
+      type: "p",
+      class: "content",
+      content: "Key of G. Acoustic Tones. Pentatonic Only.",
+    },
+    {
+      type: "h4",
+      class: "difficulty1",
+      content: "Beginner (0)",
+    },
+    {
+      type: "p",
+      class: "content",
+      content: "All keys. No Key Changes. Acoustic Tones. Pentatonic Only.",
+    },
+    {
+      type: "h4",
+      class: "difficulty",
+      content: "Intermediate (0)",
+    },
+    {
+      type: "p",
+      class: "content",
+      content: "All Keys. Key changes",
+    },
+    {
+      type: "h4",
+      class: "difficulty2",
+      content: "Advanced (0)",
+    },
+    {
+      type: "p",
+      class: "content",
+      content: "All Keys. Key changes",
+    },
+  ],
 };
 
 const difficultySelectors = {
@@ -320,6 +380,12 @@ const difficultySelectors = {
     { value: "beginnerBass", text: "Begginer" },
     { value: "intermediateBass", text: "Intermediate" },
     { value: "advancedBass", text: "Advanced" },
+  ],
+  melodiesOnly: [
+    { value: "beginnerGMelodies", text: "BeginnerG" },
+    { value: "beginnerMelodies", text: "Beginner" },
+    { value: "intermediateMelodies", text: "Intermediate" },
+    { value: "advancedMelodies", text: "Advanced" },
   ],
 };
 /////////////////////////////
@@ -371,6 +437,9 @@ document.getElementById("playButton").addEventListener("click", function () {
       difficultyMapGuitarOnly[selectedDifficulty] || [];
   } else if (selectedInstrument == "bassOnly") {
     selectedDifficultyObject = difficultyMapBassOnly[selectedDifficulty] || [];
+  } else if (selectedInstrument == "melodiesOnly") {
+    selectedDifficultyObject =
+      difficultyMapMelodiesOnly[selectedDifficulty] || [];
   }
 
   //Extract track names into an array
@@ -424,6 +493,9 @@ document.getElementById("instrument").addEventListener("change", function () {
   } else if (selectedInstrument == "bassOnly") {
     const updatedElements = rules.bassOnly;
     updateHTML(updatedElements, "#rules");
+  } else if (selectedInstrument == "melodiesOnly") {
+    const updatedElements = rules.melodiesOnly;
+    updateHTML(updatedElements, "#rules");
   }
 
   selectedDifficulty = difficulty.value;
@@ -434,6 +506,9 @@ document.getElementById("instrument").addEventListener("change", function () {
     createSelectOptions(updatedElements);
   } else if (selectedInstrument == "bassOnly") {
     const updatedElements = difficultySelectors.bassOnly;
+    createSelectOptions(updatedElements);
+  } else if (selectedInstrument == "melodiesOnly") {
+    const updatedElements = difficultySelectors.melodiesOnly;
     createSelectOptions(updatedElements);
   }
 });
