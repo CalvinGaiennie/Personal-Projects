@@ -2,6 +2,18 @@
 //Objects containing the file names and subfolders, they key of the track, and the chord progression
 // {FileName:'',Name:'',Key:'',Chords:''},
 
+/*
+bass Progressions
+Begginner Record all of these in G C and A with roots and fifths 
+15 1145, 1415, 1464 
+
+intermediate all all keys add in thirds
+1415 1465 1645  1564 15634 1345 6251
+
+Advanced
+real songs
+
+*/
 ////////////////////////////
 //Global Variables
 let randomAudioIndex;
@@ -135,22 +147,38 @@ const guitarOnly = {
 const bassOnly = {
   beginnerBass: [
     {
-      FileName: "ET_1415G.mp3",
+      FileName: "ET_BO_B_G_15.mp3",
       Name: "Generic Progression 1",
       Key: "G",
-      Chords: "G,C,G,D",
+      Chords: "G,D",
       Tip: "Come on dude. Really.🙃",
     },
     {
-      FileName: "ET_1415G.mp3",
+      FileName: "ET_BO_B_G_1415.mp3",
       Name: "Generic Progression 1",
       Key: "G",
       Chords: "G,C,G,D",
       Tip: "Come on dude. Really.🙃",
     },
   ],
-  intermediateBass: [],
-  advancedBass: [],
+  intermediateBass: [
+    {
+      FileName: "ET_BO_I_A_1415.mp3",
+      Name: "Generic Progression 1",
+      Key: "A",
+      Chords: "A,D,A,E",
+      Tip: "3 Chords 3 Notes Each",
+    },
+  ],
+  advancedBass: [
+    {
+      FileName: "ET_BO_A_12BB.mp3",
+      Name: "12 Bar Blues in Bb",
+      Key: "Bb",
+      Chords: "Bb,Bb,Bb,Bb,Eb,Eb,Bb,Bb,F,Eb,Bb,F",
+      Tip: "12 Bar Blues",
+    },
+  ],
 };
 
 const difficultyMapGuitarOnly = {
@@ -249,7 +277,7 @@ const rules = {
     {
       type: "h4",
       class: "difficulty0",
-      content: "Beginner",
+      content: "Beginner (2)",
     },
     {
       type: "p",
@@ -259,7 +287,7 @@ const rules = {
     {
       type: "h4",
       class: "difficulty1",
-      content: "Intermediate",
+      content: "Intermediate (1)",
     },
     {
       type: "p",
@@ -269,7 +297,7 @@ const rules = {
     {
       type: "h4",
       class: "difficulty",
-      content: "Advanced",
+      content: "Advanced (1)",
     },
     {
       type: "p",
@@ -290,7 +318,7 @@ const difficultySelectors = {
   ],
   bassOnly: [
     { value: "beginnerBass", text: "Begginer" },
-    { value: "IntermediateBass", text: "Intermediate" },
+    { value: "intermediateBass", text: "Intermediate" },
     { value: "advancedBass", text: "Advanced" },
   ],
 };
@@ -351,7 +379,7 @@ document.getElementById("playButton").addEventListener("click", function () {
   // Randomly select an audio file from the chosen array
   const randomAudio = trackNames[Math.floor(Math.random() * trackNames.length)];
   randomAudioIndex = trackNames.indexOf(randomAudio);
-
+  console.log(randomAudioIndex);
   // Get the audio player element
   const audioPlayer = document.getElementById("audioPlayer");
 
