@@ -3,13 +3,93 @@
 let ingredientMap = {};
 let ingredientsAmount = [];
 let numOfServings = 1;
+const recipeList = document.getElementById("recipe-list");
+let selectedRecipe = recipeList.value;
 //Recipes
 
+const outline = {
+  title: [""],
+  ingredients: [],
+  steps: [],
+  ingredientMap: {},
+};
+
+const sushiRice = {
+  title: ["Sushi Rice"],
+  ingredients: [
+    `{rice} cups of sushi rice (short or medium grain rice.)`,
+    `{water} cups of water`,
+    `{vinegar} cups of rice vinegar`,
+    "{sugar} cups of sugar",
+    "{salt} teaspoons of salt",
+  ],
+  steps: [
+    `Step 1: Put the rice in a large bowl and rince it four times.`,
+    `Step 2: Cook the rice how your would normally cook rice. When it is finished cover it and let it cool for 10 mins.`,
+    `Step 3: In a small saucepan, combine the rice vinegar, sugar, and salt. keep it on low heat and stir slowly until the salt and sugar disolve into the vinegar.`,
+    `Step 4: Put the rice in a large bown or a baking sheet, pour the vinegar on it and slowly fold the vinegar mixture into the rice being carful to not mash the rice.`,
+    `Step 5: Let the rice cool to room temperature. It can be slightly warm, but not hot.`,
+  ],
+  ingredientMap: { rice: 1, water: 1, vinegar: 0.25, sugar: 0.125, salt: 0.5 },
+};
+
+const pitaBread = {
+  title: ["Pita Bread"],
+  ingredients: [
+    `{water} cups of water`,
+    `{yeast} teaspoons of yeast`,
+    `{sugar} teaspoons of sugar`,
+    "{flour} cups of flour",
+    "{salt} teaspoons of salt",
+    "{oliveOil} tablespoons of olive oil",
+  ],
+  steps: [
+    `Step 1: Mix {water} cup of warm water {yeast} teaspoons of yeast and {sugar} teaspoons of sugar in a bowl then let it sit for 5 minutes.,`,
+    `Step 2: Add {flour} cups of flour. {salt} teaspoons of salt and {oliveOil} tablespoon of olive oil.`,
+    `Step 3: Sprinkle flour on a clean work surface then knead the dough for 5-7 minutes slowly adding about {flour2} cups of flour until the dough is smooth and elastic.`,
+    `Step 4: Coat a bowl in olive oil then put the dough in and let it rise until it doubles in size. About an hour.`,
+    `Step 5: Cut the dough into small peices roll it flat and cook it for 2 mins each side in the oven or on the stove.`,
+  ],
+  ingredientMap: {
+    water: 0.5,
+    yeast: 1,
+    sugar: 0.25,
+    flour: 1.5,
+    salt: 1,
+    oliveOil: 0.5,
+  },
+};
+
+const chickenSalad = {
+  title: ["Chicken Salad"],
+  ingredients: [
+    `{chickenBreast} pounds of cooked chicken breast diced.`,
+    `{mayonnaise} cups of mayonnaise`,
+    `{celery} cups of celery, finely chopped`,
+    "{redOnion} cups of red onion, finely chopped",
+    "{lemonJuice} tablespoons of lemon juice",
+  ],
+  steps: [
+    `Step 1: If you're cooking the chicken let it cool before you dice it.`,
+    `Step 2: Mix ingredients in a large bowl.`,
+    `Step 3: add salt and pepper to taste.`,
+    `Step 4: let it chill in the fridge for at least 30 mins.`,
+    `Step 5: Serve`,
+  ],
+  ingredientMap: {
+    chickenBreast: 0.5,
+    mayonnaise: 0.375,
+    celery: 0.1875,
+    redOnion: 0.1875,
+    lemonJuice: 0.75,
+  },
+};
+
 const beefNoodlesCopy = {
-  name: "Beef Noodle Copy",
+  title: ["Beef Noodles"],
   ingredients: [
     `{garlic} garlic cloves, minced`,
-    `1 inch piece fresh {ginger}, peeled and finely grated`,
+    `{ginger} inch piece fresh , peeled and finely grated`,
     `{soySauce} cup soy sauce`,
     `{sugar} tablespoons sugar`,
     `{riceVinegar} tablespoons rice vinegar`,
@@ -36,14 +116,30 @@ const beefNoodlesCopy = {
     `Step 7: Add the beef back to the skillet and pour in the sauce and remaining .25 cups of pasta water, and toss constantly until the noodles are coated and the sauce has started to thicken, about 2 more minutes.`,
     `Step 8: Serve.`,
   ],
-  ingredientRatios: [
-    4, 1, 0.5, 2, 2, 2, 1, 2, 1, 0.5, 1, 1, 0.5, 2, 1, 1, 8, 3,
-  ],
-  ingredientMap:
-    "garlic: ingredientsAmount[0], ginger: ingredientsAmount[1], soySauce: ingredientsAmount[2], sugar: ingredientsAmount[3], riceVinegar: ingredientsAmount[4], limeJuice: ingredientsAmount[5], limes: ingredientsAmount[6], toastedSesameOil: ingredientsAmount[7], fishSauce: ingredientsAmount[8], crushedRedPepperFlakes: ingredientsAmount[9], beef: ingredientsAmount[10], salt: ingredientsAmount[11], blackPepper: ingredientsAmount[12], flour: ingredientsAmount[13], avocadoOil: ingredientsAmount[14], salt: ingredientsAmount[15], noodles: ingredientsAmount[16], broccoli: ingredientsAmount[17]",
+  ingredientMap: {
+    garlic: 1,
+    ginger: 0.25,
+    soySauce: 0.125,
+    sugar: 0.5,
+    riceVinegar: 0.5,
+    limeJuice: 0.5,
+    limes: 0.25,
+    toastedSesameOil: 0.5,
+    fishSauce: 0.25,
+    crushedRedPepperFlakes: 0.125,
+    beef: 0.25,
+    salt: 0.25,
+    blackPepper: 0.125,
+    flour: 0.5,
+    avocadoOil: 0.25,
+    salt: 0.25,
+    noodles: 2,
+    broccoli: 0.75,
+  },
 };
+
 const chickenParmesean = {
-  name: "Chicken Parmesean",
+  title: "Chicken Parmesan",
   ingredients: [
     `{chickenBreast} Large Chick Breast`,
     `{flour} cup of flour`,
@@ -64,17 +160,27 @@ const chickenParmesean = {
     `Step 6: Bake the chicken for 15 minutes.`,
     `Step 7: Serve`,
   ],
-  ingredientRatios: [2, 1, 2, 1, 0.5, 1, 1, 1.5, 1.5, 2],
+  ingredientMap: {
+    chickenBreast: 2,
+    flour: 1,
+    eggs: 2,
+    breadcrumbs: 1,
+    parmesan: 0.5,
+    garlicPowder: 1,
+    italianSeasoning: 1,
+    marinaraSauce: 1.5,
+    mozzarella: 1.5,
+  },
 };
 
 const recipes = {
   beefNoodlesCopy: beefNoodlesCopy,
   chickenParmesean: chickenParmesean,
+  chickenSalad: chickenSalad,
+  pitaBread: pitaBread,
+  sushiRice: sushiRice,
 };
-const recipeList = document.getElementById("recipe-list");
-let selectedRecipe = recipeList.value;
 let recipe = recipes[selectedRecipe];
-
 //Functions
 function getRecipe() {
   selectedRecipe = recipeList.value;
@@ -92,29 +198,10 @@ function createElement(element, content) {
 
 function updateIngredientMap(numOfServings) {
   recipe = getRecipe();
-  ingredientsAmount = recipe.ingredientRatios.map(
-    (amount) => amount * numOfServings
-  );
-  ingredientMap = {
-    garlic: ingredientsAmount[0],
-    ginger: ingredientsAmount[1],
-    soySauce: ingredientsAmount[2],
-    sugar: ingredientsAmount[3],
-    riceVinegar: ingredientsAmount[4],
-    limeJuice: ingredientsAmount[5],
-    limes: ingredientsAmount[6],
-    toastedSesameOil: ingredientsAmount[7],
-    fishSauce: ingredientsAmount[8],
-    crushedRedPepperFlakes: ingredientsAmount[9],
-    beef: ingredientsAmount[10],
-    salt: ingredientsAmount[11],
-    blackPepper: ingredientsAmount[12],
-    flour: ingredientsAmount[13],
-    avocadoOil: ingredientsAmount[14],
-    salt: ingredientsAmount[15],
-    noodles: ingredientsAmount[16],
-    broccoli: ingredientsAmount[17],
-  };
+  ingredientMap = { ...recipe.ingredientMap };
+  Object.keys(ingredientMap).forEach((key, index) => {
+    ingredientMap[key] = ingredientMap[key] * numOfServings;
+  });
 }
 
 function updateHTML(updatedElements, place) {
@@ -129,7 +216,7 @@ function updateHTML(updatedElements, place) {
 
 function calculateSteps(recipe) {
   recipe = getRecipe();
-  numOfServings = parseFloat(document.getElementById("input").value) / 4;
+  numOfServings = parseFloat(document.getElementById("input").value);
   if (isNaN(numOfServings) || numOfServings <= 0) {
     console.log("fuck");
     return;
@@ -149,7 +236,7 @@ function calculateSteps(recipe) {
 
 function calculateIngredients(recipe) {
   recipe = getRecipe();
-  numOfServings = parseFloat(document.getElementById("input").value) / 4;
+  numOfServings = parseFloat(document.getElementById("input").value);
   if (isNaN(numOfServings) || numOfServings <= 0) {
     console.log("fuck");
     return;
@@ -157,27 +244,33 @@ function calculateIngredients(recipe) {
     updateIngredientMap(numOfServings);
 
     const updatedIngredients = recipe.ingredients.map((ingredient) => {
-      let updatedStep = ingredient;
+      let updatedIng = ingredient;
       for (const [key, amount] of Object.entries(ingredientMap)) {
-        updatedStep = updatedStep.replace(`{${key}}`, amount);
+        updatedIng = updatedIng.replace(`{${key}}`, amount);
       }
-      return updatedStep;
+      return updatedIng;
     });
     updateHTML(updatedIngredients, "#ingredients");
   }
 }
 
+function createPage() {
+  recipe = getRecipe();
+  calculateSteps();
+  calculateIngredients();
+  let recipeTitle = recipe.title;
+  const title = document.getElementById("title");
+  title.innerHTML = recipeTitle;
+}
+
 //Event Listeners
 document.getElementById("input").addEventListener("change", function () {
-  calculateSteps();
-  calculateIngredients();
+  createPage();
 });
 document.getElementById("recipe-list").addEventListener("change", function () {
-  calculateSteps();
-  calculateIngredients();
+  createPage();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  calculateSteps();
-  calculateIngredients();
+  createPage();
 });

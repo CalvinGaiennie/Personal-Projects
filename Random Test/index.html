@@ -1,319 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Guitar Tuner</title>
-    <style>
-      /* Previous styles remain the same */
-      body {
-        font-family: system-ui, -apple-system, sans-serif;
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-        text-align: center;
-      }
-      .tuner-display {
-        margin: 2rem auto;
-        padding: 2rem;
-        border-radius: 1rem;
-        background: #f5f5f5;
-      }
-      .note {
-        font-size: 3rem;
-        font-weight: bold;
-        margin: 1rem 0;
-      }
-      .frequency {
-        font-size: 1.5rem;
-        color: #666;
-      }
-      .meter {
-        width: 300px;
-        height: 20px;
-        background: #ddd;
-        margin: 1rem auto;
-        border-radius: 10px;
-        position: relative;
-        overflow: hidden;
-      }
-      .meter-needle {
-        width: 4px;
-        height: 100%;
-        background: #2196f3;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        transition: left 0.1s;
-      }
-      .target-note {
-        font-size: 1.2rem;
-        margin: 1rem 0;
-      }
-      .status {
-        font-size: 1.5rem;
-        margin: 1rem 0;
-      }
-      button {
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        border: none;
-        border-radius: 0.5rem;
-        background: #4caf50;
-        color: white;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      button:hover {
-        background: #45a049;
-      }
-      .sharp {
-        color: #f44336;
-      }
-      .flat {
-        color: #2196f3;
-      }
-      .in-tune {
-        color: #4caf50;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autoclicker</title>
   </head>
   <body>
-    <h1>Guitar Tuner</h1>
-    <button id="startButton">Start Tuning</button>
-
-    <div class="tuner-display">
-      <div class="note">--</div>
-      <div class="frequency">-- Hz</div>
-      <div class="meter">
-        <div class="meter-needle"></div>
-      </div>
-      <div class="target-note">Closest note: --</div>
-      <div class="status">Start tuning to begin</div>
-    </div>
+    <h1>Autoclicker App</h1>
+    <button id="startStopBtn">Start Autoclicker</button>
+    <button id="targetBtn">Click Me!</button>
 
     <script>
-      const ALL_NOTES = [
-        { note: "E2", freq: 82.41 },
-        { note: "F2", freq: 87.31 },
-        { note: "F#2", freq: 92.5 },
-        { note: "G2", freq: 98.0 },
-        { note: "G#2", freq: 103.83 },
-        { note: "A2", freq: 110.0 },
-        { note: "A#2", freq: 116.54 },
-        { note: "B2", freq: 123.47 },
-        { note: "C3", freq: 130.81 },
-        { note: "C#3", freq: 138.59 },
-        { note: "D3", freq: 146.83 },
-        { note: "D#3", freq: 155.56 },
-        { note: "E3", freq: 164.81 },
-        { note: "F3", freq: 174.61 },
-        { note: "F#3", freq: 185.0 },
-        { note: "G3", freq: 196.0 },
-        { note: "G#3", freq: 207.65 },
-        { note: "A3", freq: 220.0 },
-        { note: "A#3", freq: 233.08 },
-        { note: "B3", freq: 246.94 },
-        { note: "C4", freq: 261.63 },
-        { note: "C#4", freq: 277.18 },
-        { note: "D4", freq: 293.66 },
-        { note: "D#4", freq: 311.13 },
-        { note: "E4", freq: 329.63 },
-        { note: "F4", freq: 349.23 },
-        { note: "F#4", freq: 369.99 },
-      ];
+      let autoclickInterval;
+      const targetSelector = "#targetBtn"; // Change this selector to the element you want to click
+      const intervalMs = 500; // Set the interval between clicks in milliseconds (e.g., 500ms)
 
-      const GUITAR_NOTES = ["E2", "A2", "D3", "G3", "B3", "E4"];
+      const startStopBtn = document.getElementById("startStopBtn");
+      let isRunning = false;
 
-      class PitchDetector {
-        constructor() {
-          this.audioContext = null;
-          this.analyzer = null;
-          this.mediaStream = null;
-          this.isListening = false;
+      startStopBtn.addEventListener("click", () => {
+        if (isRunning) {
+          stopAutoclick();
+        } else {
+          startAutoclick();
+        }
+      });
+
+      function startAutoclick() {
+        const targetElement = document.querySelector(targetSelector);
+        if (!targetElement) {
+          alert("Target element not found!");
+          return;
         }
 
-        async start() {
-          try {
-            this.audioContext = new (window.AudioContext ||
-              window.webkitAudioContext)();
-            this.mediaStream = await navigator.mediaDevices.getUserMedia({
-              audio: {
-                echoCancellation: false,
-                noiseSuppression: false,
-                autoGainControl: false,
-              },
-            });
+        autoclickInterval = setInterval(() => {
+          targetElement.click();
+          console.log("click");
+        }, intervalMs);
 
-            const source = this.audioContext.createMediaStreamSource(
-              this.mediaStream
-            );
-            this.analyzer = this.audioContext.createAnalyser();
-            this.analyzer.fftSize = 2048;
-            source.connect(this.analyzer);
-
-            this.isListening = true;
-            this.updatePitch();
-          } catch (error) {
-            console.error("Error accessing microphone:", error);
-            document.querySelector(".status").textContent =
-              "Error accessing microphone. Please ensure microphone permissions are granted.";
-          }
-        }
-
-        stop() {
-          if (this.mediaStream) {
-            this.mediaStream.getTracks().forEach((track) => track.stop());
-          }
-          if (this.audioContext) {
-            this.audioContext.close();
-          }
-          this.isListening = false;
-        }
-
-        getClosestNote(frequency) {
-          if (!frequency) return null;
-
-          let closestNote = ALL_NOTES[0];
-          let closestDist = Math.abs(Math.log2(frequency / closestNote.freq));
-
-          for (const note of ALL_NOTES) {
-            const dist = Math.abs(Math.log2(frequency / note.freq));
-            if (dist < closestDist) {
-              closestNote = note;
-              closestDist = dist;
-            }
-          }
-
-          return closestNote;
-        }
-
-        getCents(frequency, noteFrequency) {
-          return Math.floor(1200 * Math.log2(frequency / noteFrequency));
-        }
-
-        updatePitch() {
-          if (!this.isListening) return;
-
-          const buffer = new Float32Array(this.analyzer.fftSize);
-          this.analyzer.getFloatTimeDomainData(buffer);
-
-          const frequency = this.detectPitch(
-            buffer,
-            this.audioContext.sampleRate
-          );
-
-          if (frequency && frequency > 60 && frequency < 1000) {
-            // Filter out extreme frequencies
-            const closestNote = this.getClosestNote(frequency);
-            const cents = this.getCents(frequency, closestNote.freq);
-
-            document.querySelector(".frequency").textContent = `${
-              Math.round(frequency * 10) / 10
-            } Hz`;
-            document.querySelector(".note").textContent = closestNote.note;
-
-            const targetNote = document.querySelector(".target-note");
-            targetNote.textContent = `Closest note: ${closestNote.note} (${closestNote.freq} Hz)`;
-            targetNote.style.fontWeight = GUITAR_NOTES.includes(
-              closestNote.note
-            )
-              ? "bold"
-              : "normal";
-
-            const meterPosition = Math.max(-50, Math.min(50, cents)) + 50;
-            document.querySelector(
-              ".meter-needle"
-            ).style.left = `${meterPosition}%`;
-
-            const status = document.querySelector(".status");
-            if (Math.abs(cents) < 5) {
-              status.textContent = "In tune!";
-              status.className = "status in-tune";
-            } else if (cents > 5) {
-              status.textContent = "Sharp - tune down";
-              status.className = "status sharp";
-            } else {
-              status.textContent = "Flat - tune up";
-              status.className = "status flat";
-            }
-          }
-
-          requestAnimationFrame(() => this.updatePitch());
-        }
-
-        detectPitch(buffer, sampleRate) {
-          // YIN pitch detection algorithm
-          const threshold = 0.15;
-          const bufferSize = buffer.length;
-          const yinBuffer = new Float32Array(bufferSize / 2);
-
-          // Step 1: Difference function
-          for (let t = 0; t < yinBuffer.length; t++) {
-            yinBuffer[t] = 0;
-            for (let i = 0; i < yinBuffer.length; i++) {
-              const diff = buffer[i] - buffer[i + t];
-              yinBuffer[t] += diff * diff;
-            }
-          }
-
-          // Step 2: Cumulative mean normalized difference
-          let runningSum = 0;
-          yinBuffer[0] = 1;
-          for (let t = 1; t < yinBuffer.length; t++) {
-            runningSum += yinBuffer[t];
-            yinBuffer[t] *= t / runningSum;
-          }
-
-          // Step 3: Absolute threshold
-          let tau = 0;
-          let minValue = Infinity;
-          for (let t = 1; t < yinBuffer.length; t++) {
-            if (yinBuffer[t] < threshold && yinBuffer[t] < minValue) {
-              minValue = yinBuffer[t];
-              tau = t;
-            }
-          }
-
-          // Step 4: Interpolation
-          if (tau !== 0 && minValue !== Infinity) {
-            let betterTau = tau;
-            if (tau < yinBuffer.length - 1) {
-              const alpha = yinBuffer[tau + 1] - yinBuffer[tau - 1];
-              const beta =
-                2 *
-                (2 * yinBuffer[tau] - yinBuffer[tau - 1] - yinBuffer[tau + 1]);
-              if (beta !== 0) {
-                betterTau = tau + alpha / beta;
-              }
-            }
-            return sampleRate / betterTau;
-          }
-
-          return null;
-        }
+        startStopBtn.innerText = "Stop Autoclicker";
+        isRunning = true;
       }
 
-      // Initialize tuner
-      const tuner = new PitchDetector();
-      let isActive = false;
-
-      document.getElementById("startButton").addEventListener("click", () => {
-        if (!isActive) {
-          tuner.start();
-          document.getElementById("startButton").textContent = "Stop Tuning";
-        } else {
-          tuner.stop();
-          document.getElementById("startButton").textContent = "Start Tuning";
-          document.querySelector(".note").textContent = "--";
-          document.querySelector(".frequency").textContent = "-- Hz";
-          document.querySelector(".target-note").textContent =
-            "Closest note: --";
-          document.querySelector(".status").textContent =
-            "Start tuning to begin";
-          document.querySelector(".status").className = "status";
-          document.querySelector(".meter-needle").style.left = "50%";
-        }
-        isActive = !isActive;
-      });
+      function stopAutoclick() {
+        clearInterval(autoclickInterval);
+        startStopBtn.innerText = "Start Autoclicker";
+        isRunning = false;
+      }
     </script>
   </body>
 </html>

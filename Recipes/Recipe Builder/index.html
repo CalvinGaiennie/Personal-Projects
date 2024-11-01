@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beef and Vegetable Soup</title>
+    <title>Recipe List</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
@@ -11,18 +11,27 @@
       <a href="../Title Page/index.html"> Recipe List<a/>
     </header>
     <aside class="left-banner">
+      <h2>Select a Recipe</h2>
+      <p>Recipe List</p>
+      <select id="recipe-list">
+        <option value="beefNoodlesCopy" selected>Beef and Broccoli Noodles</option>
+          <option value="chickenParmesean">Chicken Parmesean</option>
+          <option value="chickenSalad">Chicken Salad</option>
+          <option value="pitaBread">Pita Bread</option>
+          <option value="sushiRice">Sushi Rice</option>
+      </select>
       <h2>Ingredients</h2>
       <div id="ingredients"></div>
     </aside>
     <div class="steps">
-      <h1>Beef and Vegetable Soup</h1>
+      <h1 id="title">Beef Fried Rice</h1>
       <form>
-        <p>How many servings of Beef and vegetable soup do you want to make?</p>
+        <p>How many servings of beef fried rice do you want to make?</p>
         <select id="input">
           <option value="1">1</option>
-          <option value="2">2</option>
+          <option value="2" selected>2</option>
           <option value="3">3</option>
-          <option value="4"selected>4</option>
+          <option value="4">4</option>
           <option value="5">5</option>
           <option value="6">6</option>
           <option value="7">7</option>
