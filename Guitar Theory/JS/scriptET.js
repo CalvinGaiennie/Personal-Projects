@@ -182,12 +182,27 @@ const bassOnly = {
 };
 
 const melodiesOnly = {
-  beginnerGMelodies: {},
-  beginnerMelodies: {},
-  intermediateMelodies: {},
-  advancedMelodies: {},
+  beginnerGMelodies: [],
+  beginnerMelodies: [],
+  intermediateMelodies: [
+    {
+      FileName: "ET_MO_A_ElPaso.mp3",
+      Name: "El Paso",
+      Key: "A",
+      Chords: "",
+      Tip: "",
+    },
+    {
+      FileName: "ET_MO_I_GOTTV1.mp3",
+      Name: "Game of Thrones Theme Variation 1",
+      Key: "Cm",
+      Chords: "",
+      Tip: "",
+    },
+  ],
+  advancedMelodies: [],
 };
-
+// https://tabs.ultimate-guitar.com/tab/misc-television/game-of-thrones-theme-tabs-1052803
 const difficultyMapGuitarOnly = {
   videosBeginner: guitarOnly.videosBeginner,
   videosBeginnerG: guitarOnly.videosBeginnerG,
@@ -347,7 +362,7 @@ const rules = {
     {
       type: "h4",
       class: "difficulty",
-      content: "Intermediate (0)",
+      content: "Intermediate (2)",
     },
     {
       type: "p",
@@ -441,6 +456,8 @@ document.getElementById("playButton").addEventListener("click", function () {
     selectedDifficultyObject =
       difficultyMapMelodiesOnly[selectedDifficulty] || [];
   }
+  console.log(selectedDifficulty);
+  console.log(selectedDifficultyObject);
 
   //Extract track names into an array
   const trackNames = selectedDifficultyObject.map((track) => track.FileName);
@@ -448,7 +465,6 @@ document.getElementById("playButton").addEventListener("click", function () {
   // Randomly select an audio file from the chosen array
   const randomAudio = trackNames[Math.floor(Math.random() * trackNames.length)];
   randomAudioIndex = trackNames.indexOf(randomAudio);
-  console.log(randomAudioIndex);
   // Get the audio player element
   const audioPlayer = document.getElementById("audioPlayer");
 
