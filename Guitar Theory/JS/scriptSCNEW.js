@@ -20,6 +20,8 @@ const stickControlRudimentTextEl = document.getElementById("rudimentText");
 const stickControlMeasuresPerRudimentEl = document.getElementById(
   "measures-per-rudiment"
 );
+const toggleStickControl = document.getElementById("toggle");
+
 ////Metronome Elements
 const metronomeBPMEl = document.getElementById("metronomeBPM");
 const metronomeToggleEl = document.getElementById("toggleMetronome");
@@ -29,12 +31,16 @@ const metronomeNoteTypeEl = document.getElementById("metronome-note-type");
 let stickControlNoteType = stickControlNoteTypeEl.value;
 let stickControlBPM = stickControlBPMEl.value;
 let stickControlMeasuresPerRudiment = stickControlMeasuresPerRudimentEl.value;
+
 //// Metronome Initial Setup
 let metronomeNoteType = metronomeNoteTypeEl.value;
 let metronomeBPM = metronomeBPMEl.value;
+let state = "metronomePaused";
 
 ////Other Variables
 const minute = 60000;
+let measureLength = 0;
+let elapsedTime = 0;
 const rudiments = [
   {
     RudimentNumber: "One",
@@ -137,11 +143,22 @@ const rudiments = [
 ////////////////////
 //Shared Functions
 function calcTime(BPM, noteType) {
+  // console.log(`BPM: ${BPM} Note Type: ${noteType}`);
   let time = minute / BPM;
-  if (noteType == 0.125) {
+  if (noteType == 8) {
     time = time / 2;
   }
   return time;
+}
+
+function convertNoteType(noteType) {
+  let newNoteType;
+  if (noteType == ".25") {
+    newNoteType = 4;
+  } else {
+    newNoteType = 8;
+  }
+  return newNoteType;
 }
 
 ////accent sound
@@ -167,18 +184,32 @@ function populateSelect(place, textStr, low, high, selected) {
   }
 }
 
-let beat = 0;
-function playMeasure() {
-  // I need to push arguments into this function
-  const time = calcTime();
-  for (let i = 0; i < 8; i++) {
+function playMeasure(noteType, time) {
+  let measureTime = 0;
+
+  for (let beat = 0; beat < noteType; beat++) {
     if (beat == 0) {
-      click();
-    } else if (beat > 8) {
-      click2();
-    } else if (beat == 8) {
-      click2();
+      setTimeout(click, measureTime);
+      measureTime += time;
+    } else if (beat < noteType) {
+      setTimeout(click, measureTime);
+      measureTime += time;
+    } else if (beat == noteType) {
+      setTimeout(click, measureTime);
+      measureTime = 0;
     }
+  }
+}
+
+function newMeasure(newNoteType, time) {
+  console.log(elapsedTime, measureLength);
+
+  if (state == "metronomePlaying") {
+    setTimeout(function () {
+      playMeasure(newNoteType, time);
+    }, elapsedTime);
+
+    elapsedTime += measureLength;
   }
 }
 //Workout Functions
@@ -210,18 +241,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
     stickControlBannerDivEl.appendChild(img);
   }
-  playMeasure();
 });
 
 //pause/play button clicked
-document.addEventListener("", function () {});
+toggleStickControl.addEventListener("click", function () {
+  let noteType = stickControlNoteTypeEl.value;
+  let BPM = stickControlBPMEl.value;
+
+  let newNoteType = convertNoteType(noteType);
+  const time = calcTime(BPM, newNoteType);
+  playMeasure(newNoteType, time);
+});
 
 //Metronome start/stop clicked
-document.addEventListener("", function () {});
+metronomeToggleEl.addEventListener("click", function () {
+  //Sets metronome state to making pausing possible later
+  if (state == "metronomePlaying") {
+    state = "metronomePaused";
+  } else if (state == "metronomePaused") {
+    state = "metronomePlaying";
+  }
+  //reset global variables that need a reset
+  elapsedTime = 0;
+
+  console.log(state);
+  //get data needed to pass into the function
+  let noteType = metronomeNoteTypeEl.value;
+  let BPM = metronomeBPMEl.value;
+
+  //convert noteType to not break old code but use a more straighforward one here
+  let newNoteType = convertNoteType(noteType);
+
+  //calculate Time
+  const time = calcTime(BPM, newNoteType);
+
+  measureLength = newNoteType * time;
+
+  //play a measure
+  console.log(newNoteType, time);
+  playMeasure(newNoteType, time);
+
+  // newMeasure(newNoteType, time);
+});
 
 /////////////////////
 //setup page
 
-////populate selects
 // create a function to play 1 measure of metronome while toggle == playing
 //for the workout have it play while toggle == playing and rudiment number < 26
