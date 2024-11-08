@@ -55,7 +55,7 @@
         </div>
       </div>
       <br>
-      <button id='toggleMetronome'>Play</button>
+      <button id='toggleMetronome'><img src="../assets/StickControlImages/Play.png" class="state" /></button>
     </div>
     <br>
     <br>
@@ -66,25 +66,16 @@
       <p id="rudimentText">Put rudiment here</p>
       <div id="imgDiv" src=></div>
       <div id="measureNumberDiv"></div>
-      <div id="container">
-        <div>
-          <h2>Note Type</h2>
-          <select id="noteType">
-            <option value=".25">Quarter Notes</option>
-            <option selected="true" value=".125">Eighth Notes</option>
-          </select>
-        </div>
-        <div>
-          <h2>BMP</h2>
-          <select id="BPM"></select>
-        </div>
         <div>
           <h2>Measures Per Rudiment</h2>
           <select id="measures-per-rudiment">
           </select>
         </div>
-      </div>
-      <button id="toggle"><img src="../assets/StickControlImages/Play.png" class="state" /></button>
+      <h2>Are You doing the Workout?</h2>
+        <select id="workout-state">
+          <option value="yes">Yes</option>
+          <option value="no" selected>No</option>
+        </select>
       <audio id="audioPlayer" controls>
         Your browser does not support the audio tag.
       </audio>
@@ -93,7 +84,7 @@
       </audio>
     </div>
   </div>
-    <script src="../js/scriptSC.js" ></script>
-    <!-- <script src="../js/scriptSCNEW.js" ></script> -->
+    <!-- <script src="../js/scriptSC.js" ></script> -->
+    <script src="../js/scriptSCNEW.js" ></script>
   </body>
 </html>
