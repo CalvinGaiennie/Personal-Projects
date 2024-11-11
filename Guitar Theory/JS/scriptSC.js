@@ -1,40 +1,46 @@
 "use strict";
 /////////////////////////////////////////////////
-//General ELEMENTS
+
+//Variables
+//// Audio Elements
 const audioPlayer = document.getElementById("audioPlayer");
 audioPlayer.src = "../assets/Stick Control Sounds/first.mp3";
 const audioPlayer2 = document.getElementById("audioPlayer2");
 audioPlayer2.src = "../assets/Stick Control Sounds/other.wav";
 
-//Stick Control Elements
-const toggleStickControl = document.getElementById("toggle");
-const imageDiv = document.getElementById("imgDiv");
-const measureNumberDiv = document.getElementById("measureNumberDiv");
-const BPMEl = document.getElementById("BPM");
-const noteTypeEl = document.getElementById("noteType");
-let noteType = noteTypeEl.value;
-const bannerDiv = document.getElementById("banner-title");
-const rudimentTextEl = document.getElementById("rudimentText");
+////Workout Elements
+const stickControlToggleEl = document.getElementById("toggle");
+const stickControlImageDivEl = document.getElementById("imgDiv");
+const stickControlMeasureNumberDivEl =
+  document.getElementById("measureNumberDiv");
+const stickControlBannerDivEl = document.getElementById("banner-title");
+const stickControlRudimentTextEl = document.getElementById("rudimentText");
+const stickControlMeasuresPerRudimentEl = document.getElementById(
+  "measures-per-rudiment"
+);
+const workoutStateEl = document.getElementById("workout-state");
 
-// Metronome Elements
+////Metronome Elements
 const metronomeBPMEl = document.getElementById("metronomeBPM");
-const toggleMetronome = document.getElementById("toggleMetronome");
+const metronomeToggleEl = document.getElementById("toggleMetronome");
+const metronomeNoteTypeEl = document.getElementById("metronome-note-type");
 
-//OTHER variables
+//// Workout Initial Setup
+let stickControlMeasuresPerRudiment = stickControlMeasuresPerRudimentEl.value;
+let measureNumber = 0;
+let rudimentNumber = 0;
+
+//// Metronome Initial Setup
+let metronomeNoteType = metronomeNoteTypeEl.value;
+let metronomeBPM = metronomeBPMEl.value;
+let metronomeState = "metronomePaused";
+
+////Other Variables
+let masterTime = 0;
 const minute = 60000;
-let beatCount = 3;
-let measureNumber = 1;
-let state = "paused";
-let imageNumber = 0;
-let rudimentNumber = -1;
-let measureLength;
-let rudimentLength;
-
-// INTERVALS
-let metronomeInterval;
-let measureCounterInterval;
-let imgNumInterval;
-
+let measureLength = 0;
+let elapsedTime = 0;
+const timeouts = [];
 const rudiments = [
   {
     RudimentNumber: "One",
@@ -133,152 +139,167 @@ const rudiments = [
     Rudiment: "24: R R L L    R L R R      L L R R    L R L L",
   },
 ];
-/////////////////////////////////////////////////////////////////
-// CALLBACK FUNCTIONS
-//make the 1 sound
-function click() {
-  audioPlayer.load();
-  audioPlayer.play();
-}
-//make the other sound
-function click2() {
-  audioPlayer2.load();
-  audioPlayer2.play();
-}
 
-//calculates how long a beat is
-function calcTime() {
-  const BPM = BPMEl.value;
+////////////////////
+//Shared Functions
+function calcTime(BPM, noteType) {
   let time = minute / BPM;
-  noteType = noteTypeEl.value;
-  if (noteType == 0.125) {
+  if (noteType == 8) {
     time = time / 2;
   }
   return time;
 }
 
-function displayMeasureNumber() {
-  measureNumberDiv.innerHTML = "<h2>Measure Number</h2>";
-  const num = document.createElement("p");
-  num.innerHTML = measureNumber;
-  measureNumberDiv.appendChild(num);
-  if (measureNumber == "40") {
-    measureNumber = 1;
-    incrementRudimentNumber();
-    displayRudimentText();
+function convertNoteType(noteType) {
+  let newNoteType;
+  if (noteType == ".25") {
+    newNoteType = 4;
+  } else {
+    newNoteType = 8;
+  }
+  return newNoteType;
+}
+
+////accent sound
+function click() {
+  audioPlayer.load();
+  audioPlayer.play();
+}
+////standard sound
+function click2() {
+  audioPlayer2.load();
+  audioPlayer2.play();
+}
+
+function populateSelect(place, textStr, low, high, selected) {
+  for (let i = low; i <= high; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.text = `${i} ${textStr}`;
+    if (i === selected) {
+      option.selected = true;
+    }
+    place.appendChild(option);
+  }
+  const option = document.createElement("option");
+  option.value = 1000;
+  option.text = `${1000} ${textStr}`;
+  place.appendChild(option);
+}
+
+function playMeasure(noteType, time) {
+  console.log("Play Measure Called");
+  let measureTime = 0;
+  if (workoutStateEl.value == "yes") {
+    incrementWorkout();
+  }
+  for (let beat = 0; beat < noteType; beat++) {
+    let timeout;
+    if (beat == 0) {
+      timeout = setTimeout(click, measureTime);
+      measureTime += time;
+    } else if (beat < noteType) {
+      timeout = setTimeout(click2, measureTime);
+      measureTime += time;
+    } else if (beat == noteType) {
+      timeout = setTimeout(click2, measureTime);
+      measureTime = 0;
+    }
+    timeouts.push(timeout);
   }
 }
 
-function incrementRudimentNumber() {
-  rudimentNumber += 1;
-  console.log(rudimentNumber);
-  if (rudimentNumber == 25) {
-    stopWorkout();
+function clearAllTimeouts() {
+  timeouts.forEach((timeoutID) => clearTimeout(timeoutID)); // Clear each timeout
+  timeouts.length = 0; // Reset the array
+}
+
+function newMeasureIf(newNoteType, time) {
+  console.log("New Measure Called");
+  // playMeasure(newNoteType, time);
+  if (metronomeState == "metronomePlaying") {
+    const timeout = setTimeout(function () {
+      playMeasure(newNoteType, time);
+      if (metronomeState == "metronomePlaying") {
+        newMeasureIf(newNoteType, time);
+      }
+    }, measureLength);
+    timeouts.push(timeout);
   }
 }
 
-function incrementMeasureNumber() {
-  measureNumber += 1;
-}
+//Workout Functions
 
-function resetMeasureNumber() {
-  measureNumber = 1;
+function incrementWorkout() {
+  console.log("incrementWorkout called");
+  displayMeasureNumber();
+  measureNumber++;
 }
 
 function displayRudimentText() {
+  console.log("Display Rudiment Text");
   let currentRudimentObject = rudiments[rudimentNumber];
   let currentRudiment = currentRudimentObject.Rudiment;
-  rudimentTextEl.innerHTML = `<pre>${currentRudiment}</pre>`;
+  stickControlRudimentTextEl.innerHTML = `<pre>${currentRudiment}</pre>`;
 }
 
-function playMetronome() {
-  beatCount++;
-  if (noteType == 0.25) {
-    if (beatCount % 4 === 0) {
-      // Every fourth beat, play the accent sound
-      displayMeasureNumber();
-      incrementMeasureNumber();
-      click();
-    } else {
-      // For all other beats, play the normal sound
-      click2();
-    }
-  } else {
-    if (beatCount % 8 === 0) {
-      // Every eighth beat, play the accent sound
-      displayMeasureNumber();
-      incrementMeasureNumber();
-      click();
-    } else {
-      // For all other beats, play the normal sound
-      click2();
-    }
+function displayMeasureNumber() {
+  console.log("Display Measure Number", measureNumber);
+  stickControlMeasureNumberDivEl.innerHTML = "<h2>Measure Number</h2>";
+  const num = document.createElement("p");
+  num.innerHTML = measureNumber;
+  stickControlMeasureNumberDivEl.appendChild(num);
+  let measuresPerRudiment = stickControlMeasuresPerRudimentEl.value;
+  if (measureNumber == measuresPerRudiment) {
+    measureNumber = 0;
+    rudimentNumber++;
+    // displayRudimentText();
   }
-}
-
-function measureCounter() {
-  displayMeasureNumber();
-  incrementMeasureNumber();
-}
-
-function stopWorkout() {
-  clearInterval(metronomeInterval);
-  clearInterval(measureCounterInterval);
-  clearInterval(imgNumInterval);
-}
-
-function startWorkout() {
-  //get user selected settings
-  let time = calcTime();
-  if (noteType == 0.25) {
-    measureLength = time * 4;
-  } else {
-    measureLength = time * 8;
+  if (measureNumber == 1) {
+    displayRudimentText();
   }
-  rudimentLength = measureLength * 40;
-  let workout = rudimentLength * 24;
-
-  // start workout
-  metronomeInterval = setInterval(playMetronome, time);
 }
 
 function handleImageClick(i) {
   rudimentNumber = i;
   measureNumber = 0;
 }
-////////////////////////////////////////////////////////////////
-//EVENT LISTENERS
 
-//sets up sidebar and selector for bpm
+function handleImageClick(i) {
+  rudimentNumber = i;
+  measureNumber = 0;
+}
+
+//Metronome Functions
+function startMetronome() {
+  metronomeState = "metronomePlaying";
+  const img = document.createElement("img");
+  img.src = `../assets/StickControlImages/pause.png`;
+  img.classList = "state";
+  metronomeToggleEl.innerHTML = "";
+  metronomeToggleEl.appendChild(img);
+}
+
+function stopMetronome() {
+  metronomeState = "metronomePaused";
+  clearAllTimeouts();
+  const img = document.createElement("img");
+  img.src = `../assets/StickControlImages/Play.png`;
+  img.classList = "state";
+  metronomeToggleEl.innerHTML = "";
+  metronomeToggleEl.appendChild(img);
+}
+////////////////////
+//Event Listeners
 document.addEventListener("DOMContentLoaded", function () {
-  //setup the bpm select element
-  const option = document.createElement("option");
-  option.value = 400;
-  option.text = "400 BPM";
-  BPMEl.appendChild(option);
-  ////
-  for (let i = 30; i <= 200; i++) {
-    const option = document.createElement("option");
-    option.value = i;
-    option.text = `${i} BPM `;
-    if (i === 90) {
-      option.selected = true;
-    }
-    metronomeBPMEl.appendChild(option);
-  }
-  //
-  for (let i = 30; i <= 200; i++) {
-    const option = document.createElement("option");
-    option.value = i;
-    option.text = `${i} BPM `;
-    if (i === 90) {
-      option.selected = true;
-    }
-    BPMEl.appendChild(option);
-  }
+  //populate metronome BPM
+  populateSelect(metronomeBPMEl, "BPM", 30, 200, 140);
 
-  // Populate images in the banner
-  for (let i = 1; i <= 25; i++) {
+  //populate metronome BPM
+  populateSelect(stickControlMeasuresPerRudimentEl, "", 5, 50, 5);
+
+  //populate the banner
+  for (let i = 1; i <= 24; i++) {
     const img = document.createElement("img");
     img.src = `../assets/rudimentimages/rudiment${i}.png`;
     img.classList = "bannerImg";
@@ -288,39 +309,43 @@ document.addEventListener("DOMContentLoaded", function () {
       `handleImageClick(${i - 1}); displayRudimentText();`
     );
 
-    bannerDiv.appendChild(img);
+    stickControlBannerDivEl.appendChild(img);
   }
-
-  //setup thing
-  incrementRudimentNumber();
-  displayRudimentText();
+  const filler = document.createElement("div");
+  filler.innerHTML = `<h1 style="color: white;">Your Heading Text              ddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjlddddddddddddddjafsjkjkladfsjklfasjklsadfjklkjlsdfakjldsfkljsdkjlkjladfkjladsfkjlsadfkjladfskjldfsakjl</h1>`;
+  filler.innerHTML = stickControlBannerDivEl.appendChild(filler);
 });
 
-//starts and stops metronome
-toggleStickControl.addEventListener("click", function () {
-  if (state === "paused") {
-    // change state and button image
-    state = "playing";
-    const img = document.createElement("img");
-    img.src = `../assets/StickControlImages/pause.png`;
-    img.classList = "state";
-    toggle.innerHTML = "";
-    toggle.appendChild(img);
+//Metronome start/stop clicked
+metronomeToggleEl.addEventListener("click", function () {
+  //Sets metronome metronomeState to making pausing possible later
+  if (metronomeState == "metronomePlaying") {
+    stopMetronome();
+  } else if (metronomeState == "metronomePaused") {
+    startMetronome();
+  }
+  //get data needed to pass into the function
+  let noteType = metronomeNoteTypeEl.value;
+  let BPM = metronomeBPMEl.value;
 
-    //Start Workout
-    startWorkout();
-  } else {
-    // change state and button image
-    state = "paused";
-    const img = document.createElement("img");
-    img.src = `../assets/StickControlImages/Play.png`;
-    img.classList = "state";
-    toggle.innerHTML = "";
-    toggle.appendChild(img);
+  //convert noteType to not break old code but use a more straighforward one here
+  let newNoteType = convertNoteType(noteType);
 
-    //Stop workout
-    stopWorkout();
+  //calculate Time
+  const time = calcTime(BPM, newNoteType);
+
+  measureLength = newNoteType * time;
+  setInterval(function () {
+    console.log("Measure Time:", masterTime);
+    masterTime += measureLength;
+  }, measureLength);
+  //play the metronome while metronomeState is playing
+  if (metronomeState == "metronomePlaying") {
+    newMeasureIf(newNoteType, time);
   }
 });
 
-toggleMetronome.addEventListener("click", function () {});
+/////////////////////
+//setup page
+
+//for the workout have it play while toggle == playing and rudiment number < 26
