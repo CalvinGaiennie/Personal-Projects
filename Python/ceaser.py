@@ -36,8 +36,6 @@ lowercase_string = string.lower()
 
 string_characters_list = list(lowercase_string)
 
-print(string_characters_list)
-
 encoded_string = []
 
 if decision == 'e':
@@ -56,10 +54,7 @@ else:
             new_index = index_of_char + 26 - int(encoding_num)
             encoded_char = alphabet[new_index]
             encoded_string.append(encoded_char)
-            print(encoded_char)
 
-
-print(encoded_string)
 
 final_string = ''.join(encoded_string)
 
