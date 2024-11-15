@@ -3,50 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autoclicker</title>
+    <title></title>
   </head>
   <body>
-    <h1>Autoclicker App</h1>
-    <button id="startStopBtn">Start Autoclicker</button>
-    <button id="targetBtn">Click Me!</button>
-
-    <script>
-      let autoclickInterval;
-      const targetSelector = "#targetBtn"; // Change this selector to the element you want to click
-      const intervalMs = 500; // Set the interval between clicks in milliseconds (e.g., 500ms)
-
-      const startStopBtn = document.getElementById("startStopBtn");
-      let isRunning = false;
-
-      startStopBtn.addEventListener("click", () => {
-        if (isRunning) {
-          stopAutoclick();
-        } else {
-          startAutoclick();
-        }
-      });
-
-      function startAutoclick() {
-        const targetElement = document.querySelector(targetSelector);
-        if (!targetElement) {
-          alert("Target element not found!");
-          return;
-        }
-
-        autoclickInterval = setInterval(() => {
-          targetElement.click();
-          console.log("click");
-        }, intervalMs);
-
-        startStopBtn.innerText = "Stop Autoclicker";
-        isRunning = true;
-      }
-
-      function stopAutoclick() {
-        clearInterval(autoclickInterval);
-        startStopBtn.innerText = "Start Autoclicker";
-        isRunning = false;
-      }
-    </script>
+    <script></script>
   </body>
 </html>
