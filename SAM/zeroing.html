@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Distance to Target</h2>
+    <input type="number" id="distance-to-target" />
+    <h2>Windage Discrepancy</h2>
+    <input type="number" id="windage-discrepancy" />
+    <h2>MOA Per Click</h2>
+    <input type="number" id="moa-per-click" />
+    <button id="button">solve</button>
+    <script>
+      const distanceToTarget = document.getElementById("distance-to-target");
+      const windageDiscrepancy = document.getElementById("windage-discrepancy");
+      const MOAPerClick = document.getElementById("moa-per-click");
+      const button = document.getElementById("button");
+      const MOAConst = 1;
+
+      button.addEventListener("click", function () {
+        const distanceToTargetValue = parseFloat(distanceToTarget.value);
+        const windageDiscrepancyValue = parseFloat(windageDiscrepancy.value);
+        const MOAPerClickValue = parseFloat(MOAPerClick.value);
+        const numberOfClicks =
+          windageDiscrepancyValue /
+          (distanceToTargetValue / MOAConst / MOAPerClickValue);
+
+        console.log(numberOfClicks);
+      });
+    </script>
+  </body>
+</html>

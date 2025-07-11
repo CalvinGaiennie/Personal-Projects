@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Greeter</h1>
+    <p>Whats your name?</p>
+    <input id="input" />
+    <p>What is your gender?</p>
+    <select id="select">
+      <option>Select an option</option>
+      <option value="male">male</option>
+      <option value="female">female</option>
+    </select>
+    <button id="button" onClick="greetUser()">submit</button>
+    <div id="greeter-div"></div>
+  </body>
+  <script>
+    const input = document.getElementById("input");
+    const button = document.getElementById("button");
+    const greeter = document.getElementById("greeter-div");
+    const select = document.getElementById("select");
+
+    function greetUser() {
+      const name = input.value;
+      const gender = select.value;
+      let title = "";
+
+      if (gender == "male") {
+        title = "Mr.";
+      } else if (gender == "female") {
+        title = "Ms.";
+      }
+
+      greeter.innerHTML = "hello" + " " + title + name;
+    }
+  </script>
+</html>

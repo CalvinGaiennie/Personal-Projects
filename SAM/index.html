@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Solving your Right Triangles</h1>
+    <p>Enter the two sides that you know.</p>
+    <div style="display: flex">
+      <p>A:</p>
+      <input id="a" />
+    </div>
+    <div style="display: flex">
+      <p>B:</p>
+      <input id="b" />
+    </div>
+    <div style="display: flex">
+      <p>C:</p>
+      <input id="c" />
+    </div>
+    <button id="submit" onClick="solveTriangle()">Submit</button>
+    <div
+      id="answer-div"
+      style="height: 20px; width: 50px; border: 1 solid black"
+    ></div>
+    <script>
+      const inputA = document.getElementById("a");
+      const inputB = document.getElementById("b");
+      const inputC = document.getElementById("c");
+      const answerDiv = document.getElementById("answer-div");
+      const submitbutton = document.getElementById("submit");
+
+      function solveTriangle() {
+        const aValue = inputA.value;
+        const bValue = inputB.value;
+        const cValue = inputC.value;
+        console.log("A:", aValue, "B:", bValue, "C:", cValue);
+
+        if (aValue && bValue && cValue == "") {
+          const c = math.Sqrt(aValue * aValue + bValue * bValue);
+          answerDiv.innerHTML = c;
+        } else if (aValue && cValue && bValue == "") {
+          //solve for b
+        } else if (bValue && cValue && aValue == "") {
+          //solve for a
+        }
+      }
+
+      // const aValue = inputA.value;
+      // const bValue = inputB.value;
+
+      // const cSquared = aValue * aValue + bValue * bValue;
+      // const c = Math.sqrt(cSquared);
+      // answerDiv.innerHTML = c;
+    </script>
+  </body>
+</html>

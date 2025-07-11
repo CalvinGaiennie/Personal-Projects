@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Leaving Checklist</h1>
+    <h2>Did you close the blinds?</h2>
+    <select id="blinds-select">
+      <option>pick an option</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <h2>Did you turn off the air conditioners?</h2>
+    <select id="ac-select">
+      <option>pick an option</option>
+      <option value="yes">yes</option>
+      <option value="no">no</option>
+    </select>
+    <h2>Did you turn off the lights?</h2>
+    <select id="lights-select">
+      <option>pick an option</option>
+      <option value="yes">yes</option>
+      <option value="no">no</option>
+    </select>
+    <h2>Did you close the interior doors?</h2>
+    <select id="doors-select">
+      <option>pick an option</option>
+      <option value="yes">yes</option>
+      <option value="no">no</option>
+    </select>
+    <h2>Did you let Max out?</h2>
+    <select id="max-select">
+      <option>pick an option</option>
+      <option value="yes">yes</option>
+      <option value="no">no</option>
+    </select>
+    <h2>Did you lock the door?</h2>
+    <select id="door-select">
+      <option>pick an option</option>
+      <option value="yes">yes</option>
+      <option value="no">no</option>
+    </select>
+    <br />
+    <br />
+    <button id="finish-button" onClick="submitChecklist()">finish</button>
+  </body>
+  <script>
+    function submitChecklist() {
+      const blinds = document.getElementById("blinds-select");
+      const blindsValue = blinds.value;
+
+      const ac = document.getElementById("ac-select");
+      const acValue = ac.value;
+
+      const lights = document.getElementById("lights-select");
+      const lightsValue = lights.value;
+
+      const doors = document.getElementById("doors-select");
+      const doorsValue = doors.value;
+
+      const max = document.getElementById("max-select");
+      const maxValue = max.value;
+
+      const door = document.getElementById("door-select");
+      const doorValue = door.value;
+
+      const sentence = `blind: ${blindsValue}, ac: ${acValue}, lights: ${lightsValue}, doors: ${doorsValue}, max: ${maxValue}, door: ${doorValue}`;
+      console.log(sentence);
+    }
+  </script>
+</html>
